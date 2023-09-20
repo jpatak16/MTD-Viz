@@ -1,0 +1,45 @@
+trans_ID,asset,away_from_team,to_team,note,status
+1001,Kevin Durant,Brooklyn Nets,Phoenix Suns,,Pending
+1001,TJ Warren,Brooklyn Nets,Phoenix Suns,,Pending
+1001,Mikal Bridges,Phoenix Suns,Brooklyn Nets,,Pending
+1001,Cameron Johnson,Phoenix Suns,Brooklyn Nets,,Pending
+1001,Juan Pablo Vaulet,Indiana Pacers,Brooklyn Nets,,Pending
+1001,2023 First Pound Pick,Phoenix Suns,Brooklyn Nets,,Pending
+1001,2025 First Round Pick,Phoenix Suns,Brooklyn Nets,,Pending
+1001,2027 First Round Pick,Phoenix Suns,Brooklyn Nets,,Pending
+1001,2028 First Round Pick Swap,Phoenix Suns,Brooklyn Nets,,Pending
+1001,2028 Second Round Pick,Milwaukee Bucks,Brooklyn Nets,,Pending
+1001,2029 First Round Pick,Phoenix Suns,Brooklyn Nets,,Pending
+1001,2029 Second Round Pick,Milwaukee Bucks,Brooklyn Nets,,Pending
+1001,Jae Crowder,Phoenix Suns,Milwaukee Bucks,,Pending
+1001,George Hill,Milwaukee Bucks,Indiana Pacers,,Pending
+1001,Serge Ibaka,Milwaukee Bucks,Indiana Pacers,,Pending
+1001,Jordan Nwora,Milwaukee Bucks,Indiana Pacers,,Pending
+1001,2023 Second Round Pick,Milwaukee Bucks,Indiana Pacers,more favorable of MIL picks (MIL or least favorable of CLE-GSW),Pending
+1001,Cash Considerations,Brooklyn Nets,Indiana Pacers,,Pending
+1002,Mason Plumlee,Charlotte Hornets,LA Clippers,,Pending
+1002,Reggie Jackson,LA Clippers,Charlotte Hornets,,Pending
+1002,2028 Second Round Pick,LA Clippers,Charlotte Hornets,,Pending
+1003,Jalen McDaniels ,Charlotte Hornets,Philadelphia 76ers,,Pending
+1003,2024 Second Round Pick,Charlotte Hornets,Philadelphia 76ers,,Pending
+1003,2029 Second Round Pick,Portland Trail Blazers,Philadelphia 76ers,,Pending
+1003,Svi Mykhailiuk,New York Knicks,Charlotte Hornets,,Pending
+1003,2023 Second Round Pick,Philadelphia 76ers,Charlotte Hornets,,Pending
+1003,2027 Second Round Pick,Portland Trail Blazers,Charlotte Hornets,,Pending
+1003,Cam Reddish,New York Knicks,Portland Trail Blazers,,Pending
+1003,Matisse Thybulle,Philadelphia 76ers,Portland Trail Blazers,,Pending
+1003,Ryan Arcidiacono,New York Knicks,Portland Trail Blazers,,Pending
+1003,2023 First Pound Pick,New York Knicks,Portland Trail Blazers,,Pending
+1003,Josh Hart,Portland Trail Blazers,New York Knicks,,Pending
+1004,Eric Gordon,Houston Rockets,LA Clippers,,Pending
+1004,2024 Second Round Pick,Memphis Grizzlies,LA Clippers,more favorable of IND pick or least favorable of CLE-UTH pick,Pending
+1004,2027 Second Round Pick,Memphis Grizzlies,LA Clippers,,Pending
+1004,2024 Second Round Pick,Memphis Grizzlies,LA Clippers,TOR pick,Pending
+1004,John Wall,LA Clippers,Houston Rockets,,Pending
+1004,Danny Green,Memphis Grizzlies,Houston Rockets,,Pending
+1004,2023 First Round Pick Swap,LA Clippers,Houston Rockets,Top-6 protected; right to swap for either LAC-OKC FRP,Pending
+1004,Luke Kennard,LA Clippers,Memphis Grizzlies,,Pending
+1005,Mike Muscala,Oklahoma City Thunder,Boston Celtics,,Pending
+1005,Justin Jackson,Boston Celtics,Oklahoma City Thunder,,Pending
+1005,2023 Second Round Pick,Boston Celtics,Oklahoma City Thunder,least favorable of BOS picks,Pending
+1005,2029 Second Round Pick,Boston Celtics,Oklahoma City Thunder,,Pending
