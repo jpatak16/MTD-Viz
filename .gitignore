@@ -2,3 +2,5 @@
 .Rhistory
 .RData
 .Ruserdata
+data_entry/.secrets
+log/.secrets
