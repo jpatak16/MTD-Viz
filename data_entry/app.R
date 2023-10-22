@@ -1,5 +1,11 @@
 library(pacman)
-p_load(shiny, magrittr, dplyr, stringr, gt, gtExtras, googlesheets4)
+library(shiny)
+library(magrittr)
+library(dplyr)
+library(stringr)
+library(gt)
+library(gtExtras)
+library(googlesheets4)
 
 gs4_auth(cache = ".secrets", email = "jeremypatak16@gmail.com")
 
