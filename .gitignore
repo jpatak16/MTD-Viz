@@ -3,4 +3,5 @@
 .RData
 .Ruserdata
 data_entry/.secrets
-log/.secrets
+log/app_cache
+data_entry/app_cache

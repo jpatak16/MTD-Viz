@@ -7,35 +7,40 @@ library(gt)
 library(gtExtras)
 library(googlesheets4)
 
-gs4_auth(cache = ".secrets", email = "jeremypatak16@gmail.com")
+gs4_auth(path = ".secrets/asu-mtd-c191882d31e3.json")
 
 ss = gs4_get("https://docs.google.com/spreadsheets/d/1Ti24DVdNRNHGZ4IKGJ342dCDSvycJtdfC8OFh0jlLEI/edit?usp=sharing")
 
-nba_teams = hoopR::espn_nba_teams() %>% pull(display_name)
+hoopR_espn_nba_teams = read.csv("espn_nba_teams.csv")
+nba_players = read.csv("nba_players.csv")
+
+nba_teams = hoopR_espn_nba_teams %>% pull(display_name)
 
 # Define UI for application that draws a histogram
-ui = navbarPage("2023 Mock Trade Deadline", fluid = TRUE,
+ui = navbarPage("2023 NBA Trade Deadline Competition", fluid = TRUE,
                 tabPanel("Trade Entry",
                          tags$style(type="text/css",
                                     ".shiny-output-error { visibility: hidden; }",
                                     ".shiny-output-error:before { visibility: hidden; }",
                                     ".modal-dialog { width: fit-content !important; }"),
-                         fluidRow(column(9, h1(span("2023 Mock Trade Deadline", style = 'color:rgba(169,20,20,128);')), 
+                         fluidRow(column(9, h1(span("2023 NBA Trade Deadline Competition", style = 'color:rgba(169,20,20,128);')), 
                                          h1(span("Trade Entry", style = 'font-size: 60px; font-weight: bold;'))),
                                   column(3, img(src="ASU-NTDC-Logo.png", height = 180, width = 240))),
                          tags$hr(style="border-color:rgba(169,20,20,128);"),
                          fluidRow(column(6, selectizeInput("teamsInvolved", label = "Teams Involved", choices = nba_teams, multiple = T)),
                                   column(2, actionButton("submit", "Submit For Approval")),
-                                  column(2, actionButton("clearpg", "Clear All Input"))),
-                         fluidRow(column(3, textInput("tradedItem1", "Asset")),
+                                  column(2, actionButton("clearpg", "Clear All Input")),
+                                  column(1, selectInput("compnum", "Computer Number", choices = c(1:5)))),
+                         h2(" "),
+                         fluidRow(column(3, selectizeInput("tradedItem1", "Asset", choices = nba_players, options = list(create = TRUE))),
                                   column(3, uiOutput("selectTradeFrom1")),
                                   column(3, uiOutput("selectTradeTo1")),
                                   column(3, textInput("notes1", "Notes"))),
-                         fluidRow(column(3, textInput("tradedItem2", "")),
+                         fluidRow(column(3, selectizeInput("tradedItem2", "", choices = nba_players, options = list(create = TRUE))),
                                   column(3, uiOutput("selectTradeFrom2")),
                                   column(3, uiOutput("selectTradeTo2")),
                                   column(3, textInput("notes2", ""))),
-                         fluidRow(column(3, textInput("tradedItem3", "")),
+                         fluidRow(column(3, selectizeInput("tradedItem3", "", choices = nba_players, options = list(create = TRUE))),
                                   column(3, uiOutput("selectTradeFrom3")),
                                   column(3, uiOutput("selectTradeTo3")),
                                   column(3, textInput("notes3", ""))),
@@ -112,7 +117,7 @@ ui = navbarPage("2023 Mock Trade Deadline", fluid = TRUE,
                                   column(3, uiOutput("selectTradeTo21")),
                                   column(3, uiOutput("notes21")))),
                 tabPanel("Trade Review",
-                         fluidRow(column(9, h1(span("2023 Mock Trade Deadline", style = 'color:rgba(169,20,20,128);')), 
+                         fluidRow(column(9, h1(span("2023 NBA Trade Deadline Competition", style = 'color:rgba(169,20,20,128);')), 
                                          h1(span("Trade Review", style = 'font-size: 60px; font-weight: bold;'))),
                                   column(3, img(src="ASU-NTDC-Logo.png", height = 180, width = 240))),
                          uiOutput("hline0"),
@@ -162,325 +167,325 @@ server <- function(input, output, session) {
   transaction_log = reactiveVal(value = read_sheet("https://docs.google.com/spreadsheets/d/1Ti24DVdNRNHGZ4IKGJ342dCDSvycJtdfC8OFh0jlLEI/edit?usp=sharing"))
 
   #trade from
-  output$selectTradeFrom1 <- renderUI({ 
+  output$selectTradeFrom1 <- renderUI({
     selectInput("tradedFrom1", "Traded From", c("", input$teamsInvolved), selected = NULL)
   })
-  output$selectTradeFrom2 <- renderUI({ 
+  output$selectTradeFrom2 <- renderUI({
     selectInput("tradedFrom2", "", c("", input$teamsInvolved), selected = NULL)
   })
-  output$selectTradeFrom3 <- renderUI({ 
+  output$selectTradeFrom3 <- renderUI({
     selectInput("tradedFrom3", "", c("", input$teamsInvolved), selected = NULL)
   })
-  output$selectTradeFrom4 <- renderUI({ 
-    if(input$tradedItem3 == ""){}
+  output$selectTradeFrom4 <- renderUI({
+    if(input$tradedItem3 == " " | input$tradedItem3 == ""){}
     else{selectInput("tradedFrom4", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom5 <- renderUI({ 
-    if(input$tradedItem4 == ""){}
+  output$selectTradeFrom5 <- renderUI({
+    if(input$tradedItem4 == " " | input$tradedItem4 == ""){}
     else{selectInput("tradedFrom5", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom6 <- renderUI({ 
-    if(input$tradedItem5 == ""){}
+  output$selectTradeFrom6 <- renderUI({
+    if(input$tradedItem5 == " " | input$tradedItem5 == ""){}
     else{selectInput("tradedFrom6", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom7 <- renderUI({ 
-    if(input$tradedItem6 == ""){}
+  output$selectTradeFrom7 <- renderUI({
+    if(input$tradedItem6 == " " | input$tradedItem6 == ""){}
     else{selectInput("tradedFrom7", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom8 <- renderUI({ 
-    if(input$tradedItem7 == ""){}
+  output$selectTradeFrom8 <- renderUI({
+    if(input$tradedItem7 == " " | input$tradedItem7 == ""){}
     else{selectInput("tradedFrom8", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom9 <- renderUI({ 
-    if(input$tradedItem8 == ""){}
+  output$selectTradeFrom9 <- renderUI({
+    if(input$tradedItem8 == " " | input$tradedItem8 == ""){}
     else{selectInput("tradedFrom9", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom10 <- renderUI({ 
-    if(input$tradedItem9 == ""){}
+  output$selectTradeFrom10 <- renderUI({
+    if(input$tradedItem9 == " " | input$tradedItem9 == ""){}
     else{selectInput("tradedFrom10", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom11 <- renderUI({ 
-    if(input$tradedItem10 == ""){}
+  output$selectTradeFrom11 <- renderUI({
+    if(input$tradedItem10 == " " | input$tradedItem10 == ""){}
     else{selectInput("tradedFrom11", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom12 <- renderUI({ 
-    if(input$tradedItem11 == ""){}
+  output$selectTradeFrom12 <- renderUI({
+    if(input$tradedItem11 == " " | input$tradedItem11 == ""){}
     else{selectInput("tradedFrom12", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom13 <- renderUI({ 
-    if(input$tradedItem12 == ""){}
+  output$selectTradeFrom13 <- renderUI({
+    if(input$tradedItem12 == " " | input$tradedItem12 == ""){}
     else{selectInput("tradedFrom13", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom14 <- renderUI({ 
-    if(input$tradedItem13 == ""){}
+  output$selectTradeFrom14 <- renderUI({
+    if(input$tradedItem13 == " " | input$tradedItem13 == ""){}
     else{selectInput("tradedFrom14", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom15 <- renderUI({ 
-    if(input$tradedItem14 == ""){}
+  output$selectTradeFrom15 <- renderUI({
+    if(input$tradedItem14 == " " | input$tradedItem14 == ""){}
     else{selectInput("tradedFrom15", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom16 <- renderUI({ 
-    if(input$tradedItem15 == ""){}
+  output$selectTradeFrom16 <- renderUI({
+    if(input$tradedItem15 == " " | input$tradedItem15 == ""){}
     else{selectInput("tradedFrom16", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom17 <- renderUI({ 
-    if(input$tradedItem16 == ""){}
+  output$selectTradeFrom17 <- renderUI({
+    if(input$tradedItem16 == " " | input$tradedItem16 == ""){}
     else{selectInput("tradedFrom17", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom18 <- renderUI({ 
-    if(input$tradedItem17 == ""){}
+  output$selectTradeFrom18 <- renderUI({
+    if(input$tradedItem17 == " " | input$tradedItem17 == ""){}
     else{selectInput("tradedFrom18", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom19 <- renderUI({ 
-    if(input$tradedItem18 == ""){}
+  output$selectTradeFrom19 <- renderUI({
+    if(input$tradedItem18 == " " | input$tradedItem18 == ""){}
     else{selectInput("tradedFrom19", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom20 <- renderUI({ 
-    if(input$tradedItem19 == ""){}
+  output$selectTradeFrom20 <- renderUI({
+    if(input$tradedItem19 == " " | input$tradedItem19 == ""){}
     else{selectInput("tradedFrom20", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeFrom21 <- renderUI({ 
-    if(input$tradedItem20 == ""){}
+  output$selectTradeFrom21 <- renderUI({
+    if(input$tradedItem20 == " " | input$tradedItem20 == ""){}
     else{selectInput("tradedFrom21", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  
-  
+
+
   #trade to
-  output$selectTradeTo1 <- renderUI({ 
+  output$selectTradeTo1 <- renderUI({
     selectInput("tradedTo1", "Traded To", c("", input$teamsInvolved), selected = NULL)
   })
-  output$selectTradeTo2 <- renderUI({ 
+  output$selectTradeTo2 <- renderUI({
     selectInput("tradedTo2", "", c("", input$teamsInvolved), selected = NULL)
   })
-  output$selectTradeTo3 <- renderUI({ 
+  output$selectTradeTo3 <- renderUI({
     selectInput("tradedTo3", "", c("", input$teamsInvolved), selected = NULL)
   })
-  output$selectTradeTo4 <- renderUI({ 
-    if(input$tradedItem3 == ""){}
+  output$selectTradeTo4 <- renderUI({
+    if(input$tradedItem3 == " " | input$tradedItem3 == ""){}
     else{selectInput("tradedTo4", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo5 <- renderUI({ 
-    if(input$tradedItem4 == ""){}
+  output$selectTradeTo5 <- renderUI({
+    if(input$tradedItem4 == " " | input$tradedItem4 == ""){}
     else{selectInput("tradedTo5", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo6 <- renderUI({ 
-    if(input$tradedItem5 == ""){}
+  output$selectTradeTo6 <- renderUI({
+    if(input$tradedItem5 == " " | input$tradedItem5 == ""){}
     else{selectInput("tradedTo6", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo7 <- renderUI({ 
-    if(input$tradedItem6 == ""){}
+  output$selectTradeTo7 <- renderUI({
+    if(input$tradedItem6 == " " | input$tradedItem6 == ""){}
     else{selectInput("tradedTo7", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo8 <- renderUI({ 
-    if(input$tradedItem7 == ""){}
+  output$selectTradeTo8 <- renderUI({
+    if(input$tradedItem7 == " " | input$tradedItem7 == ""){}
     else{selectInput("tradedTo8", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo9 <- renderUI({ 
-    if(input$tradedItem8 == ""){}
+  output$selectTradeTo9 <- renderUI({
+    if(input$tradedItem8 == " " | input$tradedItem8 == ""){}
     else{selectInput("tradedTo9", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo10 <- renderUI({ 
-    if(input$tradedItem9 == ""){}
+  output$selectTradeTo10 <- renderUI({
+    if(input$tradedItem9 == " " | input$tradedItem9 == ""){}
     else{selectInput("tradedTo10", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo11 <- renderUI({ 
-    if(input$tradedItem10 == ""){}
+  output$selectTradeTo11 <- renderUI({
+    if(input$tradedItem10 == " " | input$tradedItem10 == ""){}
     else{selectInput("tradedTo11", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo12 <- renderUI({ 
-    if(input$tradedItem11 == ""){}
+  output$selectTradeTo12 <- renderUI({
+    if(input$tradedItem11 == " " | input$tradedItem11 == ""){}
     else{selectInput("tradedTo12", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo13 <- renderUI({ 
-    if(input$tradedItem12 == ""){}
+  output$selectTradeTo13 <- renderUI({
+    if(input$tradedItem12 == " " | input$tradedItem12 == ""){}
     else{selectInput("tradedTo13", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo14 <- renderUI({ 
-    if(input$tradedItem13 == ""){}
+  output$selectTradeTo14 <- renderUI({
+    if(input$tradedItem13 == " " | input$tradedItem13 == ""){}
     else{selectInput("tradedTo14", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo15 <- renderUI({ 
-    if(input$tradedItem14 == ""){}
+  output$selectTradeTo15 <- renderUI({
+    if(input$tradedItem14 == " " | input$tradedItem14 == ""){}
     else{selectInput("tradedTo15", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo16 <- renderUI({ 
-    if(input$tradedItem15 == ""){}
+  output$selectTradeTo16 <- renderUI({
+    if(input$tradedItem15 == " " | input$tradedItem15 == ""){}
     else{selectInput("tradedTo16", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo17 <- renderUI({ 
-    if(input$tradedItem16 == ""){}
+  output$selectTradeTo17 <- renderUI({
+    if(input$tradedItem16 == " " | input$tradedItem16 == ""){}
     else{selectInput("tradedTo17", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo18 <- renderUI({ 
-    if(input$tradedItem17 == ""){}
+  output$selectTradeTo18 <- renderUI({
+    if(input$tradedItem17 == " " | input$tradedItem17 == ""){}
     else{selectInput("tradedTo18", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo19 <- renderUI({ 
-    if(input$tradedItem18 == ""){}
+  output$selectTradeTo19 <- renderUI({
+    if(input$tradedItem18 == " " | input$tradedItem18 == ""){}
     else{selectInput("tradedTo19", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo20 <- renderUI({ 
-    if(input$tradedItem19 == ""){}
+  output$selectTradeTo20 <- renderUI({
+    if(input$tradedItem19 == " " | input$tradedItem19 == ""){}
     else{selectInput("tradedTo20", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  output$selectTradeTo21 <- renderUI({ 
-    if(input$tradedItem20 == ""){}
+  output$selectTradeTo21 <- renderUI({
+    if(input$tradedItem20 == " " | input$tradedItem20 == ""){}
     else{selectInput("tradedTo21", "", c("", input$teamsInvolved), selected = NULL)}
   })
-  
-  
-  
+
+
+
   #traded item
-  output$tradedItem4 <- renderUI({ 
-    if(input$tradedItem3 == ""){}
-    else{textInput("tradedItem4", "")}
+  output$tradedItem4 <- renderUI({
+    if(input$tradedItem3 == " " | input$tradedItem3 == ""){}
+    else{selectizeInput("tradedItem4", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem5 <- renderUI({ 
-    if(input$tradedItem4 == ""){}
-    else{textInput("tradedItem5", "")}
+  output$tradedItem5 <- renderUI({
+    if(input$tradedItem4 == " " | input$tradedItem4 == ""){}
+    else{selectizeInput("tradedItem5", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem6 <- renderUI({ 
-    if(input$tradedItem5 == ""){}
-    else{textInput("tradedItem6", "")}
+  output$tradedItem6 <- renderUI({
+    if(input$tradedItem5 == " " | input$tradedItem5 == ""){}
+    else{selectizeInput("tradedItem6", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem7 <- renderUI({ 
-    if(input$tradedItem6 == ""){}
-    else{textInput("tradedItem7", "")}
+  output$tradedItem7 <- renderUI({
+    if(input$tradedItem6 == " " | input$tradedItem6 == ""){}
+    else{selectizeInput("tradedItem7", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem8 <- renderUI({ 
-    if(input$tradedItem7 == ""){}
-    else{textInput("tradedItem8", "")}
+  output$tradedItem8 <- renderUI({
+    if(input$tradedItem7 == " " | input$tradedItem7 == ""){}
+    else{selectizeInput("tradedItem8", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem9 <- renderUI({ 
-    if(input$tradedItem8 == ""){}
-    else{textInput("tradedItem9", "")}
+  output$tradedItem9 <- renderUI({
+    if(input$tradedItem8 == " " | input$tradedItem8 == ""){}
+    else{selectizeInput("tradedItem9", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem10 <- renderUI({ 
-    if(input$tradedItem9 == ""){}
-    else{textInput("tradedItem10", "")}
+  output$tradedItem10 <- renderUI({
+    if(input$tradedItem9 == " " | input$tradedItem9 == ""){}
+    else{selectizeInput("tradedItem10", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem11 <- renderUI({ 
-    if(input$tradedItem10 == ""){}
-    else{textInput("tradedItem11", "")}
+  output$tradedItem11 <- renderUI({
+    if(input$tradedItem10 == " " | input$tradedItem10 == ""){}
+    else{selectizeInput("tradedItem11", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem12 <- renderUI({ 
-    if(input$tradedItem11 == ""){}
-    else{textInput("tradedItem12", "")}
+  output$tradedItem12 <- renderUI({
+    if(input$tradedItem11 == " " | input$tradedItem11 == ""){}
+    else{selectizeInput("tradedItem12", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem13 <- renderUI({ 
-    if(input$tradedItem12 == ""){}
-    else{textInput("tradedItem13", "")}
+  output$tradedItem13 <- renderUI({
+    if(input$tradedItem12 == " " | input$tradedItem12 == ""){}
+    else{selectizeInput("tradedItem13", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem14 <- renderUI({ 
-    if(input$tradedItem13 == ""){}
-    else{textInput("tradedItem14", "")}
+  output$tradedItem14 <- renderUI({
+    if(input$tradedItem13 == " " | input$tradedItem13 == ""){}
+    else{selectizeInput("tradedItem14", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem15 <- renderUI({ 
-    if(input$tradedItem14 == ""){}
-    else{textInput("tradedItem15", "")}
+  output$tradedItem15 <- renderUI({
+    if(input$tradedItem14 == " " | input$tradedItem14 == ""){}
+    else{selectizeInput("tradedItem15", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem16 <- renderUI({ 
-    if(input$tradedItem15 == ""){}
-    else{textInput("tradedItem16", "")}
+  output$tradedItem16 <- renderUI({
+    if(input$tradedItem15 == " " | input$tradedItem15 == ""){}
+    else{selectizeInput("tradedItem16", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem17 <- renderUI({ 
-    if(input$tradedItem16 == ""){}
-    else{textInput("tradedItem17", "")}
+  output$tradedItem17 <- renderUI({
+    if(input$tradedItem16 == " " | input$tradedItem16 == ""){}
+    else{selectizeInput("tradedItem17", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem18 <- renderUI({ 
-    if(input$tradedItem17 == ""){}
-    else{textInput("tradedItem18", "")}
+  output$tradedItem18 <- renderUI({
+    if(input$tradedItem17 == " " | input$tradedItem17 == ""){}
+    else{selectizeInput("tradedItem18", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem19 <- renderUI({ 
-    if(input$tradedItem18 == ""){}
-    else{textInput("tradedItem19", "")}
+  output$tradedItem19 <- renderUI({
+    if(input$tradedItem18 == " " | input$tradedItem18 == ""){}
+    else{selectizeInput("tradedItem19", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem20 <- renderUI({ 
-    if(input$tradedItem19 == ""){}
-    else{textInput("tradedItem20", "")}
+  output$tradedItem20 <- renderUI({
+    if(input$tradedItem19 == " " | input$tradedItem19 == ""){}
+    else{selectizeInput("tradedItem20", "", choices = nba_players, options = list(create = TRUE))}
   })
-  output$tradedItem21 <- renderUI({ 
-    if(input$tradedItem20 == ""){}
-    else{textInput("tradedItem21", "")}
+  output$tradedItem21 <- renderUI({
+    if(input$tradedItem20 == " " | input$tradedItem20 == ""){}
+    else{selectizeInput("tradedItem21", "", choices = nba_players, options = list(create = TRUE))}
   })
-  
-  
-  
+
+
+
   #notes
-  output$notes4 <- renderUI({ 
-    if(input$tradedItem3 == ""){}
+  output$notes4 <- renderUI({
+    if(input$tradedItem3 == " " | input$tradedItem3 == ""){}
     else{textInput("notes4", "")}
   })
-  output$notes5 <- renderUI({ 
-    if(input$tradedItem4 == ""){}
+  output$notes5 <- renderUI({
+    if(input$tradedItem4 == " " | input$tradedItem4 == ""){}
     else{textInput("notes5", "")}
   })
-  output$notes6 <- renderUI({ 
-    if(input$tradedItem5 == ""){}
+  output$notes6 <- renderUI({
+    if(input$tradedItem5 == " " | input$tradedItem5 == ""){}
     else{textInput("notes6", "")}
   })
-  output$notes7 <- renderUI({ 
-    if(input$tradedItem6 == ""){}
+  output$notes7 <- renderUI({
+    if(input$tradedItem6 == " " | input$tradedItem6 == ""){}
     else{textInput("notes7", "")}
   })
-  output$notes8 <- renderUI({ 
-    if(input$tradedItem7 == ""){}
+  output$notes8 <- renderUI({
+    if(input$tradedItem7 == " " | input$tradedItem7 == ""){}
     else{textInput("notes8", "")}
   })
-  output$notes9 <- renderUI({ 
-    if(input$tradedItem8 == ""){}
+  output$notes9 <- renderUI({
+    if(input$tradedItem8 == " " | input$tradedItem8 == ""){}
     else{textInput("notes9", "")}
   })
-  output$notes10 <- renderUI({ 
-    if(input$tradedItem9 == ""){}
+  output$notes10 <- renderUI({
+    if(input$tradedItem9 == " " | input$tradedItem9 == ""){}
     else{textInput("notes10", "")}
   })
-  output$notes11 <- renderUI({ 
-    if(input$tradedItem10 == ""){}
+  output$notes11 <- renderUI({
+    if(input$tradedItem10 == " " | input$tradedItem10 == ""){}
     else{textInput("notes11", "")}
   })
-  output$notes12 <- renderUI({ 
-    if(input$tradedItem11 == ""){}
+  output$notes12 <- renderUI({
+    if(input$tradedItem11 == " " | input$tradedItem11 == ""){}
     else{textInput("notes12", "")}
   })
-  output$notes13 <- renderUI({ 
-    if(input$tradedItem12 == ""){}
+  output$notes13 <- renderUI({
+    if(input$tradedItem12 == " " | input$tradedItem12 == ""){}
     else{textInput("notes13", "")}
   })
-  output$notes14 <- renderUI({ 
-    if(input$tradedItem13 == ""){}
+  output$notes14 <- renderUI({
+    if(input$tradedItem13 == " " | input$tradedItem13 == ""){}
     else{textInput("notes14", "")}
   })
-  output$notes15 <- renderUI({ 
-    if(input$tradedItem14 == ""){}
+  output$notes15 <- renderUI({
+    if(input$tradedItem14 == " " | input$tradedItem14 == ""){}
     else{textInput("notes15", "")}
   })
-  output$notes16 <- renderUI({ 
-    if(input$tradedItem15 == ""){}
+  output$notes16 <- renderUI({
+    if(input$tradedItem15 == " " | input$tradedItem15 == ""){}
     else{textInput("notes16", "")}
   })
-  output$notes17 <- renderUI({ 
-    if(input$tradedItem16 == ""){}
+  output$notes17 <- renderUI({
+    if(input$tradedItem16 == " " | input$tradedItem16 == ""){}
     else{textInput("notes17", "")}
   })
-  output$notes18 <- renderUI({ 
-    if(input$tradedItem17 == ""){}
+  output$notes18 <- renderUI({
+    if(input$tradedItem17 == " " | input$tradedItem17 == ""){}
     else{textInput("notes18", "")}
   })
-  output$notes19 <- renderUI({ 
-    if(input$tradedItem18 == ""){}
+  output$notes19 <- renderUI({
+    if(input$tradedItem18 == " " | input$tradedItem18 == ""){}
     else{textInput("notes19", "")}
   })
-  output$notes20 <- renderUI({ 
-    if(input$tradedItem19 == ""){}
+  output$notes20 <- renderUI({
+    if(input$tradedItem19 == " " | input$tradedItem19 == ""){}
     else{textInput("notes20", "")}
   })
-  output$notes21 <- renderUI({ 
-    if(input$tradedItem20 == ""){}
+  output$notes21 <- renderUI({
+    if(input$tradedItem20 == " " | input$tradedItem20 == ""){}
     else{textInput("notes21", "")}
   })
-  
-  
+
+
   #fill dataframe for new trade
   newtrade_asset = reactive(c(input$tradedItem1, input$tradedItem2, input$tradedItem3, input$tradedItem4,
                               input$tradedItem5, input$tradedItem6, input$tradedItem7, input$tradedItem8,
@@ -502,53 +507,50 @@ server <- function(input, output, session) {
                              input$notes9, input$notes10, input$notes11, input$notes12,
                              input$notes13, input$notes14, input$notes15, input$notes16,
                              input$notes17, input$notes18, input$notes19, input$notes20, input$notes21))
-  
+
   newtrade = reactive(data.frame(asset = newtrade_asset(),
                                  away_from_team = newtrade_away_from_team(),
                                  to_team = newtrade_to_team(),
                                  note = newtrade_note()))
-  
+
   newtrade2 = reactive(newtrade() %>%
-                         mutate(trans_ID = ifelse(transaction_log()$trans_ID %>% length() == 0, 
-                                                  1001,
-                                                  transaction_log()$trans_ID %>% max() + 1),
-                                status = "Pending",
+                         mutate(status = "Pending",
                                 judge_note = "") %>%
-                         select(trans_ID, asset, away_from_team, to_team, note, status, judge_note) %>%
-                         filter(asset != ""))
-  
+                         select(asset, away_from_team, to_team, note, status, judge_note) %>%
+                         filter(asset != "",
+                                asset != " "))
+
   #make new trade look good for a gt table
   #make trades look good for tables
-  newtrade_players = reactive(newtrade2() %>% 
-                       group_by(trans_ID, to_team) %>%
-                       arrange(asset) %>% 
+  newtrade_players = reactive(newtrade2() %>%
+                       group_by(to_team) %>%
+                       arrange(asset) %>%
                        filter(substr(asset, 1, 2) != '20',
                               substr(asset, 1, 19) != "Cash Considerations") %>%
                        mutate(players = paste(asset, collapse = ", ")) %>%
-                       select(trans_ID, to_team, players) %>%
+                       select(to_team, players) %>%
                        unique())
-  
-  newtrade_picks = reactive(newtrade2() %>% 
-                     group_by(trans_ID, to_team) %>%
-                     arrange(asset) %>% 
+
+  newtrade_picks = reactive(newtrade2() %>%
+                     group_by(to_team) %>%
+                     arrange(asset) %>%
                      filter(substr(asset, 1, 2) == '20' | substr(asset, 1, 19) == "Cash Considerations") %>%
                      mutate(picks = paste(asset, collapse = ", "),
                             notes = paste(note, collapse = ", ")) %>%
-                     select(trans_ID, to_team, picks, notes) %>%
+                     select(to_team, picks, notes) %>%
                      unique())
-  
-  newtrade_incoming_by_team = reactive(full_join(newtrade_players(), newtrade_picks(), by = c('trans_ID', 'to_team')) %>%
+
+  newtrade_incoming_by_team = reactive(full_join(newtrade_players(), newtrade_picks(), by = c('to_team')) %>%
                                 mutate(players = ifelse(is.na(players), "", players)) %>%
                                 mutate(picks = ifelse(is.na(picks), "", picks)) %>%
                                 mutate(notes = ifelse(is.na(notes), "", notes)) %>%
-                                select(trans_ID, to_team, players, picks, notes) %>%
+                                select(to_team, players, picks, notes) %>%
                                 ungroup() %>%
-                                arrange(trans_ID, to_team) %>%
-                                mutate(first = c(1, diff(trans_ID)) == 1) %>%
-                                left_join(hoopR::espn_nba_teams(), by = c("to_team" = "display_name")) %>%
-                                select(trans_ID, to_team, logo_dark, players, picks, first, notes))
-  
-  
+                                arrange(to_team) %>%
+                                left_join(hoopR_espn_nba_teams, by = c("to_team" = "display_name")) %>%
+                                select(to_team, logo, players, picks, notes))
+
+
   # Launch confirmation
   observeEvent(input$submit, {
     showModal(
@@ -558,81 +560,84 @@ server <- function(input, output, session) {
         render_gt(width = "600px",
                   newtrade_incoming_by_team() %>%
                     mutate(players = str_replace_all(players, ", ", "<br>"),
-                           picks = str_replace_all(picks, ", ", "<br>"), 
+                           picks = str_replace_all(picks, ", ", "<br>"),
                            notes = str_replace_all(notes, ", ", "<br>"),
-                           notes = str_replace_all(notes, "NA", " ")) %>% 
+                           notes = str_replace_all(notes, "NA", " ")) %>%
                     gt() %>%
-                    gt_img_rows(columns = logo_dark, height = 50) %>%
+                    gt_img_rows(columns = logo, height = 50) %>%
                     gt_theme_pff() %>%
-                    #dark borders between trades
-                    tab_style(
-                      style = list(
-                        cell_borders(sides = "top", weight = px(5))),
-                      locations = cells_body(rows = first==TRUE)) %>%
                     #vertical align in players and picks cells
                     tab_style(
                       style = "vertical-align:top",
                       locations = cells_body(columns = c("players", "picks", "notes"))) %>%
-                    cols_hide(columns = c(trans_ID, to_team, first)) %>%
+                    cols_hide(columns = c(to_team)) %>%
                     fmt_markdown(columns = c("players", "picks", "notes")) %>%
                     cols_width(players ~ pct(20),
-                               logo_dark ~ pct(10),
+                               logo ~ pct(10),
                                picks ~ pct(30),
                                notes ~ pct(40)) %>%
                     cols_align(align = "left",
                                columns = "notes") %>%
                     cols_align(align = "left",
                                columns = "picks") %>%
-                    cols_label(logo_dark = "Team")),
+                    cols_label(logo = "Team")),
         footer = tagList(actionButton("confirm", "Confirm Trade"),
                          actionButton("notyet", "Not Yet"))
         )
       )
   })
-  
+
   #clear page on button click
   observeEvent(input$clearpg, {
     session$reload()
   })
-  
+
   #not yet button from modal popup
   observeEvent(input$notyet, {
     removeModal()
   })
-  
+
   #confirm trade
   observeEvent(input$confirm, {
-    sheet_append(ss$spreadsheet_id, newtrade2())
+    newtrade3 = newtrade2() %>%
+      mutate(trans_ID = ifelse(transaction_log()$trans_ID %>% length() == 0, 
+                               1001,
+                               transaction_log() %>% mutate(trans_ID = sub(".", "", trans_ID) %>% as.numeric()) %>% 
+                                                              pull(trans_ID) %>% 
+                                                              max() + 1 + as.numeric(input$compnum)*1000)) %>%
+      select(trans_ID, asset, away_from_team, to_team, note, status, judge_note)
+    
+    sheet_append(ss$spreadsheet_id, newtrade3)
     transaction_log()
     session$reload()
   })
-  
-  
-  
-  
-  
+
+
+
+
+
   #find trades that need reviewed
   needs_review = reactive(transaction_log() %>% filter(status == "Pending") %>% pull(trans_ID) %>% unique())
-  
+
   #make trades look good for tables
-  players = reactive(transaction_log() %>% 
+  players = reactive(transaction_log() %>%
                        group_by(trans_ID, to_team) %>%
-                       arrange(asset) %>% 
+                       arrange(asset) %>%
                        filter(substr(asset, 1, 2) != '20',
                               substr(asset, 1, 19) != "Cash Considerations") %>%
                        mutate(players = paste(asset, collapse = ", ")) %>%
                        select(trans_ID, to_team, players) %>%
                        unique())
-  
-  picks = reactive(transaction_log() %>% 
+
+  picks = reactive(transaction_log() %>%
                      group_by(trans_ID, to_team) %>%
-                     arrange(asset) %>% 
+                     arrange(asset) %>%
                      filter(substr(asset, 1, 2) == '20' | substr(asset, 1, 19) == "Cash Considerations") %>%
                      mutate(picks = paste(asset, collapse = ", "),
                             notes = paste(note, collapse = ", ")) %>%
                      select(trans_ID, to_team, picks, notes) %>%
                      unique())
-  
+
   incoming_by_team = reactive(full_join(players(), picks(), by = c('trans_ID', 'to_team')) %>%
                                 mutate(players = ifelse(is.na(players), "", players)) %>%
                                 mutate(picks = ifelse(is.na(picks), "", picks)) %>%
@@ -641,191 +646,191 @@ server <- function(input, output, session) {
                                 ungroup() %>%
                                 arrange(trans_ID, to_team) %>%
                                 mutate(first = c(1, diff(trans_ID)) == 1) %>%
-                                left_join(hoopR::espn_nba_teams(), by = c("to_team" = "display_name")) %>%
-                                select(trans_ID, to_team, logo_dark, players, picks, first, notes))
-  
+                                left_join(hoopR_espn_nba_teams, by = c("to_team" = "display_name")) %>%
+                                select(trans_ID, to_team, logo, players, picks, first, notes))
+
   #make inputs for trade reviews if there are that many trades that need reviewed
-  
+
   #radio buttons
-  output$judgeReview1 <- renderUI({ 
+  output$judgeReview1 <- renderUI({
     if(needs_review() %>% length() >= 1){radioButtons("judgeReview1", "", c("Approve", "Void"), selected = NULL)}
     else{}
   })
-  output$judgeReview2 <- renderUI({ 
+  output$judgeReview2 <- renderUI({
     if(needs_review() %>% length() >= 2){radioButtons("judgeReview2", "", c("Approve", "Void"), selected = NULL)}
     else{}
   })
-  output$judgeReview3 <- renderUI({ 
+  output$judgeReview3 <- renderUI({
     if(needs_review() %>% length() >= 3){radioButtons("judgeReview3", "", c("Approve", "Void"), selected = NULL)}
     else{}
   })
-  output$judgeReview4 <- renderUI({ 
+  output$judgeReview4 <- renderUI({
     if(needs_review() %>% length() >= 4){radioButtons("judgeReview4", "", c("Approve", "Void"), selected = NULL)}
     else{}
   })
-  output$judgeReview5 <- renderUI({ 
+  output$judgeReview5 <- renderUI({
     if(needs_review() %>% length() >= 5){radioButtons("judgeReview5", "", c("Approve", "Void"), selected = NULL)}
     else{}
   })
-  output$judgeReview6 <- renderUI({ 
+  output$judgeReview6 <- renderUI({
     if(needs_review() %>% length() >= 6){radioButtons("judgeReview6", "", c("Approve", "Void"), selected = NULL)}
     else{}
   })
-  output$judgeReview7 <- renderUI({ 
+  output$judgeReview7 <- renderUI({
     if(needs_review() %>% length() >= 7){radioButtons("judgeReview7", "", c("Approve", "Void"), selected = NULL)}
     else{}
   })
-  output$judgeReview8 <- renderUI({ 
+  output$judgeReview8 <- renderUI({
     if(needs_review() %>% length() >= 8){radioButtons("judgeReview8", "", c("Approve", "Void"), selected = NULL)}
     else{}
   })
-  output$judgeReview9 <- renderUI({ 
+  output$judgeReview9 <- renderUI({
     if(needs_review() %>% length() >= 9){radioButtons("judgeReview9", "", c("Approve", "Void"), selected = NULL)}
     else{}
   })
-  output$judgeReview10 <- renderUI({ 
+  output$judgeReview10 <- renderUI({
     if(needs_review() %>% length() >= 10){radioButtons("judgeReview10", "", c("Approve", "Void"), selected = NULL)}
     else{}
   })
-  
-  
-  
+
+
+
   #submit button
-  output$judgeSubmit1 <- renderUI({ 
+  output$judgeSubmit1 <- renderUI({
     if(needs_review() %>% length() >= 1){actionButton("judgeSubmit1", "Submit")}
     else{}
   })
-  output$judgeSubmit2 <- renderUI({ 
+  output$judgeSubmit2 <- renderUI({
     if(needs_review() %>% length() >= 2){actionButton("judgeSubmit2", "Submit")}
     else{}
   })
-  output$judgeSubmit3 <- renderUI({ 
+  output$judgeSubmit3 <- renderUI({
     if(needs_review() %>% length() >= 3){actionButton("judgeSubmit3", "Submit")}
     else{}
   })
-  output$judgeSubmit4 <- renderUI({ 
+  output$judgeSubmit4 <- renderUI({
     if(needs_review() %>% length() >= 4){actionButton("judgeSubmit4", "Submit")}
     else{}
   })
-  output$judgeSubmit5 <- renderUI({ 
+  output$judgeSubmit5 <- renderUI({
     if(needs_review() %>% length() >= 5){actionButton("judgeSubmit5", "Submit")}
     else{}
   })
-  output$judgeSubmit6 <- renderUI({ 
+  output$judgeSubmit6 <- renderUI({
     if(needs_review() %>% length() >= 6){actionButton("judgeSubmit6", "Submit")}
     else{}
   })
-  output$judgeSubmit7 <- renderUI({ 
+  output$judgeSubmit7 <- renderUI({
     if(needs_review() %>% length() >= 7){actionButton("judgeSubmit7", "Submit")}
     else{}
   })
-  output$judgeSubmit8 <- renderUI({ 
+  output$judgeSubmit8 <- renderUI({
     if(needs_review() %>% length() >= 8){actionButton("judgeSubmit8", "Submit")}
     else{}
   })
-  output$judgeSubmit9 <- renderUI({ 
+  output$judgeSubmit9 <- renderUI({
     if(needs_review() %>% length() >= 9){actionButton("judgeSubmit9", "Submit")}
     else{}
   })
-  output$judgeSubmit10 <- renderUI({ 
+  output$judgeSubmit10 <- renderUI({
     if(needs_review() %>% length() >= 10){actionButton("judgeSubmit10", "Submit")}
     else{}
   })
-  
+
   #judge notes text box
-  output$judgeNotes1 <- renderUI({ 
+  output$judgeNotes1 <- renderUI({
     if(needs_review() %>% length() >= 1){textAreaInput("judgeNotes1", "Judge Notes", width = "100%", height = "100px")}
     else{}
   })
-  output$judgeNotes2 <- renderUI({ 
+  output$judgeNotes2 <- renderUI({
     if(needs_review() %>% length() >= 2){textAreaInput("judgeNotes2", "Judge Notes", width = "100%", height = "100px")}
     else{}
   })
-  output$judgeNotes3 <- renderUI({ 
+  output$judgeNotes3 <- renderUI({
     if(needs_review() %>% length() >= 3){textAreaInput("judgeNotes3", "Judge Notes", width = "100%", height = "100px")}
     else{}
   })
-  output$judgeNotes4 <- renderUI({ 
+  output$judgeNotes4 <- renderUI({
     if(needs_review() %>% length() >= 4){textAreaInput("judgeNotes4", "Judge Notes", width = "100%", height = "100px")}
     else{}
   })
-  output$judgeNotes5 <- renderUI({ 
+  output$judgeNotes5 <- renderUI({
     if(needs_review() %>% length() >= 5){textAreaInput("judgeNotes5", "Judge Notes", width = "100%", height = "100px")}
     else{}
   })
-  output$judgeNotes6 <- renderUI({ 
+  output$judgeNotes6 <- renderUI({
     if(needs_review() %>% length() >= 6){textAreaInput("judgeNotes6", "Judge Notes", width = "100%", height = "100px")}
     else{}
   })
-  output$judgeNotes7 <- renderUI({ 
+  output$judgeNotes7 <- renderUI({
     if(needs_review() %>% length() >= 7){textAreaInput("judgeNotes7", "Judge Notes", width = "100%", height = "100px")}
     else{}
   })
-  output$judgeNotes8 <- renderUI({ 
+  output$judgeNotes8 <- renderUI({
     if(needs_review() %>% length() >= 8){textAreaInput("judgeNotes8", "Judge Notes", width = "100%", height = "100px")}
     else{}
   })
-  output$judgeNotes9 <- renderUI({ 
+  output$judgeNotes9 <- renderUI({
     if(needs_review() %>% length() >= 9){textAreaInput("judgeNotes9", "Judge Notes", width = "100%", height = "100px")}
     else{}
   })
-  output$judgeNotes10 <- renderUI({ 
+  output$judgeNotes10 <- renderUI({
     if(needs_review() %>% length() >= 10){textAreaInput("judgeNotes10", "Judge Notes", width = "100%", height = "100px")}
     else{}
   })
-  
+
   #hlines to seperate each trade
-  output$hline0 <- renderUI({ 
+  output$hline0 <- renderUI({
     if(needs_review() %>% length() >= 0){tags$hr(style="border-color:rgba(169,20,20,128);")}
     else{}
   })
-  output$hline1 <- renderUI({ 
+  output$hline1 <- renderUI({
     if(needs_review() %>% length() > 1){tags$hr(style="border-color:rgba(169,20,20,128);")}
     else{}
   })
-  output$hline2 <- renderUI({ 
+  output$hline2 <- renderUI({
     if(needs_review() %>% length() > 2){tags$hr(style="border-color:rgba(169,20,20,128);")}
     else{}
   })
-  output$hline3 <- renderUI({ 
+  output$hline3 <- renderUI({
     if(needs_review() %>% length() > 3){tags$hr(style="border-color:rgba(169,20,20,128);")}
     else{}
   })
-  output$hline4 <- renderUI({ 
+  output$hline4 <- renderUI({
     if(needs_review() %>% length() > 4){tags$hr(style="border-color:rgba(169,20,20,128);")}
     else{}
   })
-  output$hline5 <- renderUI({ 
+  output$hline5 <- renderUI({
     if(needs_review() %>% length() > 5){tags$hr(style="border-color:rgba(169,20,20,128);")}
     else{}
   })
-  output$hline6 <- renderUI({ 
+  output$hline6 <- renderUI({
     if(needs_review() %>% length() > 6){tags$hr(style="border-color:rgba(169,20,20,128);")}
     else{}
   })
-  output$hline7 <- renderUI({ 
+  output$hline7 <- renderUI({
     if(needs_review() %>% length() > 7){tags$hr(style="border-color:rgba(169,20,20,128);")}
     else{}
   })
-  output$hline8 <- renderUI({ 
+  output$hline8 <- renderUI({
     if(needs_review() %>% length() > 8){tags$hr(style="border-color:rgba(169,20,20,128);")}
     else{}
   })
-  output$hline9 <- renderUI({ 
+  output$hline9 <- renderUI({
     if(needs_review() %>% length() > 9){tags$hr(style="border-color:rgba(169,20,20,128);")}
     else{}
   })
-  
+
   #make gt tables for trades that need reviewed
   output$tradeReview1 = render_gt(if(needs_review() %>% length() >= 1){
     incoming_by_team() %>%
       filter(trans_ID == needs_review()[1]) %>%
       mutate(players = str_replace_all(players, ", ", "<br>"),
-             picks = str_replace_all(picks, ", ", "<br>"), 
+             picks = str_replace_all(picks, ", ", "<br>"),
              notes = str_replace_all(notes, ", ", "<br>"),
-             notes = str_replace_all(notes, "NA", " ")) %>% 
+             notes = str_replace_all(notes, "NA", " ")) %>%
       gt() %>%
-      gt_img_rows(columns = logo_dark, height = 50) %>%
+      gt_img_rows(columns = logo, height = 50) %>%
       gt_theme_pff() %>%
       #dark borders between trades
       tab_style(
@@ -839,21 +844,21 @@ server <- function(input, output, session) {
       cols_hide(columns = c(trans_ID, to_team, first)) %>%
       fmt_markdown(columns = c("players", "picks", "notes")) %>%
       cols_width(players ~ pct(20),
-                 logo_dark ~ pct(10),
-                 picks ~ pct(20),
-                 notes ~ pct(50)) %>%
-      cols_label(logo_dark = "Team")
+                 logo ~ pct(10),
+                 picks ~ pct(35),
+                 notes ~ pct(35)) %>%
+      cols_label(logo = "Team")
     } else{})
-  
+
   output$tradeReview2 = render_gt(if(needs_review() %>% length() >= 2){
     incoming_by_team() %>%
       filter(trans_ID == needs_review()[2]) %>%
       mutate(players = str_replace_all(players, ", ", "<br>"),
-             picks = str_replace_all(picks, ", ", "<br>"), 
+             picks = str_replace_all(picks, ", ", "<br>"),
              notes = str_replace_all(notes, ", ", "<br>"),
-             notes = str_replace_all(notes, "NA", " ")) %>% 
+             notes = str_replace_all(notes, "NA", " ")) %>%
       gt() %>%
-      gt_img_rows(columns = logo_dark, height = 50) %>%
+      gt_img_rows(columns = logo, height = 50) %>%
       gt_theme_pff() %>%
       #dark borders between trades
       tab_style(
@@ -867,23 +872,23 @@ server <- function(input, output, session) {
       cols_hide(columns = c(trans_ID, to_team, first)) %>%
       fmt_markdown(columns = c("players", "picks", "notes")) %>%
       cols_width(players ~ pct(20),
-                 logo_dark ~ pct(10),
+                 logo ~ pct(10),
                  picks ~ pct(25),
                  notes ~ pct(45)) %>%
       cols_align(align = "left",
                  columns = "notes") %>%
-      cols_label(logo_dark = "Team")
+      cols_label(logo = "Team")
   } else{})
-  
+
   output$tradeReview3 = render_gt(if(needs_review() %>% length() >= 3){
     incoming_by_team() %>%
       filter(trans_ID == needs_review()[3]) %>%
       mutate(players = str_replace_all(players, ", ", "<br>"),
-             picks = str_replace_all(picks, ", ", "<br>"), 
+             picks = str_replace_all(picks, ", ", "<br>"),
              notes = str_replace_all(notes, ", ", "<br>"),
-             notes = str_replace_all(notes, "NA", " ")) %>% 
+             notes = str_replace_all(notes, "NA", " ")) %>%
       gt() %>%
-      gt_img_rows(columns = logo_dark, height = 50) %>%
+      gt_img_rows(columns = logo, height = 50) %>%
       gt_theme_pff() %>%
       #dark borders between trades
       tab_style(
@@ -897,23 +902,23 @@ server <- function(input, output, session) {
       cols_hide(columns = c(trans_ID, to_team, first)) %>%
       fmt_markdown(columns = c("players", "picks", "notes")) %>%
       cols_width(players ~ pct(20),
-                 logo_dark ~ pct(10),
+                 logo ~ pct(10),
                  picks ~ pct(25),
                  notes ~ pct(45)) %>%
       cols_align(align = "left",
                  columns = "notes") %>%
-      cols_label(logo_dark = "Team")
+      cols_label(logo = "Team")
   } else{})
-  
+
   output$tradeReview4 = render_gt(if(needs_review() %>% length() >= 4){
     incoming_by_team() %>%
       filter(trans_ID == needs_review()[4]) %>%
       mutate(players = str_replace_all(players, ", ", "<br>"),
-             picks = str_replace_all(picks, ", ", "<br>"), 
+             picks = str_replace_all(picks, ", ", "<br>"),
              notes = str_replace_all(notes, ", ", "<br>"),
-             notes = str_replace_all(notes, "NA", " ")) %>% 
+             notes = str_replace_all(notes, "NA", " ")) %>%
       gt() %>%
-      gt_img_rows(columns = logo_dark, height = 50) %>%
+      gt_img_rows(columns = logo, height = 50) %>%
       gt_theme_pff() %>%
       #dark borders between trades
       tab_style(
@@ -927,23 +932,23 @@ server <- function(input, output, session) {
       cols_hide(columns = c(trans_ID, to_team, first)) %>%
       fmt_markdown(columns = c("players", "picks", "notes")) %>%
       cols_width(players ~ pct(20),
-                 logo_dark ~ pct(10),
+                 logo ~ pct(10),
                  picks ~ pct(25),
                  notes ~ pct(45)) %>%
       cols_align(align = "left",
                  columns = "notes") %>%
-      cols_label(logo_dark = "Team")
+      cols_label(logo = "Team")
   } else{})
-  
+
   output$tradeReview5 = render_gt(if(needs_review() %>% length() >= 5){
     incoming_by_team() %>%
       filter(trans_ID == needs_review()[5]) %>%
       mutate(players = str_replace_all(players, ", ", "<br>"),
-             picks = str_replace_all(picks, ", ", "<br>"), 
+             picks = str_replace_all(picks, ", ", "<br>"),
              notes = str_replace_all(notes, ", ", "<br>"),
-             notes = str_replace_all(notes, "NA", " ")) %>% 
+             notes = str_replace_all(notes, "NA", " ")) %>%
       gt() %>%
-      gt_img_rows(columns = logo_dark, height = 50) %>%
+      gt_img_rows(columns = logo, height = 50) %>%
       gt_theme_pff() %>%
       #dark borders between trades
       tab_style(
@@ -957,23 +962,23 @@ server <- function(input, output, session) {
       cols_hide(columns = c(trans_ID, to_team, first)) %>%
       fmt_markdown(columns = c("players", "picks", "notes")) %>%
       cols_width(players ~ pct(20),
-                 logo_dark ~ pct(10),
+                 logo ~ pct(10),
                  picks ~ pct(25),
                  notes ~ pct(45)) %>%
       cols_align(align = "left",
                  columns = "notes") %>%
-      cols_label(logo_dark = "Team")
+      cols_label(logo = "Team")
   } else{})
-  
+
   output$tradeReview6 = render_gt(if(needs_review() %>% length() >= 6){
     incoming_by_team() %>%
       filter(trans_ID == needs_review()[6]) %>%
       mutate(players = str_replace_all(players, ", ", "<br>"),
-             picks = str_replace_all(picks, ", ", "<br>"), 
+             picks = str_replace_all(picks, ", ", "<br>"),
              notes = str_replace_all(notes, ", ", "<br>"),
-             notes = str_replace_all(notes, "NA", " ")) %>% 
+             notes = str_replace_all(notes, "NA", " ")) %>%
       gt() %>%
-      gt_img_rows(columns = logo_dark, height = 50) %>%
+      gt_img_rows(columns = logo, height = 50) %>%
       gt_theme_pff() %>%
       #dark borders between trades
       tab_style(
@@ -987,23 +992,23 @@ server <- function(input, output, session) {
       cols_hide(columns = c(trans_ID, to_team, first)) %>%
       fmt_markdown(columns = c("players", "picks", "notes")) %>%
       cols_width(players ~ pct(20),
-                 logo_dark ~ pct(10),
+                 logo ~ pct(10),
                  picks ~ pct(25),
                  notes ~ pct(45)) %>%
       cols_align(align = "left",
                  columns = "notes") %>%
-      cols_label(logo_dark = "Team")
+      cols_label(logo = "Team")
   } else{})
-  
+
   output$tradeReview7 = render_gt(if(needs_review() %>% length() >= 7){
     incoming_by_team() %>%
       filter(trans_ID == needs_review()[7]) %>%
       mutate(players = str_replace_all(players, ", ", "<br>"),
-             picks = str_replace_all(picks, ", ", "<br>"), 
+             picks = str_replace_all(picks, ", ", "<br>"),
              notes = str_replace_all(notes, ", ", "<br>"),
-             notes = str_replace_all(notes, "NA", " ")) %>% 
+             notes = str_replace_all(notes, "NA", " ")) %>%
       gt() %>%
-      gt_img_rows(columns = logo_dark, height = 50) %>%
+      gt_img_rows(columns = logo, height = 50) %>%
       gt_theme_pff() %>%
       #dark borders between trades
       tab_style(
@@ -1017,23 +1022,23 @@ server <- function(input, output, session) {
       cols_hide(columns = c(trans_ID, to_team, first)) %>%
       fmt_markdown(columns = c("players", "picks", "notes")) %>%
       cols_width(players ~ pct(20),
-                 logo_dark ~ pct(10),
+                 logo ~ pct(10),
                  picks ~ pct(25),
                  notes ~ pct(45)) %>%
       cols_align(align = "left",
                  columns = "notes") %>%
-      cols_label(logo_dark = "Team")
+      cols_label(logo = "Team")
   } else{})
-  
+
   output$tradeReview8 = render_gt(if(needs_review() %>% length() >= 8){
     incoming_by_team() %>%
       filter(trans_ID == needs_review()[8]) %>%
       mutate(players = str_replace_all(players, ", ", "<br>"),
-             picks = str_replace_all(picks, ", ", "<br>"), 
+             picks = str_replace_all(picks, ", ", "<br>"),
              notes = str_replace_all(notes, ", ", "<br>"),
-             notes = str_replace_all(notes, "NA", " ")) %>% 
+             notes = str_replace_all(notes, "NA", " ")) %>%
       gt() %>%
-      gt_img_rows(columns = logo_dark, height = 50) %>%
+      gt_img_rows(columns = logo, height = 50) %>%
       gt_theme_pff() %>%
       #dark borders between trades
       tab_style(
@@ -1047,23 +1052,23 @@ server <- function(input, output, session) {
       cols_hide(columns = c(trans_ID, to_team, first)) %>%
       fmt_markdown(columns = c("players", "picks", "notes")) %>%
       cols_width(players ~ pct(20),
-                 logo_dark ~ pct(10),
+                 logo ~ pct(10),
                  picks ~ pct(25),
                  notes ~ pct(45)) %>%
       cols_align(align = "left",
                  columns = "notes") %>%
-      cols_label(logo_dark = "Team")
+      cols_label(logo = "Team")
   } else{})
-  
+
   output$tradeReview9 = render_gt(if(needs_review() %>% length() >= 9){
     incoming_by_team() %>%
       filter(trans_ID == needs_review()[9]) %>%
       mutate(players = str_replace_all(players, ", ", "<br>"),
-             picks = str_replace_all(picks, ", ", "<br>"), 
+             picks = str_replace_all(picks, ", ", "<br>"),
              notes = str_replace_all(notes, ", ", "<br>"),
-             notes = str_replace_all(notes, "NA", " ")) %>% 
+             notes = str_replace_all(notes, "NA", " ")) %>%
       gt() %>%
-      gt_img_rows(columns = logo_dark, height = 50) %>%
+      gt_img_rows(columns = logo, height = 50) %>%
       gt_theme_pff() %>%
       #dark borders between trades
       tab_style(
@@ -1077,23 +1082,23 @@ server <- function(input, output, session) {
       cols_hide(columns = c(trans_ID, to_team, first)) %>%
       fmt_markdown(columns = c("players", "picks", "notes")) %>%
       cols_width(players ~ pct(20),
-                 logo_dark ~ pct(10),
+                 logo ~ pct(10),
                  picks ~ pct(25),
                  notes ~ pct(45)) %>%
       cols_align(align = "left",
                  columns = "notes") %>%
-      cols_label(logo_dark = "Team")
+      cols_label(logo = "Team")
   } else{})
-  
+
   output$tradeReview10 = render_gt(if(needs_review() %>% length() >= 10){
     incoming_by_team() %>%
       filter(trans_ID == needs_review()[10]) %>%
       mutate(players = str_replace_all(players, ", ", "<br>"),
-             picks = str_replace_all(picks, ", ", "<br>"), 
+             picks = str_replace_all(picks, ", ", "<br>"),
              notes = str_replace_all(notes, ", ", "<br>"),
-             notes = str_replace_all(notes, "NA", " ")) %>% 
+             notes = str_replace_all(notes, "NA", " ")) %>%
       gt() %>%
-      gt_img_rows(columns = logo_dark, height = 50) %>%
+      gt_img_rows(columns = logo, height = 50) %>%
       gt_theme_pff() %>%
       #dark borders between trades
       tab_style(
@@ -1107,15 +1112,15 @@ server <- function(input, output, session) {
       cols_hide(columns = c(trans_ID, to_team, first)) %>%
       fmt_markdown(columns = c("players", "picks", "notes")) %>%
       cols_width(players ~ pct(20),
-                 logo_dark ~ pct(10),
+                 logo ~ pct(10),
                  picks ~ pct(25),
                  notes ~ pct(45)) %>%
       cols_align(align = "left",
                  columns = "notes") %>%
-      cols_label(logo_dark = "Team")
+      cols_label(logo = "Team")
   } else{})
-  
-  
+
+
   #for each trade that needs reviewed, have a df to replace the transaction log when the review is submitted
   tl_tr1 = reactive(if(needs_review() %>% length() >= 1){
     transaction_log() %>%
@@ -1126,7 +1131,7 @@ server <- function(input, output, session) {
                                  c(input$judgeNotes1, rep("", transaction_log() %>% filter(trans_ID == needs_review()[1]) %>% nrow() - 1)),
                                  judge_note))
     } else{})
-  
+
   tl_tr2 = reactive(if(needs_review() %>% length() >= 2){
     transaction_log() %>%
       mutate(status = case_when(trans_ID == needs_review()[2] & input$judgeReview2 == "Approve" ~ "Approved",
@@ -1136,7 +1141,7 @@ server <- function(input, output, session) {
                                  c(input$judgeNotes2, rep("", transaction_log() %>% filter(trans_ID == needs_review()[2]) %>% nrow() - 1)),
                                  judge_note))
   } else{})
-  
+
   tl_tr3 = reactive(if(needs_review() %>% length() >= 3){
     transaction_log() %>%
       mutate(status = case_when(trans_ID == needs_review()[3] & input$judgeReview3 == "Approve" ~ "Approved",
@@ -1146,7 +1151,7 @@ server <- function(input, output, session) {
                                  c(input$judgeNotes3, rep("", transaction_log() %>% filter(trans_ID == needs_review()[3]) %>% nrow() - 1)),
                                  judge_note))
   } else{})
-  
+
   tl_tr4 = reactive(if(needs_review() %>% length() >= 4){
     transaction_log() %>%
       mutate(status = case_when(trans_ID == needs_review()[4] & input$judgeReview4 == "Approve" ~ "Approved",
@@ -1156,7 +1161,7 @@ server <- function(input, output, session) {
                                  c(input$judgeNotes4, rep("", transaction_log() %>% filter(trans_ID == needs_review()[4]) %>% nrow() - 1)),
                                  judge_note))
   } else{})
-  
+
   tl_tr5 = reactive(if(needs_review() %>% length() >= 5){
     transaction_log() %>%
       mutate(status = case_when(trans_ID == needs_review()[5] & input$judgeReview5 == "Approve" ~ "Approved",
@@ -1166,7 +1171,7 @@ server <- function(input, output, session) {
                                  c(input$judgeNotes5, rep("", transaction_log() %>% filter(trans_ID == needs_review()[5]) %>% nrow() - 1)),
                                  judge_note))
   } else{})
-  
+
   tl_tr6 = reactive(if(needs_review() %>% length() >= 6){
     transaction_log() %>%
       mutate(status = case_when(trans_ID == needs_review()[6] & input$judgeReview6 == "Approve" ~ "Approved",
@@ -1176,7 +1181,7 @@ server <- function(input, output, session) {
                                  c(input$judgeNotes6, rep("", transaction_log() %>% filter(trans_ID == needs_review()[6]) %>% nrow() - 1)),
                                  judge_note))
   } else{})
-  
+
   tl_tr7 = reactive(if(needs_review() %>% length() >= 7){
     transaction_log() %>%
       mutate(status = case_when(trans_ID == needs_review()[7] & input$judgeReview7 == "Approve" ~ "Approved",
@@ -1186,7 +1191,7 @@ server <- function(input, output, session) {
                                  c(input$judgeNotes7, rep("", transaction_log() %>% filter(trans_ID == needs_review()[7]) %>% nrow() - 1)),
                                  judge_note))
   } else{})
-  
+
   tl_tr8 = reactive(if(needs_review() %>% length() >= 8){
     transaction_log() %>%
       mutate(status = case_when(trans_ID == needs_review()[8] & input$judgeReview8 == "Approve" ~ "Approved",
@@ -1196,7 +1201,7 @@ server <- function(input, output, session) {
                                  c(input$judgeNotes8, rep("", transaction_log() %>% filter(trans_ID == needs_review()[8]) %>% nrow() - 1)),
                                  judge_note))
   } else{})
-  
+
   tl_tr9 = reactive(if(needs_review() %>% length() >= 9){
     transaction_log() %>%
       mutate(status = case_when(trans_ID == needs_review()[9] & input$judgeReview9 == "Approve" ~ "Approved",
@@ -1206,7 +1211,7 @@ server <- function(input, output, session) {
                                  c(input$judgeNotes9, rep("", transaction_log() %>% filter(trans_ID == needs_review()[9]) %>% nrow() - 1)),
                                  judge_note))
   } else{})
-  
+
   tl_tr10 = reactive(if(needs_review() %>% length() >= 10){
     transaction_log() %>%
       mutate(status = case_when(trans_ID == needs_review()[10] & input$judgeReview10 == "Approve" ~ "Approved",
@@ -1216,9 +1221,9 @@ server <- function(input, output, session) {
                                  c(input$judgeNotes10, rep("", transaction_log() %>% filter(trans_ID == needs_review()[10]) %>% nrow() - 1)),
                                  judge_note))
   } else{})
-  
-  
-  
+
+
+
   #judge review submission
   observeEvent(input$judgeSubmit1, {
     showModal(
@@ -1330,7 +1335,7 @@ server <- function(input, output, session) {
       )
     )
   })
-  
+
   #not yet button from modal popup
   observeEvent(input$notyetJudgeChoice1, {
     removeModal()
@@ -1362,7 +1367,7 @@ server <- function(input, output, session) {
   observeEvent(input$notyetJudgeChoice10, {
     removeModal()
   })
-  
+
   #confirm trade
   observeEvent(input$confirmJudgeChoice1, {
     sheet_write(tl_tr1(), ss, sheet = 1)
@@ -1414,7 +1419,7 @@ server <- function(input, output, session) {
     transaction_log()
     session$reload()
   })
-  
+
   
 }
 
