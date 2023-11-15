@@ -6,3 +6,6 @@ data_entry/.secrets
 log/app_cache
 data_entry/app_cache
 ssh_key_123
+log/.secrets
+log_bigscreen/app_cache
+log_bigscreen/.secrets
