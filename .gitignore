@@ -2,10 +2,10 @@
 .Rhistory
 .RData
 .Ruserdata
-data_entry/.secrets
-log/app_cache
-data_entry/app_cache
+Apps_2023/data_entry/.secrets
+Apps_2023/log/app_cache
+Apps_2023/data_entry/app_cache
 ssh_key_123
-log/.secrets
-log_bigscreen/app_cache
-log_bigscreen/.secrets
+Apps_2023/log/.secrets
+Apps_2023/log_bigscreen/app_cache
+Apps_2023/log_bigscreen/.secrets
