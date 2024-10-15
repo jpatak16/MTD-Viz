@@ -266,6 +266,97 @@ server <- function(input, output, session) {
     )
   })
   
+  # Player List for teamsInvolved
+  team1_players <- reactive(
+    if(length(input$teamsInvolved) < 1){}
+    else{
+        read_sheet(
+          ss,
+          sheet = hoopR_espn_nba_teams |>
+            filter(
+              display_name == input$teamsInvolved[[1]]
+            ) |>
+            pull(abbreviation)
+        ) |>
+        mutate(
+          Player = ifelse(is.na(Player), "", Player)
+        ) |>
+        pull(Player)
+      }
+  )
+  
+  team2_players <- reactive(
+    if(length(input$teamsInvolved) < 2){}
+    else{
+      read_sheet(
+        ss,
+        sheet = hoopR_espn_nba_teams |>
+          filter(
+            display_name == input$teamsInvolved[[2]]
+          ) |>
+          pull(abbreviation)
+      ) |>
+        mutate(
+          Player = ifelse(is.na(Player), "", Player)
+        ) |>
+        pull(Player)
+    }
+  )
+  
+  team3_players <- reactive(
+    if(length(input$teamsInvolved) < 3){}
+    else{
+      read_sheet(
+        ss,
+        sheet = hoopR_espn_nba_teams |>
+          filter(
+            display_name == input$teamsInvolved[[3]]
+          ) |>
+          pull(abbreviation)
+      ) |>
+        mutate(
+          Player = ifelse(is.na(Player), "", Player)
+        ) |>
+        pull(Player)
+    }
+  )
+  
+  team4_players <- reactive(
+    if(length(input$teamsInvolved) < 4){}
+    else{
+      read_sheet(
+        ss,
+        sheet = hoopR_espn_nba_teams |>
+          filter(
+            display_name == input$teamsInvolved[[4]]
+          ) |>
+          pull(abbreviation)
+      ) |>
+        mutate(
+          Player = ifelse(is.na(Player), "", Player)
+        ) |>
+        pull(Player)
+    }
+  )
+  
+  team5_players <- reactive(
+    if(length(input$teamsInvolved) < 5){}
+    else{
+      read_sheet(
+        ss,
+        sheet = hoopR_espn_nba_teams |>
+          filter(
+            display_name == input$teamsInvolved[[5]]
+          ) |>
+          pull(abbreviation)
+      ) |>
+        mutate(
+          Player = ifelse(is.na(Player), "", Player)
+        ) |>
+        pull(Player)
+    }
+  )
+  
   ########## UI Outputs for Inputs
   
   ### Traded Player Inputs
@@ -274,18 +365,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t1p1", 
         "", 
-        choices = read_sheet(
-            ss,
-            sheet = hoopR_espn_nba_teams |>
-              filter(
-                display_name == input$teamsInvolved[[1]]
-              ) |>
-              pull(abbreviation)
-          ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team1_players(), 
         options = list(create = TRUE)
       )
   })
@@ -293,18 +373,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t1p2", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[1]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team1_players(), 
         options = list(create = TRUE)
       )
   })
@@ -312,18 +381,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t1p3", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[1]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team1_players(), 
         options = list(create = TRUE)
       )
   })
@@ -331,18 +389,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t1p4", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[1]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team1_players(), 
         options = list(create = TRUE)
       )
   })
@@ -350,18 +397,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t1p5", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[1]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team1_players(), 
         options = list(create = TRUE)
       )
   })
@@ -369,18 +405,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t1p6", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[1]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team1_players(), 
         options = list(create = TRUE)
       )
   })
@@ -388,18 +413,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t1p7", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[1]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team1_players(), 
         options = list(create = TRUE)
       )
   })
@@ -407,18 +421,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t1p8", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[1]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team1_players(), 
         options = list(create = TRUE)
       )
   })
@@ -426,18 +429,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t1p9", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[1]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team1_players(), 
         options = list(create = TRUE)
       )
   })
@@ -445,18 +437,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t1p10", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[1]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team1_players(), 
         options = list(create = TRUE)
       )
   })
@@ -466,18 +447,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t2p1", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[2]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team2_players(), 
         options = list(create = TRUE)
       )
   })
@@ -485,18 +455,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t2p2", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[2]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team2_players(), 
         options = list(create = TRUE)
       )
   })
@@ -504,18 +463,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t2p3", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[2]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team2_players(), 
         options = list(create = TRUE)
       )
   })
@@ -523,18 +471,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t2p4", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[2]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team2_players(), 
         options = list(create = TRUE)
       )
   })
@@ -542,18 +479,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t2p5", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[2]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team2_players(), 
         options = list(create = TRUE)
       )
   })
@@ -561,18 +487,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t2p6", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[2]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team2_players(), 
         options = list(create = TRUE)
       )
   })
@@ -580,18 +495,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t2p7", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[2]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team2_players(), 
         options = list(create = TRUE)
       )
   })
@@ -599,18 +503,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t2p8", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[2]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team2_players(), 
         options = list(create = TRUE)
       )
   })
@@ -618,18 +511,7 @@ server <- function(input, output, session) {
       selectizeInput(
         "t2p9", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[2]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team2_players(), 
         options = list(create = TRUE)
       )
   })
@@ -637,23 +519,137 @@ server <- function(input, output, session) {
       selectizeInput(
         "t2p10", 
         "", 
-        choices = read_sheet(
-          ss,
-          sheet = hoopR_espn_nba_teams |>
-            filter(
-              display_name == input$teamsInvolved[[2]]
-            ) |>
-            pull(abbreviation)
-        ) |>
-          mutate(
-            Player = ifelse(is.na(Player), "", Player)
-          ) |>
-          pull(Player), 
+        choices = team2_players(), 
         options = list(create = TRUE)
       )
   })
   
-  ### Traded Played To Team Input
+  ### Traded Asset Input
+  # Team 1
+  output$t1a1_2t = output$t1a1_3t = renderUI({
+    textInput(
+      "t1a1", 
+      ""
+    )
+  })
+  output$t1a2_2t = output$t1a2_3t = renderUI({
+    textInput(
+      "t1a2", 
+      ""
+    )
+  })
+  output$t1a3_2t = output$t1a3_3t = renderUI({
+    textInput(
+      "t1a3", 
+      ""
+    )
+  })
+  output$t1a4_2t = output$t1a4_3t = renderUI({
+    textInput(
+      "t1a4", 
+      ""
+    )
+  })
+  output$t1a5_2t = output$t1a5_3t = renderUI({
+    textInput(
+      "t1a5", 
+      ""
+    )
+  })
+  output$t1a6_2t = output$t1a6_3t = renderUI({
+    textInput(
+      "t1a6", 
+      ""
+    )
+  })
+  output$t1a7_2t = output$t1a7_3t = renderUI({
+    textInput(
+      "t1a7", 
+      ""
+    )
+  })
+  output$t1a8_2t = output$t1a8_3t = renderUI({
+    textInput(
+      "t1a8", 
+      ""
+    )
+  })
+  output$t1a9_2t = output$t1a9_3t = renderUI({
+    textInput(
+      "t1a9", 
+      ""
+    )
+  })
+  output$t1a10_2t = output$t1a10_3t = renderUI({
+    textInput(
+      "t1a10", 
+      ""
+    )
+  })
+  
+  # Team 2
+  output$t2a1_2t = output$t2a1_3t = renderUI({
+    textInput(
+      "t2a1", 
+      ""
+    )
+  })
+  output$t2a2_2t = output$t2a2_3t = renderUI({
+    textInput(
+      "t2a2", 
+      ""
+    )
+  })
+  output$t2a3_2t = output$t2a3_3t = renderUI({
+    textInput(
+      "t2a3", 
+      ""
+    )
+  })
+  output$t2a4_2t = output$t2a4_3t = renderUI({
+    textInput(
+      "t2a4", 
+      ""
+    )
+  })
+  output$t2a5_2t = output$t2a5_3t = renderUI({
+    textInput(
+      "t2a5", 
+      ""
+    )
+  })
+  output$t2a6_2t = output$t2a6_3t = renderUI({
+    textInput(
+      "t2a6", 
+      ""
+    )
+  })
+  output$t2a7_2t = output$t2a7_3t = renderUI({
+    textInput(
+      "t2a7", 
+      ""
+    )
+  })
+  output$t2a8_2t = output$t2a8_3t = renderUI({
+    textInput(
+      "t2a8", 
+      ""
+    )
+  })
+  output$t2a9_2t = output$t2a9_3t = renderUI({
+    textInput(
+      "t2a9", 
+      ""
+    )
+  })
+  output$t2a10_2t = output$t2a10_3t = renderUI({
+    textInput(
+      "t2a10", 
+      ""
+    )
+  })
+  
+  ### Traded Player To Team Input
   # Team 1
   output$t1p1_2t_to = output$t1p1_3t_to = renderUI({
       pickerInput(
@@ -956,6 +952,311 @@ server <- function(input, output, session) {
         ),
         options = list(`dropdown-align-center` = TRUE)
       )
+  })
+  
+  ### Traded Asset to Team Input
+  # Team 1
+  output$t1a1_2t_to = output$t1a1_3t_to = renderUI({
+    pickerInput(
+      "t1a1_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t1a2_2t_to = output$t1a2_3t_to = renderUI({
+    pickerInput(
+      "t1a2_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t1a3_2t_to = output$t1a3_3t_to = renderUI({
+    pickerInput(
+      "t1a3_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t1a4_2t_to = output$t1a4_3t_to = renderUI({
+    pickerInput(
+      "t1a4_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t1a5_2t_to = output$t1a5_3t_to = renderUI({
+    pickerInput(
+      "t1a5_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t1a6_2t_to = output$t1a6_3t_to = renderUI({
+    pickerInput(
+      "t1a6_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t1a7_2t_to = output$t1a7_3t_to = renderUI({
+    pickerInput(
+      "t1a7_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t1a8_2t_to = output$t1a8_3t_to = renderUI({
+    pickerInput(
+      "t1a8_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t1a9_2t_to = output$t1a9_3t_to = renderUI({
+    pickerInput(
+      "t1a9_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t1a10_2t_to = output$t1a10_3t_to = renderUI({
+    pickerInput(
+      "t1a10_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  
+  # Team 2
+  output$t2a1_2t_to = output$t2a1_3t_to = renderUI({
+    pickerInput(
+      "t2a1_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t2a2_2t_to = output$t2a2_3t_to = renderUI({
+    pickerInput(
+      "t2a2_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t2a3_2t_to = output$t2a3_3t_to = renderUI({
+    pickerInput(
+      "t2a3_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t2a4_2t_to = output$t2a4_3t_to = renderUI({
+    pickerInput(
+      "t2a4_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t2a5_2t_to = output$t2a5_3t_to = renderUI({
+    pickerInput(
+      "t2a5_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t2a6_2t_to = output$t2a6_3t_to = renderUI({
+    pickerInput(
+      "t2a6_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t2a7_2t_to = output$t2a7_3t_to = renderUI({
+    pickerInput(
+      "t2a7_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t2a8_2t_to = output$t2a8_3t_to = renderUI({
+    pickerInput(
+      "t2a8_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t2a9_2t_to = output$t2a9_3t_to = renderUI({
+    pickerInput(
+      "t2a9_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
+  })
+  output$t2a10_2t_to = output$t2a10_3t_to = renderUI({
+    pickerInput(
+      "t2a10_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE)
+    )
   })
 
 }
