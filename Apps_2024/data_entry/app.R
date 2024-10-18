@@ -87,30 +87,30 @@ ui = bootstrapPage(
             style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
             h5("Players Traded:"),
             uiOutput("t1p1_2t"),
-            conditionalPanel(condition = "!(input.t1p1== ' '||input.t1p1=='')", uiOutput("t1p2_2t")),
-            conditionalPanel(condition = "!(input.t1p2== ' '||input.t1p2=='')", uiOutput("t1p3_2t")),
-            conditionalPanel(condition = "!(input.t1p3== ' '||input.t1p3=='')", uiOutput("t1p4_2t")),
-            conditionalPanel(condition = "!(input.t1p4== ' '||input.t1p4=='')", uiOutput("t1p5_2t")),
-            conditionalPanel(condition = "!(input.t1p5== ' '||input.t1p5=='')", uiOutput("t1p6_2t")),
-            conditionalPanel(condition = "!(input.t1p6== ' '||input.t1p6=='')", uiOutput("t1p7_2t")),
-            conditionalPanel(condition = "!(input.t1p7== ' '||input.t1p7=='')", uiOutput("t1p8_2t")),
-            conditionalPanel(condition = "!(input.t1p8== ' '||input.t1p8=='')", uiOutput("t1p9_2t")),
-            conditionalPanel(condition = "!(input.t1p9== ' '||input.t1p9=='')", uiOutput("t1p10_2t"))
+            conditionalPanel(condition = "!(input.t1p1_2t== ' '||input.t1p1_2t=='')", uiOutput("t1p2_2t")),
+            conditionalPanel(condition = "!(input.t1p2_2t== ' '||input.t1p2_2t=='')", uiOutput("t1p3_2t")),
+            conditionalPanel(condition = "!(input.t1p3_2t== ' '||input.t1p3_2t=='')", uiOutput("t1p4_2t")),
+            conditionalPanel(condition = "!(input.t1p4_2t== ' '||input.t1p4_2t=='')", uiOutput("t1p5_2t")),
+            conditionalPanel(condition = "!(input.t1p5_2t== ' '||input.t1p5_2t=='')", uiOutput("t1p6_2t")),
+            conditionalPanel(condition = "!(input.t1p6_2t== ' '||input.t1p6_2t=='')", uiOutput("t1p7_2t")),
+            conditionalPanel(condition = "!(input.t1p7_2t== ' '||input.t1p7_2t=='')", uiOutput("t1p8_2t")),
+            conditionalPanel(condition = "!(input.t1p8_2t== ' '||input.t1p8_2t=='')", uiOutput("t1p9_2t")),
+            conditionalPanel(condition = "!(input.t1p9_2t== ' '||input.t1p9_2t=='')", uiOutput("t1p10_2t"))
           ),
           div(
             class = "col-xs-4",
             style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
             h5("To:"),
             uiOutput("t1p1_2t_to"),
-            conditionalPanel(condition = "!(input.t1p1== ' '||input.t1p1=='')", uiOutput("t1p2_2t_to")),
-            conditionalPanel(condition = "!(input.t1p2== ' '||input.t1p2=='')", uiOutput("t1p3_2t_to")),
-            conditionalPanel(condition = "!(input.t1p3== ' '||input.t1p3=='')", uiOutput("t1p4_2t_to")),
-            conditionalPanel(condition = "!(input.t1p4== ' '||input.t1p4=='')", uiOutput("t1p5_2t_to")),
-            conditionalPanel(condition = "!(input.t1p5== ' '||input.t1p5=='')", uiOutput("t1p6_2t_to")),
-            conditionalPanel(condition = "!(input.t1p6== ' '||input.t1p6=='')", uiOutput("t1p7_2t_to")),
-            conditionalPanel(condition = "!(input.t1p7== ' '||input.t1p7=='')", uiOutput("t1p8_2t_to")),
-            conditionalPanel(condition = "!(input.t1p8== ' '||input.t1p8=='')", uiOutput("t1p9_2t_to")),
-            conditionalPanel(condition = "!(input.t1p9== ' '||input.t1p9=='')", uiOutput("t1p10_2t_to"))
+            conditionalPanel(condition = "!(input.t1p1_2t== ' '||input.t1p1_2t=='')", uiOutput("t1p2_2t_to")),
+            conditionalPanel(condition = "!(input.t1p2_2t== ' '||input.t1p2_2t=='')", uiOutput("t1p3_2t_to")),
+            conditionalPanel(condition = "!(input.t1p3_2t== ' '||input.t1p3_2t=='')", uiOutput("t1p4_2t_to")),
+            conditionalPanel(condition = "!(input.t1p4_2t== ' '||input.t1p4_2t=='')", uiOutput("t1p5_2t_to")),
+            conditionalPanel(condition = "!(input.t1p5_2t== ' '||input.t1p5_2t=='')", uiOutput("t1p6_2t_to")),
+            conditionalPanel(condition = "!(input.t1p6_2t== ' '||input.t1p6_2t=='')", uiOutput("t1p7_2t_to")),
+            conditionalPanel(condition = "!(input.t1p7_2t== ' '||input.t1p7_2t=='')", uiOutput("t1p8_2t_to")),
+            conditionalPanel(condition = "!(input.t1p8_2t== ' '||input.t1p8_2t=='')", uiOutput("t1p9_2t_to")),
+            conditionalPanel(condition = "!(input.t1p9_2t== ' '||input.t1p9_2t=='')", uiOutput("t1p10_2t_to"))
           )
         ),
         # Other Assets Traded
@@ -121,45 +121,45 @@ ui = bootstrapPage(
             style = "text-align: left; width: 40%; padding-left: 1.2em; padding-right: .6em;",
             h5("Other Assets:", style = "font-size: 1.1rem;"),
             uiOutput("t1a1_2t"),
-            conditionalPanel(condition = "!(input.t1a1== ' '||input.t1a1=='')", uiOutput("t1a2_2t")),
-            conditionalPanel(condition = "!(input.t1a2== ' '||input.t1a2=='')", uiOutput("t1a3_2t")),
-            conditionalPanel(condition = "!(input.t1a3== ' '||input.t1a3=='')", uiOutput("t1a4_2t")),
-            conditionalPanel(condition = "!(input.t1a4== ' '||input.t1a4=='')", uiOutput("t1a5_2t")),
-            conditionalPanel(condition = "!(input.t1a5== ' '||input.t1a5=='')", uiOutput("t1a6_2t")),
-            conditionalPanel(condition = "!(input.t1a6== ' '||input.t1a6=='')", uiOutput("t1a7_2t")),
-            conditionalPanel(condition = "!(input.t1a7== ' '||input.t1a7=='')", uiOutput("t1a8_2t")),
-            conditionalPanel(condition = "!(input.t1a8== ' '||input.t1a8=='')", uiOutput("t1a9_2t")),
-            conditionalPanel(condition = "!(input.t1a9== ' '||input.t1a9=='')", uiOutput("t1a10_2t"))
+            conditionalPanel(condition = "!(input.t1a1_2t== ' '||input.t1a1_2t=='')", uiOutput("t1a2_2t")),
+            conditionalPanel(condition = "!(input.t1a2_2t== ' '||input.t1a2_2t=='')", uiOutput("t1a3_2t")),
+            conditionalPanel(condition = "!(input.t1a3_2t== ' '||input.t1a3_2t=='')", uiOutput("t1a4_2t")),
+            conditionalPanel(condition = "!(input.t1a4_2t== ' '||input.t1a4_2t=='')", uiOutput("t1a5_2t")),
+            conditionalPanel(condition = "!(input.t1a5_2t== ' '||input.t1a5_2t=='')", uiOutput("t1a6_2t")),
+            conditionalPanel(condition = "!(input.t1a6_2t== ' '||input.t1a6_2t=='')", uiOutput("t1a7_2t")),
+            conditionalPanel(condition = "!(input.t1a7_2t== ' '||input.t1a7_2t=='')", uiOutput("t1a8_2t")),
+            conditionalPanel(condition = "!(input.t1a8_2t== ' '||input.t1a8_2t=='')", uiOutput("t1a9_2t")),
+            conditionalPanel(condition = "!(input.t1a9_2t== ' '||input.t1a9_2t=='')", uiOutput("t1a10_2t"))
           ),
           div(
             class = "col-xs-3",
             style = "text-align: left; width: 25%; padding-left: .6em; padding-right: .6em;",
             h5("To:", style = "font-size: 1.1rem;"),
             uiOutput("t1a1_2t_to"),
-            conditionalPanel(condition = "!(input.t1a1== ' '||input.t1a1=='')", uiOutput("t1a2_2t_to")),
-            conditionalPanel(condition = "!(input.t1a2== ' '||input.t1a2=='')", uiOutput("t1a3_2t_to")),
-            conditionalPanel(condition = "!(input.t1a3== ' '||input.t1a3=='')", uiOutput("t1a4_2t_to")),
-            conditionalPanel(condition = "!(input.t1a4== ' '||input.t1a4=='')", uiOutput("t1a5_2t_to")),
-            conditionalPanel(condition = "!(input.t1a5== ' '||input.t1a5=='')", uiOutput("t1a6_2t_to")),
-            conditionalPanel(condition = "!(input.t1a6== ' '||input.t1a6=='')", uiOutput("t1a7_2t_to")),
-            conditionalPanel(condition = "!(input.t1a7== ' '||input.t1a7=='')", uiOutput("t1a8_2t_to")),
-            conditionalPanel(condition = "!(input.t1a8== ' '||input.t1a8=='')", uiOutput("t1a9_2t_to")),
-            conditionalPanel(condition = "!(input.t1a9== ' '||input.t1a9=='')", uiOutput("t1a10_2t_to"))
+            conditionalPanel(condition = "!(input.t1a1_2t== ' '||input.t1a1_2t=='')", uiOutput("t1a2_2t_to")),
+            conditionalPanel(condition = "!(input.t1a2_2t== ' '||input.t1a2_2t=='')", uiOutput("t1a3_2t_to")),
+            conditionalPanel(condition = "!(input.t1a3_2t== ' '||input.t1a3_2t=='')", uiOutput("t1a4_2t_to")),
+            conditionalPanel(condition = "!(input.t1a4_2t== ' '||input.t1a4_2t=='')", uiOutput("t1a5_2t_to")),
+            conditionalPanel(condition = "!(input.t1a5_2t== ' '||input.t1a5_2t=='')", uiOutput("t1a6_2t_to")),
+            conditionalPanel(condition = "!(input.t1a6_2t== ' '||input.t1a6_2t=='')", uiOutput("t1a7_2t_to")),
+            conditionalPanel(condition = "!(input.t1a7_2t== ' '||input.t1a7_2t=='')", uiOutput("t1a8_2t_to")),
+            conditionalPanel(condition = "!(input.t1a8_2t== ' '||input.t1a8_2t=='')", uiOutput("t1a9_2t_to")),
+            conditionalPanel(condition = "!(input.t1a9_2t== ' '||input.t1a9_2t=='')", uiOutput("t1a10_2t_to"))
           ),
           div(
             class = "col-xs-2",
             style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
             h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
             uiOutput("t1a1_2t_pro"),
-            conditionalPanel(condition = "!(input.t1a1== ' '||input.t1a1=='')", uiOutput("t1a2_2t_pro")),
-            conditionalPanel(condition = "!(input.t1a2== ' '||input.t1a2=='')", uiOutput("t1a3_2t_pro")),
-            conditionalPanel(condition = "!(input.t1a3== ' '||input.t1a3=='')", uiOutput("t1a4_2t_pro")),
-            conditionalPanel(condition = "!(input.t1a4== ' '||input.t1a4=='')", uiOutput("t1a5_2t_pro")),
-            conditionalPanel(condition = "!(input.t1a5== ' '||input.t1a5=='')", uiOutput("t1a6_2t_pro")),
-            conditionalPanel(condition = "!(input.t1a6== ' '||input.t1a6=='')", uiOutput("t1a7_2t_pro")),
-            conditionalPanel(condition = "!(input.t1a7== ' '||input.t1a7=='')", uiOutput("t1a8_2t_pro")),
-            conditionalPanel(condition = "!(input.t1a8== ' '||input.t1a8=='')", uiOutput("t1a9_2t_pro")),
-            conditionalPanel(condition = "!(input.t1a9== ' '||input.t1a9=='')", uiOutput("t1a10_2t_pro"))
+            conditionalPanel(condition = "!(input.t1a1_2t== ' '||input.t1a1_2t=='')", uiOutput("t1a2_2t_pro")),
+            conditionalPanel(condition = "!(input.t1a2_2t== ' '||input.t1a2_2t=='')", uiOutput("t1a3_2t_pro")),
+            conditionalPanel(condition = "!(input.t1a3_2t== ' '||input.t1a3_2t=='')", uiOutput("t1a4_2t_pro")),
+            conditionalPanel(condition = "!(input.t1a4_2t== ' '||input.t1a4_2t=='')", uiOutput("t1a5_2t_pro")),
+            conditionalPanel(condition = "!(input.t1a5_2t== ' '||input.t1a5_2t=='')", uiOutput("t1a6_2t_pro")),
+            conditionalPanel(condition = "!(input.t1a6_2t== ' '||input.t1a6_2t=='')", uiOutput("t1a7_2t_pro")),
+            conditionalPanel(condition = "!(input.t1a7_2t== ' '||input.t1a7_2t=='')", uiOutput("t1a8_2t_pro")),
+            conditionalPanel(condition = "!(input.t1a8_2t== ' '||input.t1a8_2t=='')", uiOutput("t1a9_2t_pro")),
+            conditionalPanel(condition = "!(input.t1a9_2t== ' '||input.t1a9_2t=='')", uiOutput("t1a10_2t_pro"))
           )
         )
       ),
@@ -178,30 +178,30 @@ ui = bootstrapPage(
             style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
             h5("Players Traded:"),
             uiOutput("t2p1_2t"),
-            conditionalPanel(condition = "!(input.t2p1== ' '||input.t2p1=='')", uiOutput("t2p2_2t")),
-            conditionalPanel(condition = "!(input.t2p2== ' '||input.t2p2=='')", uiOutput("t2p3_2t")),
-            conditionalPanel(condition = "!(input.t2p3== ' '||input.t2p3=='')", uiOutput("t2p4_2t")),
-            conditionalPanel(condition = "!(input.t2p4== ' '||input.t2p4=='')", uiOutput("t2p5_2t")),
-            conditionalPanel(condition = "!(input.t2p5== ' '||input.t2p5=='')", uiOutput("t2p6_2t")),
-            conditionalPanel(condition = "!(input.t2p6== ' '||input.t2p6=='')", uiOutput("t2p7_2t")),
-            conditionalPanel(condition = "!(input.t2p7== ' '||input.t2p7=='')", uiOutput("t2p8_2t")),
-            conditionalPanel(condition = "!(input.t2p8== ' '||input.t2p8=='')", uiOutput("t2p9_2t")),
-            conditionalPanel(condition = "!(input.t2p9== ' '||input.t2p9=='')", uiOutput("t2p10_2t"))
+            conditionalPanel(condition = "!(input.t2p1_2t== ' '||input.t2p1_2t=='')", uiOutput("t2p2_2t")),
+            conditionalPanel(condition = "!(input.t2p2_2t== ' '||input.t2p2_2t=='')", uiOutput("t2p3_2t")),
+            conditionalPanel(condition = "!(input.t2p3_2t== ' '||input.t2p3_2t=='')", uiOutput("t2p4_2t")),
+            conditionalPanel(condition = "!(input.t2p4_2t== ' '||input.t2p4_2t=='')", uiOutput("t2p5_2t")),
+            conditionalPanel(condition = "!(input.t2p5_2t== ' '||input.t2p5_2t=='')", uiOutput("t2p6_2t")),
+            conditionalPanel(condition = "!(input.t2p6_2t== ' '||input.t2p6_2t=='')", uiOutput("t2p7_2t")),
+            conditionalPanel(condition = "!(input.t2p7_2t== ' '||input.t2p7_2t=='')", uiOutput("t2p8_2t")),
+            conditionalPanel(condition = "!(input.t2p8_2t== ' '||input.t2p8_2t=='')", uiOutput("t2p9_2t")),
+            conditionalPanel(condition = "!(input.t2p9_2t== ' '||input.t2p9_2t=='')", uiOutput("t2p10_2t"))
           ),
           div(
             class = "col-xs-4",
             style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
             h5("To:"),
             uiOutput("t2p1_2t_to"),
-            conditionalPanel(condition = "!(input.t2p1== ' '||input.t2p1=='')", uiOutput("t2p2_2t_to")),
-            conditionalPanel(condition = "!(input.t2p2== ' '||input.t2p2=='')", uiOutput("t2p3_2t_to")),
-            conditionalPanel(condition = "!(input.t2p3== ' '||input.t2p3=='')", uiOutput("t2p4_2t_to")),
-            conditionalPanel(condition = "!(input.t2p4== ' '||input.t2p4=='')", uiOutput("t2p5_2t_to")),
-            conditionalPanel(condition = "!(input.t2p5== ' '||input.t2p5=='')", uiOutput("t2p6_2t_to")),
-            conditionalPanel(condition = "!(input.t2p6== ' '||input.t2p6=='')", uiOutput("t2p7_2t_to")),
-            conditionalPanel(condition = "!(input.t2p7== ' '||input.t2p7=='')", uiOutput("t2p8_2t_to")),
-            conditionalPanel(condition = "!(input.t2p8== ' '||input.t2p8=='')", uiOutput("t2p9_2t_to")),
-            conditionalPanel(condition = "!(input.t2p9== ' '||input.t2p9=='')", uiOutput("t2p10_2t_to"))
+            conditionalPanel(condition = "!(input.t2p1_2t== ' '||input.t2p1_2t=='')", uiOutput("t2p2_2t_to")),
+            conditionalPanel(condition = "!(input.t2p2_2t== ' '||input.t2p2_2t=='')", uiOutput("t2p3_2t_to")),
+            conditionalPanel(condition = "!(input.t2p3_2t== ' '||input.t2p3_2t=='')", uiOutput("t2p4_2t_to")),
+            conditionalPanel(condition = "!(input.t2p4_2t== ' '||input.t2p4_2t=='')", uiOutput("t2p5_2t_to")),
+            conditionalPanel(condition = "!(input.t2p5_2t== ' '||input.t2p5_2t=='')", uiOutput("t2p6_2t_to")),
+            conditionalPanel(condition = "!(input.t2p6_2t== ' '||input.t2p6_2t=='')", uiOutput("t2p7_2t_to")),
+            conditionalPanel(condition = "!(input.t2p7_2t== ' '||input.t2p7_2t=='')", uiOutput("t2p8_2t_to")),
+            conditionalPanel(condition = "!(input.t2p8_2t== ' '||input.t2p8_2t=='')", uiOutput("t2p9_2t_to")),
+            conditionalPanel(condition = "!(input.t2p9_2t== ' '||input.t2p9_2t=='')", uiOutput("t2p10_2t_to"))
           )
         ),
         # Other Assets Traded
@@ -212,50 +212,331 @@ ui = bootstrapPage(
             style = "text-align: left; width: 40%; padding-left: 1.2em; padding-right: .6em;",
             h5("Other Assets:", style = "font-size: 1.1rem;"),
             uiOutput("t2a1_2t"),
-            conditionalPanel(condition = "!(input.t2a1== ' '||input.t2a1=='')", uiOutput("t2a2_2t")),
-            conditionalPanel(condition = "!(input.t2a2== ' '||input.t2a2=='')", uiOutput("t2a3_2t")),
-            conditionalPanel(condition = "!(input.t2a3== ' '||input.t2a3=='')", uiOutput("t2a4_2t")),
-            conditionalPanel(condition = "!(input.t2a4== ' '||input.t2a4=='')", uiOutput("t2a5_2t")),
-            conditionalPanel(condition = "!(input.t2a5== ' '||input.t2a5=='')", uiOutput("t2a6_2t")),
-            conditionalPanel(condition = "!(input.t2a6== ' '||input.t2a6=='')", uiOutput("t2a7_2t")),
-            conditionalPanel(condition = "!(input.t2a7== ' '||input.t2a7=='')", uiOutput("t2a8_2t")),
-            conditionalPanel(condition = "!(input.t2a8== ' '||input.t2a8=='')", uiOutput("t2a9_2t")),
-            conditionalPanel(condition = "!(input.t2a9== ' '||input.t2a9=='')", uiOutput("t2a10_2t"))
+            conditionalPanel(condition = "!(input.t2a1_2t== ' '||input.t2a1_2t=='')", uiOutput("t2a2_2t")),
+            conditionalPanel(condition = "!(input.t2a2_2t== ' '||input.t2a2_2t=='')", uiOutput("t2a3_2t")),
+            conditionalPanel(condition = "!(input.t2a3_2t== ' '||input.t2a3_2t=='')", uiOutput("t2a4_2t")),
+            conditionalPanel(condition = "!(input.t2a4_2t== ' '||input.t2a4_2t=='')", uiOutput("t2a5_2t")),
+            conditionalPanel(condition = "!(input.t2a5_2t== ' '||input.t2a5_2t=='')", uiOutput("t2a6_2t")),
+            conditionalPanel(condition = "!(input.t2a6_2t== ' '||input.t2a6_2t=='')", uiOutput("t2a7_2t")),
+            conditionalPanel(condition = "!(input.t2a7_2t== ' '||input.t2a7_2t=='')", uiOutput("t2a8_2t")),
+            conditionalPanel(condition = "!(input.t2a8_2t== ' '||input.t2a8_2t=='')", uiOutput("t2a9_2t")),
+            conditionalPanel(condition = "!(input.t2a9_2t== ' '||input.t2a9_2t=='')", uiOutput("t2a10_2t"))
           ),
           div(
             class = "col-xs-3",
             style = "text-align: left; width: 25%; padding-left: .6em; padding-right: .6em;",
             h5("To:", style = "font-size: 1.1rem;"),
             uiOutput("t2a1_2t_to"),
-            conditionalPanel(condition = "!(input.t2a1== ' '||input.t2a1=='')", uiOutput("t2a2_2t_to")),
-            conditionalPanel(condition = "!(input.t2a2== ' '||input.t2a2=='')", uiOutput("t2a3_2t_to")),
-            conditionalPanel(condition = "!(input.t2a3== ' '||input.t2a3=='')", uiOutput("t2a4_2t_to")),
-            conditionalPanel(condition = "!(input.t2a4== ' '||input.t2a4=='')", uiOutput("t2a5_2t_to")),
-            conditionalPanel(condition = "!(input.t2a5== ' '||input.t2a5=='')", uiOutput("t2a6_2t_to")),
-            conditionalPanel(condition = "!(input.t2a6== ' '||input.t2a6=='')", uiOutput("t2a7_2t_to")),
-            conditionalPanel(condition = "!(input.t2a7== ' '||input.t2a7=='')", uiOutput("t2a8_2t_to")),
-            conditionalPanel(condition = "!(input.t2a8== ' '||input.t2a8=='')", uiOutput("t2a9_2t_to")),
-            conditionalPanel(condition = "!(input.t2a9== ' '||input.t2a9=='')", uiOutput("t2a10_2t_to"))
+            conditionalPanel(condition = "!(input.t2a1_2t== ' '||input.t2a1_2t=='')", uiOutput("t2a2_2t_to")),
+            conditionalPanel(condition = "!(input.t2a2_2t== ' '||input.t2a2_2t=='')", uiOutput("t2a3_2t_to")),
+            conditionalPanel(condition = "!(input.t2a3_2t== ' '||input.t2a3_2t=='')", uiOutput("t2a4_2t_to")),
+            conditionalPanel(condition = "!(input.t2a4_2t== ' '||input.t2a4_2t=='')", uiOutput("t2a5_2t_to")),
+            conditionalPanel(condition = "!(input.t2a5_2t== ' '||input.t2a5_2t=='')", uiOutput("t2a6_2t_to")),
+            conditionalPanel(condition = "!(input.t2a6_2t== ' '||input.t2a6_2t=='')", uiOutput("t2a7_2t_to")),
+            conditionalPanel(condition = "!(input.t2a7_2t== ' '||input.t2a7_2t=='')", uiOutput("t2a8_2t_to")),
+            conditionalPanel(condition = "!(input.t2a8_2t== ' '||input.t2a8_2t=='')", uiOutput("t2a9_2t_to")),
+            conditionalPanel(condition = "!(input.t2a9_2t== ' '||input.t2a9_2t=='')", uiOutput("t2a10_2t_to"))
           ),
           div(
             class = "col-xs-2",
             style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
             h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
             uiOutput("t2a1_2t_pro"),
-            conditionalPanel(condition = "!(input.t2a1== ' '||input.t2a1=='')", uiOutput("t2a2_2t_pro")),
-            conditionalPanel(condition = "!(input.t2a2== ' '||input.t2a2=='')", uiOutput("t2a3_2t_pro")),
-            conditionalPanel(condition = "!(input.t2a3== ' '||input.t2a3=='')", uiOutput("t2a4_2t_pro")),
-            conditionalPanel(condition = "!(input.t2a4== ' '||input.t2a4=='')", uiOutput("t2a5_2t_pro")),
-            conditionalPanel(condition = "!(input.t2a5== ' '||input.t2a5=='')", uiOutput("t2a6_2t_pro")),
-            conditionalPanel(condition = "!(input.t2a6== ' '||input.t2a6=='')", uiOutput("t2a7_2t_pro")),
-            conditionalPanel(condition = "!(input.t2a7== ' '||input.t2a7=='')", uiOutput("t2a8_2t_pro")),
-            conditionalPanel(condition = "!(input.t2a8== ' '||input.t2a8=='')", uiOutput("t2a9_2t_pro")),
-            conditionalPanel(condition = "!(input.t2a9== ' '||input.t2a9=='')", uiOutput("t2a10_2t_pro"))
+            conditionalPanel(condition = "!(input.t2a1_2t== ' '||input.t2a1_2t=='')", uiOutput("t2a2_2t_pro")),
+            conditionalPanel(condition = "!(input.t2a2_2t== ' '||input.t2a2_2t=='')", uiOutput("t2a3_2t_pro")),
+            conditionalPanel(condition = "!(input.t2a3_2t== ' '||input.t2a3_2t=='')", uiOutput("t2a4_2t_pro")),
+            conditionalPanel(condition = "!(input.t2a4_2t== ' '||input.t2a4_2t=='')", uiOutput("t2a5_2t_pro")),
+            conditionalPanel(condition = "!(input.t2a5_2t== ' '||input.t2a5_2t=='')", uiOutput("t2a6_2t_pro")),
+            conditionalPanel(condition = "!(input.t2a6_2t== ' '||input.t2a6_2t=='')", uiOutput("t2a7_2t_pro")),
+            conditionalPanel(condition = "!(input.t2a7_2t== ' '||input.t2a7_2t=='')", uiOutput("t2a8_2t_pro")),
+            conditionalPanel(condition = "!(input.t2a8_2t== ' '||input.t2a8_2t=='')", uiOutput("t2a9_2t_pro")),
+            conditionalPanel(condition = "!(input.t2a9_2t== ' '||input.t2a9_2t=='')", uiOutput("t2a10_2t_pro"))
+          )
+        )
+      )
+    )
+  ),
+  # Three Teams Panel
+  conditionalPanel(
+    condition = "input.teamsInvolved.length == 3",
+    div(
+      class = "row",
+      # Team 1
+      div(
+        class = "col-lg-4 col-md-6",
+        style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
+        h5(""),
+        htmlOutput("team1_logo3"),
+        h5(""),
+        # Players Traded
+        div(
+          class = "row",
+          div(
+            class = "col-xs-8",
+            style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
+            h5("Players Traded:"),
+            uiOutput("t1p1_3t"),
+            conditionalPanel(condition = "!(input.t1p1_3t== ' '||input.t1p1_3t=='')", uiOutput("t1p2_3t")),
+            conditionalPanel(condition = "!(input.t1p2_3t== ' '||input.t1p2_3t=='')", uiOutput("t1p3_3t")),
+            conditionalPanel(condition = "!(input.t1p3_3t== ' '||input.t1p3_3t=='')", uiOutput("t1p4_3t")),
+            conditionalPanel(condition = "!(input.t1p4_3t== ' '||input.t1p4_3t=='')", uiOutput("t1p5_3t")),
+            conditionalPanel(condition = "!(input.t1p5_3t== ' '||input.t1p5_3t=='')", uiOutput("t1p6_3t")),
+            conditionalPanel(condition = "!(input.t1p6_3t== ' '||input.t1p6_3t=='')", uiOutput("t1p7_3t")),
+            conditionalPanel(condition = "!(input.t1p7_3t== ' '||input.t1p7_3t=='')", uiOutput("t1p8_3t")),
+            conditionalPanel(condition = "!(input.t1p8_3t== ' '||input.t1p8_3t=='')", uiOutput("t1p9_3t")),
+            conditionalPanel(condition = "!(input.t1p9_3t== ' '||input.t1p9_3t=='')", uiOutput("t1p10_3t"))
+          ),
+          div(
+            class = "col-xs-4",
+            style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
+            h5("To:"),
+            uiOutput("t1p1_3t_to"),
+            conditionalPanel(condition = "!(input.t1p1_3t== ' '||input.t1p1_3t=='')", uiOutput("t1p2_3t_to")),
+            conditionalPanel(condition = "!(input.t1p2_3t== ' '||input.t1p2_3t=='')", uiOutput("t1p3_3t_to")),
+            conditionalPanel(condition = "!(input.t1p3_3t== ' '||input.t1p3_3t=='')", uiOutput("t1p4_3t_to")),
+            conditionalPanel(condition = "!(input.t1p4_3t== ' '||input.t1p4_3t=='')", uiOutput("t1p5_3t_to")),
+            conditionalPanel(condition = "!(input.t1p5_3t== ' '||input.t1p5_3t=='')", uiOutput("t1p6_3t_to")),
+            conditionalPanel(condition = "!(input.t1p6_3t== ' '||input.t1p6_3t=='')", uiOutput("t1p7_3t_to")),
+            conditionalPanel(condition = "!(input.t1p7_3t== ' '||input.t1p7_3t=='')", uiOutput("t1p8_3t_to")),
+            conditionalPanel(condition = "!(input.t1p8_3t== ' '||input.t1p8_3t=='')", uiOutput("t1p9_3t_to")),
+            conditionalPanel(condition = "!(input.t1p9_3t== ' '||input.t1p9_3t=='')", uiOutput("t1p10_3t_to"))
+          )
+        ),
+        # Other Assets Traded
+        div(
+          class = "row",
+          div(
+            class = "col-xs-5",
+            style = "text-align: left; width: 40%; padding-left: 1.2em; padding-right: .6em;",
+            h5("Other Assets:", style = "font-size: 1.1rem;"),
+            uiOutput("t1a1_3t"),
+            conditionalPanel(condition = "!(input.t1a1_3t== ' '||input.t1a1_3t=='')", uiOutput("t1a2_3t")),
+            conditionalPanel(condition = "!(input.t1a2_3t== ' '||input.t1a2_3t=='')", uiOutput("t1a3_3t")),
+            conditionalPanel(condition = "!(input.t1a3_3t== ' '||input.t1a3_3t=='')", uiOutput("t1a4_3t")),
+            conditionalPanel(condition = "!(input.t1a4_3t== ' '||input.t1a4_3t=='')", uiOutput("t1a5_3t")),
+            conditionalPanel(condition = "!(input.t1a5_3t== ' '||input.t1a5_3t=='')", uiOutput("t1a6_3t")),
+            conditionalPanel(condition = "!(input.t1a6_3t== ' '||input.t1a6_3t=='')", uiOutput("t1a7_3t")),
+            conditionalPanel(condition = "!(input.t1a7_3t== ' '||input.t1a7_3t=='')", uiOutput("t1a8_3t")),
+            conditionalPanel(condition = "!(input.t1a8_3t== ' '||input.t1a8_3t=='')", uiOutput("t1a9_3t")),
+            conditionalPanel(condition = "!(input.t1a9_3t== ' '||input.t1a9_3t=='')", uiOutput("t1a10_3t"))
+          ),
+          div(
+            class = "col-xs-3",
+            style = "text-align: left; width: 25%; padding-left: .6em; padding-right: .6em;",
+            h5("To:", style = "font-size: 1.1rem;"),
+            uiOutput("t1a1_3t_to"),
+            conditionalPanel(condition = "!(input.t1a1_3t== ' '||input.t1a1_3t=='')", uiOutput("t1a2_3t_to")),
+            conditionalPanel(condition = "!(input.t1a2_3t== ' '||input.t1a2_3t=='')", uiOutput("t1a3_3t_to")),
+            conditionalPanel(condition = "!(input.t1a3_3t== ' '||input.t1a3_3t=='')", uiOutput("t1a4_3t_to")),
+            conditionalPanel(condition = "!(input.t1a4_3t== ' '||input.t1a4_3t=='')", uiOutput("t1a5_3t_to")),
+            conditionalPanel(condition = "!(input.t1a5_3t== ' '||input.t1a5_3t=='')", uiOutput("t1a6_3t_to")),
+            conditionalPanel(condition = "!(input.t1a6_3t== ' '||input.t1a6_3t=='')", uiOutput("t1a7_3t_to")),
+            conditionalPanel(condition = "!(input.t1a7_3t== ' '||input.t1a7_3t=='')", uiOutput("t1a8_3t_to")),
+            conditionalPanel(condition = "!(input.t1a8_3t== ' '||input.t1a8_3t=='')", uiOutput("t1a9_3t_to")),
+            conditionalPanel(condition = "!(input.t1a9_3t== ' '||input.t1a9_3t=='')", uiOutput("t1a10_3t_to"))
+          ),
+          div(
+            class = "col-xs-2",
+            style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
+            h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
+            uiOutput("t1a1_3t_pro"),
+            conditionalPanel(condition = "!(input.t1a1_3t== ' '||input.t1a1_3t=='')", uiOutput("t1a2_3t_pro")),
+            conditionalPanel(condition = "!(input.t1a2_3t== ' '||input.t1a2_3t=='')", uiOutput("t1a3_3t_pro")),
+            conditionalPanel(condition = "!(input.t1a3_3t== ' '||input.t1a3_3t=='')", uiOutput("t1a4_3t_pro")),
+            conditionalPanel(condition = "!(input.t1a4_3t== ' '||input.t1a4_3t=='')", uiOutput("t1a5_3t_pro")),
+            conditionalPanel(condition = "!(input.t1a5_3t== ' '||input.t1a5_3t=='')", uiOutput("t1a6_3t_pro")),
+            conditionalPanel(condition = "!(input.t1a6_3t== ' '||input.t1a6_3t=='')", uiOutput("t1a7_3t_pro")),
+            conditionalPanel(condition = "!(input.t1a7_3t== ' '||input.t1a7_3t=='')", uiOutput("t1a8_3t_pro")),
+            conditionalPanel(condition = "!(input.t1a8_3t== ' '||input.t1a8_3t=='')", uiOutput("t1a9_3t_pro")),
+            conditionalPanel(condition = "!(input.t1a9_3t== ' '||input.t1a9_3t=='')", uiOutput("t1a10_3t_pro"))
           )
         )
       ),
+      # Team 2
+      div(
+        class = "col-lg-4 col-md-6",
+        style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
+        h5(""),
+        htmlOutput("team2_logo3"),
+        h5(""),
+        # Players Traded
+        div(
+          class = "row",
+          div(
+            class = "col-xs-8",
+            style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
+            h5("Players Traded:"),
+            uiOutput("t2p1_3t"),
+            conditionalPanel(condition = "!(input.t2p1_3t== ' '||input.t2p1_3t=='')", uiOutput("t2p2_3t")),
+            conditionalPanel(condition = "!(input.t2p2_3t== ' '||input.t2p2_3t=='')", uiOutput("t2p3_3t")),
+            conditionalPanel(condition = "!(input.t2p3_3t== ' '||input.t2p3_3t=='')", uiOutput("t2p4_3t")),
+            conditionalPanel(condition = "!(input.t2p4_3t== ' '||input.t2p4_3t=='')", uiOutput("t2p5_3t")),
+            conditionalPanel(condition = "!(input.t2p5_3t== ' '||input.t2p5_3t=='')", uiOutput("t2p6_3t")),
+            conditionalPanel(condition = "!(input.t2p6_3t== ' '||input.t2p6_3t=='')", uiOutput("t2p7_3t")),
+            conditionalPanel(condition = "!(input.t2p7_3t== ' '||input.t2p7_3t=='')", uiOutput("t2p8_3t")),
+            conditionalPanel(condition = "!(input.t2p8_3t== ' '||input.t2p8_3t=='')", uiOutput("t2p9_3t")),
+            conditionalPanel(condition = "!(input.t2p9_3t== ' '||input.t2p9_3t=='')", uiOutput("t2p10_3t"))
+          ),
+          div(
+            class = "col-xs-4",
+            style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
+            h5("To:"),
+            uiOutput("t2p1_3t_to"),
+            conditionalPanel(condition = "!(input.t2p1_3t== ' '||input.t2p1_3t=='')", uiOutput("t2p2_3t_to")),
+            conditionalPanel(condition = "!(input.t2p2_3t== ' '||input.t2p2_3t=='')", uiOutput("t2p3_3t_to")),
+            conditionalPanel(condition = "!(input.t2p3_3t== ' '||input.t2p3_3t=='')", uiOutput("t2p4_3t_to")),
+            conditionalPanel(condition = "!(input.t2p4_3t== ' '||input.t2p4_3t=='')", uiOutput("t2p5_3t_to")),
+            conditionalPanel(condition = "!(input.t2p5_3t== ' '||input.t2p5_3t=='')", uiOutput("t2p6_3t_to")),
+            conditionalPanel(condition = "!(input.t2p6_3t== ' '||input.t2p6_3t=='')", uiOutput("t2p7_3t_to")),
+            conditionalPanel(condition = "!(input.t2p7_3t== ' '||input.t2p7_3t=='')", uiOutput("t2p8_3t_to")),
+            conditionalPanel(condition = "!(input.t2p8_3t== ' '||input.t2p8_3t=='')", uiOutput("t2p9_3t_to")),
+            conditionalPanel(condition = "!(input.t2p9_3t== ' '||input.t2p9_3t=='')", uiOutput("t2p10_3t_to"))
+          )
+        ),
+        # Other Assets Traded
+        div(
+          class = "row",
+          div(
+            class = "col-xs-5",
+            style = "text-align: left; width: 40%; padding-left: 1.2em; padding-right: .6em;",
+            h5("Other Assets:", style = "font-size: 1.1rem;"),
+            uiOutput("t2a1_3t"),
+            conditionalPanel(condition = "!(input.t2a1_3t== ' '||input.t2a1_3t=='')", uiOutput("t2a2_3t")),
+            conditionalPanel(condition = "!(input.t2a2_3t== ' '||input.t2a2_3t=='')", uiOutput("t2a3_3t")),
+            conditionalPanel(condition = "!(input.t2a3_3t== ' '||input.t2a3_3t=='')", uiOutput("t2a4_3t")),
+            conditionalPanel(condition = "!(input.t2a4_3t== ' '||input.t2a4_3t=='')", uiOutput("t2a5_3t")),
+            conditionalPanel(condition = "!(input.t2a5_3t== ' '||input.t2a5_3t=='')", uiOutput("t2a6_3t")),
+            conditionalPanel(condition = "!(input.t2a6_3t== ' '||input.t2a6_3t=='')", uiOutput("t2a7_3t")),
+            conditionalPanel(condition = "!(input.t2a7_3t== ' '||input.t2a7_3t=='')", uiOutput("t2a8_3t")),
+            conditionalPanel(condition = "!(input.t2a8_3t== ' '||input.t2a8_3t=='')", uiOutput("t2a9_3t")),
+            conditionalPanel(condition = "!(input.t2a9_3t== ' '||input.t2a9_3t=='')", uiOutput("t2a10_3t"))
+          ),
+          div(
+            class = "col-xs-3",
+            style = "text-align: left; width: 25%; padding-left: .6em; padding-right: .6em;",
+            h5("To:", style = "font-size: 1.1rem;"),
+            uiOutput("t2a1_3t_to"),
+            conditionalPanel(condition = "!(input.t2a1_3t== ' '||input.t2a1_3t=='')", uiOutput("t2a2_3t_to")),
+            conditionalPanel(condition = "!(input.t2a2_3t== ' '||input.t2a2_3t=='')", uiOutput("t2a3_3t_to")),
+            conditionalPanel(condition = "!(input.t2a3_3t== ' '||input.t2a3_3t=='')", uiOutput("t2a4_3t_to")),
+            conditionalPanel(condition = "!(input.t2a4_3t== ' '||input.t2a4_3t=='')", uiOutput("t2a5_3t_to")),
+            conditionalPanel(condition = "!(input.t2a5_3t== ' '||input.t2a5_3t=='')", uiOutput("t2a6_3t_to")),
+            conditionalPanel(condition = "!(input.t2a6_3t== ' '||input.t2a6_3t=='')", uiOutput("t2a7_3t_to")),
+            conditionalPanel(condition = "!(input.t2a7_3t== ' '||input.t2a7_3t=='')", uiOutput("t2a8_3t_to")),
+            conditionalPanel(condition = "!(input.t2a8_3t== ' '||input.t2a8_3t=='')", uiOutput("t2a9_3t_to")),
+            conditionalPanel(condition = "!(input.t2a9_3t== ' '||input.t2a9_3t=='')", uiOutput("t2a10_3t_to"))
+          ),
+          div(
+            class = "col-xs-2",
+            style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
+            h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
+            uiOutput("t2a1_3t_pro"),
+            conditionalPanel(condition = "!(input.t2a1_3t== ' '||input.t2a1_3t=='')", uiOutput("t2a2_3t_pro")),
+            conditionalPanel(condition = "!(input.t2a2_3t== ' '||input.t2a2_3t=='')", uiOutput("t2a3_3t_pro")),
+            conditionalPanel(condition = "!(input.t2a3_3t== ' '||input.t2a3_3t=='')", uiOutput("t2a4_3t_pro")),
+            conditionalPanel(condition = "!(input.t2a4_3t== ' '||input.t2a4_3t=='')", uiOutput("t2a5_3t_pro")),
+            conditionalPanel(condition = "!(input.t2a5_3t== ' '||input.t2a5_3t=='')", uiOutput("t2a6_3t_pro")),
+            conditionalPanel(condition = "!(input.t2a6_3t== ' '||input.t2a6_3t=='')", uiOutput("t2a7_3t_pro")),
+            conditionalPanel(condition = "!(input.t2a7_3t== ' '||input.t2a7_3t=='')", uiOutput("t2a8_3t_pro")),
+            conditionalPanel(condition = "!(input.t2a8_3t== ' '||input.t2a8_3t=='')", uiOutput("t2a9_3t_pro")),
+            conditionalPanel(condition = "!(input.t2a9_3t== ' '||input.t2a9_3t=='')", uiOutput("t2a10_3t_pro"))
+          )
+        )
+      ),
+      # Team 3
+      div(
+        class = "col-lg-4 col-md-6",
+        style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
+        h5(""),
+        htmlOutput("team3_logo"),
+        h5(""),
+        # Players Traded
+        div(
+          class = "row",
+          div(
+            class = "col-xs-8",
+            style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
+            h5("Players Traded:"),
+            uiOutput("t3p1_3t"),
+            conditionalPanel(condition = "!(input.t3p1_3t== ' '||input.t3p1_3t=='')", uiOutput("t3p2_3t")),
+            conditionalPanel(condition = "!(input.t3p2_3t== ' '||input.t3p2_3t=='')", uiOutput("t3p3_3t")),
+            conditionalPanel(condition = "!(input.t3p3_3t== ' '||input.t3p3_3t=='')", uiOutput("t3p4_3t")),
+            conditionalPanel(condition = "!(input.t3p4_3t== ' '||input.t3p4_3t=='')", uiOutput("t3p5_3t")),
+            conditionalPanel(condition = "!(input.t3p5_3t== ' '||input.t3p5_3t=='')", uiOutput("t3p6_3t")),
+            conditionalPanel(condition = "!(input.t3p6_3t== ' '||input.t3p6_3t=='')", uiOutput("t3p7_3t")),
+            conditionalPanel(condition = "!(input.t3p7_3t== ' '||input.t3p7_3t=='')", uiOutput("t3p8_3t")),
+            conditionalPanel(condition = "!(input.t3p8_3t== ' '||input.t3p8_3t=='')", uiOutput("t3p9_3t")),
+            conditionalPanel(condition = "!(input.t3p9_3t== ' '||input.t3p9_3t=='')", uiOutput("t3p10_3t"))
+          ),
+          div(
+            class = "col-xs-4",
+            style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
+            h5("To:"),
+            uiOutput("t3p1_3t_to"),
+            conditionalPanel(condition = "!(input.t3p1_3t== ' '||input.t3p1_3t=='')", uiOutput("t3p2_3t_to")),
+            conditionalPanel(condition = "!(input.t3p2_3t== ' '||input.t3p2_3t=='')", uiOutput("t3p3_3t_to")),
+            conditionalPanel(condition = "!(input.t3p3_3t== ' '||input.t3p3_3t=='')", uiOutput("t3p4_3t_to")),
+            conditionalPanel(condition = "!(input.t3p4_3t== ' '||input.t3p4_3t=='')", uiOutput("t3p5_3t_to")),
+            conditionalPanel(condition = "!(input.t3p5_3t== ' '||input.t3p5_3t=='')", uiOutput("t3p6_3t_to")),
+            conditionalPanel(condition = "!(input.t3p6_3t== ' '||input.t3p6_3t=='')", uiOutput("t3p7_3t_to")),
+            conditionalPanel(condition = "!(input.t3p7_3t== ' '||input.t3p7_3t=='')", uiOutput("t3p8_3t_to")),
+            conditionalPanel(condition = "!(input.t3p8_3t== ' '||input.t3p8_3t=='')", uiOutput("t3p9_3t_to")),
+            conditionalPanel(condition = "!(input.t3p9_3t== ' '||input.t3p9_3t=='')", uiOutput("t3p10_3t_to"))
+          )
+        ),
+        # Other Assets Traded
+        div(
+          class = "row",
+          div(
+            class = "col-xs-5",
+            style = "text-align: left; width: 40%; padding-left: 1.2em; padding-right: .6em;",
+            h5("Other Assets:", style = "font-size: 1.1rem;"),
+            uiOutput("t3a1_3t"),
+            conditionalPanel(condition = "!(input.t3a1_3t== ' '||input.t3a1_3t=='')", uiOutput("t3a2_3t")),
+            conditionalPanel(condition = "!(input.t3a2_3t== ' '||input.t3a2_3t=='')", uiOutput("t3a3_3t")),
+            conditionalPanel(condition = "!(input.t3a3_3t== ' '||input.t3a3_3t=='')", uiOutput("t3a4_3t")),
+            conditionalPanel(condition = "!(input.t3a4_3t== ' '||input.t3a4_3t=='')", uiOutput("t3a5_3t")),
+            conditionalPanel(condition = "!(input.t3a5_3t== ' '||input.t3a5_3t=='')", uiOutput("t3a6_3t")),
+            conditionalPanel(condition = "!(input.t3a6_3t== ' '||input.t3a6_3t=='')", uiOutput("t3a7_3t")),
+            conditionalPanel(condition = "!(input.t3a7_3t== ' '||input.t3a7_3t=='')", uiOutput("t3a8_3t")),
+            conditionalPanel(condition = "!(input.t3a8_3t== ' '||input.t3a8_3t=='')", uiOutput("t3a9_3t")),
+            conditionalPanel(condition = "!(input.t3a9_3t== ' '||input.t3a9_3t=='')", uiOutput("t3a10_3t"))
+          ),
+          div(
+            class = "col-xs-3",
+            style = "text-align: left; width: 25%; padding-left: .6em; padding-right: .6em;",
+            h5("To:", style = "font-size: 1.1rem;"),
+            uiOutput("t3a1_3t_to"),
+            conditionalPanel(condition = "!(input.t3a1_3t== ' '||input.t3a1_3t=='')", uiOutput("t3a2_3t_to")),
+            conditionalPanel(condition = "!(input.t3a2_3t== ' '||input.t3a2_3t=='')", uiOutput("t3a3_3t_to")),
+            conditionalPanel(condition = "!(input.t3a3_3t== ' '||input.t3a3_3t=='')", uiOutput("t3a4_3t_to")),
+            conditionalPanel(condition = "!(input.t3a4_3t== ' '||input.t3a4_3t=='')", uiOutput("t3a5_3t_to")),
+            conditionalPanel(condition = "!(input.t3a5_3t== ' '||input.t3a5_3t=='')", uiOutput("t3a6_3t_to")),
+            conditionalPanel(condition = "!(input.t3a6_3t== ' '||input.t3a6_3t=='')", uiOutput("t3a7_3t_to")),
+            conditionalPanel(condition = "!(input.t3a7_3t== ' '||input.t3a7_3t=='')", uiOutput("t3a8_3t_to")),
+            conditionalPanel(condition = "!(input.t3a8_3t== ' '||input.t3a8_3t=='')", uiOutput("t3a9_3t_to")),
+            conditionalPanel(condition = "!(input.t3a9_3t== ' '||input.t3a9_3t=='')", uiOutput("t3a10_3t_to"))
+          ),
+          div(
+            class = "col-xs-2",
+            style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
+            h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
+            uiOutput("t3a1_3t_pro"),
+            conditionalPanel(condition = "!(input.t3a1_3t== ' '||input.t3a1_3t=='')", uiOutput("t3a2_3t_pro")),
+            conditionalPanel(condition = "!(input.t3a2_3t== ' '||input.t3a2_3t=='')", uiOutput("t3a3_3t_pro")),
+            conditionalPanel(condition = "!(input.t3a3_3t== ' '||input.t3a3_3t=='')", uiOutput("t3a4_3t_pro")),
+            conditionalPanel(condition = "!(input.t3a4_3t== ' '||input.t3a4_3t=='')", uiOutput("t3a5_3t_pro")),
+            conditionalPanel(condition = "!(input.t3a5_3t== ' '||input.t3a5_3t=='')", uiOutput("t3a6_3t_pro")),
+            conditionalPanel(condition = "!(input.t3a6_3t== ' '||input.t3a6_3t=='')", uiOutput("t3a7_3t_pro")),
+            conditionalPanel(condition = "!(input.t3a7_3t== ' '||input.t3a7_3t=='')", uiOutput("t3a8_3t_pro")),
+            conditionalPanel(condition = "!(input.t3a8_3t== ' '||input.t3a8_3t=='')", uiOutput("t3a9_3t_pro")),
+            conditionalPanel(condition = "!(input.t3a9_3t== ' '||input.t3a9_3t=='')", uiOutput("t3a10_3t_pro"))
+          )
+        )
+      )
     )
   )
+  # Four Team Panel
 )
 
 server <- function(input, output, session) {
@@ -416,81 +697,162 @@ server <- function(input, output, session) {
   
   ### Traded Player Inputs
   # Team 1
-  output$t1p1_2t = output$t1p1_3t = renderUI({
+  output$t1p1_2t = renderUI({
     selectizeInput(
-      "t1p1", 
+      "t1p1_2t", 
       "", 
       choices = team1_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t1p2_2t = output$t1p2_3t = renderUI({
+  output$t1p2_2t = renderUI({
     selectizeInput(
-      "t1p2", 
+      "t1p2_2t", 
       "", 
       choices = team1_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t1p3_2t = output$t1p3_3t = renderUI({
+  output$t1p3_2t = renderUI({
     selectizeInput(
-      "t1p3", 
+      "t1p3_2t", 
       "", 
       choices = team1_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t1p4_2t = output$t1p4_3t = renderUI({
+  output$t1p4_2t = renderUI({
     selectizeInput(
-      "t1p4", 
+      "t1p4_2t", 
       "", 
       choices = team1_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t1p5_2t = output$t1p5_3t = renderUI({
+  output$t1p5_2t = renderUI({
     selectizeInput(
-      "t1p5", 
+      "t1p5_2t", 
       "", 
       choices = team1_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t1p6_2t = output$t1p6_3t = renderUI({
+  output$t1p6_2t = renderUI({
     selectizeInput(
-      "t1p6", 
+      "t1p6_2t", 
       "", 
       choices = team1_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t1p7_2t = output$t1p7_3t = renderUI({
+  output$t1p7_2t = renderUI({
     selectizeInput(
-      "t1p7", 
+      "t1p7_2t", 
       "", 
       choices = team1_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t1p8_2t = output$t1p8_3t = renderUI({
+  output$t1p8_2t = renderUI({
     selectizeInput(
-      "t1p8", 
+      "t1p8_2t", 
       "", 
       choices = team1_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t1p9_2t = output$t1p9_3t = renderUI({
+  output$t1p9_2t = renderUI({
     selectizeInput(
-      "t1p9", 
+      "t1p9_2t", 
       "", 
       choices = team1_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t1p10_2t = output$t1p10_3t = renderUI({
+  output$t1p10_2t = renderUI({
     selectizeInput(
-      "t1p10", 
+      "t1p10_2t", 
+      "", 
+      choices = team1_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  
+  output$t1p1_3t = renderUI({
+    selectizeInput(
+      "t1p1_3t", 
+      "", 
+      choices = team1_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t1p2_3t = renderUI({
+    selectizeInput(
+      "t1p2_3t", 
+      "", 
+      choices = team1_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t1p3_3t = renderUI({
+    selectizeInput(
+      "t1p3_3t", 
+      "", 
+      choices = team1_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t1p4_3t = renderUI({
+    selectizeInput(
+      "t1p4_3t", 
+      "", 
+      choices = team1_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t1p5_3t = renderUI({
+    selectizeInput(
+      "t1p5_3t", 
+      "", 
+      choices = team1_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t1p6_3t = renderUI({
+    selectizeInput(
+      "t1p6_3t", 
+      "", 
+      choices = team1_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t1p7_3t = renderUI({
+    selectizeInput(
+      "t1p7_3t", 
+      "", 
+      choices = team1_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t1p8_3t = renderUI({
+    selectizeInput(
+      "t1p8_3t", 
+      "", 
+      choices = team1_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t1p9_3t = renderUI({
+    selectizeInput(
+      "t1p9_3t", 
+      "", 
+      choices = team1_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t1p10_3t = renderUI({
+    selectizeInput(
+      "t1p10_3t", 
       "", 
       choices = team1_players(), 
       options = list(create = TRUE)
@@ -498,217 +860,579 @@ server <- function(input, output, session) {
   })
   
   # Team 2 
-  output$t2p1_2t = output$t2p1_3t = renderUI({
+  output$t2p1_2t = renderUI({
     selectizeInput(
-      "t2p1", 
+      "t2p1_2t", 
       "", 
       choices = team2_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t2p2_2t = output$t2p2_3t = renderUI({
+  output$t2p2_2t = renderUI({
     selectizeInput(
-      "t2p2", 
+      "t2p2_2t", 
       "", 
       choices = team2_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t2p3_2t = output$t2p3_3t = renderUI({
+  output$t2p3_2t = renderUI({
     selectizeInput(
-      "t2p3", 
+      "t2p3_2t", 
       "", 
       choices = team2_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t2p4_2t = output$t2p4_3t = renderUI({
+  output$t2p4_2t = renderUI({
     selectizeInput(
-      "t2p4", 
+      "t2p4_2t", 
       "", 
       choices = team2_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t2p5_2t = output$t2p5_3t = renderUI({
+  output$t2p5_2t = renderUI({
     selectizeInput(
-      "t2p5", 
+      "t2p5_2t", 
       "", 
       choices = team2_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t2p6_2t = output$t2p6_3t = renderUI({
+  output$t2p6_2t = renderUI({
     selectizeInput(
-      "t2p6", 
+      "t2p6_2t", 
       "", 
       choices = team2_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t2p7_2t = output$t2p7_3t = renderUI({
+  output$t2p7_2t = renderUI({
     selectizeInput(
-      "t2p7", 
+      "t2p7_2t", 
       "", 
       choices = team2_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t2p8_2t = output$t2p8_3t = renderUI({
+  output$t2p8_2t = renderUI({
     selectizeInput(
-      "t2p8", 
+      "t2p8_2t", 
       "", 
       choices = team2_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t2p9_2t = output$t2p9_3t = renderUI({
+  output$t2p9_2t = renderUI({
     selectizeInput(
-      "t2p9", 
+      "t2p9_2t", 
       "", 
       choices = team2_players(), 
       options = list(create = TRUE)
     )
   })
-  output$t2p10_2t = output$t2p10_3t = renderUI({
+  output$t2p10_2t = renderUI({
     selectizeInput(
-      "t2p10", 
+      "t2p10_2t", 
       "", 
       choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  
+  output$t2p1_3t = renderUI({
+    selectizeInput(
+      "t2p1_3t", 
+      "", 
+      choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t2p2_3t = renderUI({
+    selectizeInput(
+      "t2p2_3t", 
+      "", 
+      choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t2p3_3t = renderUI({
+    selectizeInput(
+      "t2p3_3t", 
+      "", 
+      choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t2p4_3t = renderUI({
+    selectizeInput(
+      "t2p4_3t", 
+      "", 
+      choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t2p5_3t = renderUI({
+    selectizeInput(
+      "t2p5_3t", 
+      "", 
+      choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t2p6_3t = renderUI({
+    selectizeInput(
+      "t2p6_3t", 
+      "", 
+      choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t2p7_3t = renderUI({
+    selectizeInput(
+      "t2p7_3t", 
+      "", 
+      choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t2p8_3t = renderUI({
+    selectizeInput(
+      "t2p8_3t", 
+      "", 
+      choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t2p9_3t = renderUI({
+    selectizeInput(
+      "t2p9_3t", 
+      "", 
+      choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t2p10_3t = renderUI({
+    selectizeInput(
+      "t2p10_3t", 
+      "", 
+      choices = team2_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  
+  # Team 3
+  output$t3p1_3t = renderUI({
+    selectizeInput(
+      "t3p1_3t", 
+      "", 
+      choices = team3_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t3p2_3t = renderUI({
+    selectizeInput(
+      "t3p2_3t", 
+      "", 
+      choices = team3_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t3p3_3t = renderUI({
+    selectizeInput(
+      "t3p3_3t", 
+      "", 
+      choices = team3_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t3p4_3t = renderUI({
+    selectizeInput(
+      "t3p4_3t", 
+      "", 
+      choices = team3_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t3p5_3t = renderUI({
+    selectizeInput(
+      "t3p5_3t", 
+      "", 
+      choices = team3_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t3p6_3t = renderUI({
+    selectizeInput(
+      "t3p6_3t", 
+      "", 
+      choices = team3_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t3p7_3t = renderUI({
+    selectizeInput(
+      "t3p7_3t", 
+      "", 
+      choices = team3_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t3p8_3t = renderUI({
+    selectizeInput(
+      "t3p8_3t", 
+      "", 
+      choices = team3_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t3p9_3t = renderUI({
+    selectizeInput(
+      "t3p9_3t", 
+      "", 
+      choices = team3_players(), 
+      options = list(create = TRUE)
+    )
+  })
+  output$t3p10_3t = renderUI({
+    selectizeInput(
+      "t3p10_3t", 
+      "", 
+      choices = team3_players(), 
       options = list(create = TRUE)
     )
   })
   
   ### Traded Asset Input
   # Team 1
-  output$t1a1_2t = output$t1a1_3t = renderUI({
+  output$t1a1_2t = renderUI({
     textInput(
-      "t1a1", 
+      "t1a1_2t", 
       ""
     )
   })
-  output$t1a2_2t = output$t1a2_3t = renderUI({
+  output$t1a2_2t = renderUI({
     textInput(
-      "t1a2", 
+      "t1a2_2t", 
       ""
     )
   })
-  output$t1a3_2t = output$t1a3_3t = renderUI({
+  output$t1a3_2t = renderUI({
     textInput(
-      "t1a3", 
+      "t1a3_2t", 
       ""
     )
   })
-  output$t1a4_2t = output$t1a4_3t = renderUI({
+  output$t1a4_2t = renderUI({
     textInput(
-      "t1a4", 
+      "t1a4_2t", 
       ""
     )
   })
-  output$t1a5_2t = output$t1a5_3t = renderUI({
+  output$t1a5_2t = renderUI({
     textInput(
-      "t1a5", 
+      "t1a5_2t", 
       ""
     )
   })
-  output$t1a6_2t = output$t1a6_3t = renderUI({
+  output$t1a6_2t = renderUI({
     textInput(
-      "t1a6", 
+      "t1a6_2t", 
       ""
     )
   })
-  output$t1a7_2t = output$t1a7_3t = renderUI({
+  output$t1a7_2t = renderUI({
     textInput(
-      "t1a7", 
+      "t1a7_2t", 
       ""
     )
   })
-  output$t1a8_2t = output$t1a8_3t = renderUI({
+  output$t1a8_2t = renderUI({
     textInput(
-      "t1a8", 
+      "t1a8_2t", 
       ""
     )
   })
-  output$t1a9_2t = output$t1a9_3t = renderUI({
+  output$t1a9_2t = renderUI({
     textInput(
-      "t1a9", 
+      "t1a9_2t", 
       ""
     )
   })
-  output$t1a10_2t = output$t1a10_3t = renderUI({
+  output$t1a10_2t = renderUI({
     textInput(
-      "t1a10", 
+      "t1a10_2t", 
+      ""
+    )
+  })
+  
+  output$t1a1_3t = renderUI({
+    textInput(
+      "t1a1_3t", 
+      ""
+    )
+  })
+  output$t1a2_3t = renderUI({
+    textInput(
+      "t1a2_3t", 
+      ""
+    )
+  })
+  output$t1a3_3t = renderUI({
+    textInput(
+      "t1a3_3t", 
+      ""
+    )
+  })
+  output$t1a4_3t = renderUI({
+    textInput(
+      "t1a4_3t", 
+      ""
+    )
+  })
+  output$t1a5_3t = renderUI({
+    textInput(
+      "t1a5_3t", 
+      ""
+    )
+  })
+  output$t1a6_3t = renderUI({
+    textInput(
+      "t1a6_3t", 
+      ""
+    )
+  })
+  output$t1a7_3t = renderUI({
+    textInput(
+      "t1a7_3t", 
+      ""
+    )
+  })
+  output$t1a8_3t = renderUI({
+    textInput(
+      "t1a8_3t", 
+      ""
+    )
+  })
+  output$t1a9_3t = renderUI({
+    textInput(
+      "t1a9_3t", 
+      ""
+    )
+  })
+  output$t1a10_3t = renderUI({
+    textInput(
+      "t1a10_3t", 
       ""
     )
   })
   
   # Team 2
-  output$t2a1_2t = output$t2a1_3t = renderUI({
+  output$t2a1_2t = renderUI({
     textInput(
-      "t2a1", 
+      "t2a1_2t", 
       ""
     )
   })
-  output$t2a2_2t = output$t2a2_3t = renderUI({
+  output$t2a2_2t = renderUI({
     textInput(
-      "t2a2", 
+      "t2a2_2t", 
       ""
     )
   })
-  output$t2a3_2t = output$t2a3_3t = renderUI({
+  output$t2a3_2t = renderUI({
     textInput(
-      "t2a3", 
+      "t2a3_2t", 
       ""
     )
   })
-  output$t2a4_2t = output$t2a4_3t = renderUI({
+  output$t2a4_2t = renderUI({
     textInput(
-      "t2a4", 
+      "t2a4_2t", 
       ""
     )
   })
-  output$t2a5_2t = output$t2a5_3t = renderUI({
+  output$t2a5_2t = renderUI({
     textInput(
-      "t2a5", 
+      "t2a5_2t", 
       ""
     )
   })
-  output$t2a6_2t = output$t2a6_3t = renderUI({
+  output$t2a6_2t = renderUI({
     textInput(
-      "t2a6", 
+      "t2a6_2t", 
       ""
     )
   })
-  output$t2a7_2t = output$t2a7_3t = renderUI({
+  output$t2a7_2t = renderUI({
     textInput(
-      "t2a7", 
+      "t2a7_2t", 
       ""
     )
   })
-  output$t2a8_2t = output$t2a8_3t = renderUI({
+  output$t2a8_2t = renderUI({
     textInput(
-      "t2a8", 
+      "t2a8_2t", 
       ""
     )
   })
-  output$t2a9_2t = output$t2a9_3t = renderUI({
+  output$t2a9_2t = renderUI({
     textInput(
-      "t2a9", 
+      "t2a9_2t", 
       ""
     )
   })
-  output$t2a10_2t = output$t2a10_3t = renderUI({
+  output$t2a10_2t = renderUI({
     textInput(
-      "t2a10", 
+      "t2a10_2t", 
+      ""
+    )
+  })
+  
+  output$t2a1_3t = renderUI({
+    textInput(
+      "t2a1_3t", 
+      ""
+    )
+  })
+  output$t2a2_3t = renderUI({
+    textInput(
+      "t2a2_3t", 
+      ""
+    )
+  })
+  output$t2a3_3t = renderUI({
+    textInput(
+      "t2a3_3t", 
+      ""
+    )
+  })
+  output$t2a4_3t = renderUI({
+    textInput(
+      "t2a4_3t", 
+      ""
+    )
+  })
+  output$t2a5_3t = renderUI({
+    textInput(
+      "t2a5_3t", 
+      ""
+    )
+  })
+  output$t2a6_3t = renderUI({
+    textInput(
+      "t2a6_3t", 
+      ""
+    )
+  })
+  output$t2a7_3t = renderUI({
+    textInput(
+      "t2a7_3t", 
+      ""
+    )
+  })
+  output$t2a8_3t = renderUI({
+    textInput(
+      "t2a8_3t", 
+      ""
+    )
+  })
+  output$t2a9_3t = renderUI({
+    textInput(
+      "t2a9_3t", 
+      ""
+    )
+  })
+  output$t2a10_3t = renderUI({
+    textInput(
+      "t2a10_3t", 
+      ""
+    )
+  })
+  
+  # Team 3
+  output$t3a1_3t = renderUI({
+    textInput(
+      "t3a1_3t", 
+      ""
+    )
+  })
+  output$t3a2_3t = renderUI({
+    textInput(
+      "t3a2_3t", 
+      ""
+    )
+  })
+  output$t3a3_3t = renderUI({
+    textInput(
+      "t3a3_3t", 
+      ""
+    )
+  })
+  output$t3a4_3t = renderUI({
+    textInput(
+      "t3a4_3t", 
+      ""
+    )
+  })
+  output$t3a5_3t = renderUI({
+    textInput(
+      "t3a5_3t", 
+      ""
+    )
+  })
+  output$t3a6_3t = renderUI({
+    textInput(
+      "t3a6_3t", 
+      ""
+    )
+  })
+  output$t3a7_3t = renderUI({
+    textInput(
+      "t3a7_3t", 
+      ""
+    )
+  })
+  output$t3a8_3t = renderUI({
+    textInput(
+      "t3a8_3t", 
+      ""
+    )
+  })
+  output$t3a9_3t = renderUI({
+    textInput(
+      "t3a9_3t", 
+      ""
+    )
+  })
+  output$t3a10_3t = renderUI({
+    textInput(
+      "t3a10_3t", 
       ""
     )
   })
   
   ### Traded Player To Team Input
   # Team 1
-  output$t1p1_2t_to = output$t1p1_3t_to = renderUI({
+  output$t1p1_2t_to = renderUI({
     pickerInput(
-      "t1p1_to", 
+      "t1p1_2t_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+    )
+  })
+  output$t1p2_2t_to = renderUI({
+    pickerInput(
+      "t1p2_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
       choicesOpt = list(
@@ -721,9 +1445,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t1p2_2t_to = output$t1p2_3t_to = renderUI({
+  output$t1p3_2t_to = renderUI({
     pickerInput(
-      "t1p2_to", 
+      "t1p3_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
       choicesOpt = list(
@@ -736,9 +1460,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t1p3_2t_to = output$t1p3_3t_to = renderUI({
+  output$t1p4_2t_to = renderUI({
     pickerInput(
-      "t1p3_to", 
+      "t1p4_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
       choicesOpt = list(
@@ -751,9 +1475,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t1p4_2t_to = output$t1p4_3t_to = renderUI({
+  output$t1p5_2t_to = renderUI({
     pickerInput(
-      "t1p4_to", 
+      "t1p5_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
       choicesOpt = list(
@@ -766,9 +1490,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t1p5_2t_to = output$t1p5_3t_to = renderUI({
+  output$t1p6_2t_to = renderUI({
     pickerInput(
-      "t1p5_to", 
+      "t1p6_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
       choicesOpt = list(
@@ -781,9 +1505,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t1p6_2t_to = output$t1p6_3t_to = renderUI({
+  output$t1p7_2t_to = renderUI({
     pickerInput(
-      "t1p6_to", 
+      "t1p7_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
       choicesOpt = list(
@@ -796,9 +1520,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t1p7_2t_to = output$t1p7_3t_to = renderUI({
+  output$t1p8_2t_to = renderUI({
     pickerInput(
-      "t1p7_to", 
+      "t1p8_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
       choicesOpt = list(
@@ -811,9 +1535,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t1p8_2t_to = output$t1p8_3t_to = renderUI({
+  output$t1p9_2t_to = renderUI({
     pickerInput(
-      "t1p8_to", 
+      "t1p9_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
       choicesOpt = list(
@@ -826,24 +1550,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t1p9_2t_to = output$t1p9_3t_to = renderUI({
+  output$t1p10_2t_to = renderUI({
     pickerInput(
-      "t1p9_to", 
-      "", 
-      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-      choicesOpt = list(
-        content = hoopR_espn_nba_teams |>
-          filter(
-            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-          ) |>
-          pull(dropdown_logo)
-      ),
-      options = list(`dropdown-align-center` = TRUE)
-    )
-  })
-  output$t1p10_2t_to = output$t1p10_3t_to = renderUI({
-    pickerInput(
-      "t1p10_to", 
+      "t1p10_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
       choicesOpt = list(
@@ -857,10 +1566,216 @@ server <- function(input, output, session) {
     )
   })
   
+  output$t1p1_3t_to = renderUI({
+    pickerInput(
+      "t1p1_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t1p2_3t_to = renderUI({
+    pickerInput(
+      "t1p2_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t1p3_3t_to = renderUI({
+    pickerInput(
+      "t1p3_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t1p4_3t_to = renderUI({
+    pickerInput(
+      "t1p4_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t1p5_3t_to = renderUI({
+    pickerInput(
+      "t1p5_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t1p6_3t_to = renderUI({
+    pickerInput(
+      "t1p6_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t1p7_3t_to = renderUI({
+    pickerInput(
+      "t1p7_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t1p8_3t_to = renderUI({
+    pickerInput(
+      "t1p8_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t1p9_3t_to = renderUI({
+    pickerInput(
+      "t1p9_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t1p10_3t_to = renderUI({
+    pickerInput(
+      "t1p10_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  
   # Team 2
-  output$t2p1_2t_to = output$t2p1_3t_to = renderUI({
+  output$t2p1_2t_to = renderUI({
     pickerInput(
-      "t2p1_to", 
+      "t2p1_2t_to", 
+      "", 
+      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+      choicesOpt = list(
+        content = hoopR_espn_nba_teams |>
+          filter(
+            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+          ) |>
+          pull(dropdown_logo)
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+    )
+  })
+  output$t2p2_2t_to = renderUI({
+    pickerInput(
+      "t2p2_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
       choicesOpt = list(
@@ -873,9 +1788,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t2p2_2t_to = output$t2p2_3t_to = renderUI({
+  output$t2p3_2t_to = renderUI({
     pickerInput(
-      "t2p2_to", 
+      "t2p3_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
       choicesOpt = list(
@@ -888,9 +1803,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t2p3_2t_to = output$t2p3_3t_to = renderUI({
+  output$t2p4_2t_to = renderUI({
     pickerInput(
-      "t2p3_to", 
+      "t2p4_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
       choicesOpt = list(
@@ -903,9 +1818,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t2p4_2t_to = output$t2p4_3t_to = renderUI({
+  output$t2p5_2t_to = renderUI({
     pickerInput(
-      "t2p4_to", 
+      "t2p5_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
       choicesOpt = list(
@@ -918,9 +1833,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t2p5_2t_to = output$t2p5_3t_to = renderUI({
+  output$t2p6_2t_to = renderUI({
     pickerInput(
-      "t2p5_to", 
+      "t2p6_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
       choicesOpt = list(
@@ -933,9 +1848,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t2p6_2t_to = output$t2p6_3t_to = renderUI({
+  output$t2p7_2t_to = renderUI({
     pickerInput(
-      "t2p6_to", 
+      "t2p7_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
       choicesOpt = list(
@@ -948,9 +1863,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t2p7_2t_to = output$t2p7_3t_to = renderUI({
+  output$t2p8_2t_to = renderUI({
     pickerInput(
-      "t2p7_to", 
+      "t2p8_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
       choicesOpt = list(
@@ -963,9 +1878,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t2p8_2t_to = output$t2p8_3t_to = renderUI({
+  output$t2p9_2t_to = renderUI({
     pickerInput(
-      "t2p8_to", 
+      "t2p9_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
       choicesOpt = list(
@@ -978,9 +1893,9 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t2p9_2t_to = output$t2p9_3t_to = renderUI({
+  output$t2p10_2t_to = renderUI({
     pickerInput(
-      "t2p9_to", 
+      "t2p10_2t_to", 
       "", 
       choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
       choicesOpt = list(
@@ -993,29 +1908,397 @@ server <- function(input, output, session) {
       options = list(`dropdown-align-center` = TRUE)
     )
   })
-  output$t2p10_2t_to = output$t2p10_3t_to = renderUI({
+  
+  output$t2p1_3t_to = renderUI({
     pickerInput(
-      "t2p10_to", 
+      "t2p1_3t_to", 
       "", 
-      choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
       choicesOpt = list(
-        content = hoopR_espn_nba_teams |>
-          filter(
-            display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-          ) |>
-          pull(dropdown_logo)
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+            ) |>
+            pull(dropdown_logo)
+        )
       ),
-      options = list(`dropdown-align-center` = TRUE)
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t2p2_3t_to = renderUI({
+    pickerInput(
+      "t2p2_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t2p3_3t_to = renderUI({
+    pickerInput(
+      "t2p3_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t2p4_3t_to = renderUI({
+    pickerInput(
+      "t2p4_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t2p5_3t_to = renderUI({
+    pickerInput(
+      "t2p5_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t2p6_3t_to = renderUI({
+    pickerInput(
+      "t2p6_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t2p7_3t_to = renderUI({
+    pickerInput(
+      "t2p7_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t2p8_3t_to = renderUI({
+    pickerInput(
+      "t2p8_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t2p9_3t_to = renderUI({
+    pickerInput(
+      "t2p9_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t2p10_3t_to = renderUI({
+    pickerInput(
+      "t2p10_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  
+  # Team 3
+  output$t3p1_3t_to = renderUI({
+    pickerInput(
+      "t3p1_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t3p2_3t_to = renderUI({
+    pickerInput(
+      "t3p2_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t3p3_3t_to = renderUI({
+    pickerInput(
+      "t3p3_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t3p4_3t_to = renderUI({
+    pickerInput(
+      "t3p4_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t3p5_3t_to = renderUI({
+    pickerInput(
+      "t3p5_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t3p6_3t_to = renderUI({
+    pickerInput(
+      "t3p6_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t3p7_3t_to = renderUI({
+    pickerInput(
+      "t3p7_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t3p8_3t_to = renderUI({
+    pickerInput(
+      "t3p8_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t3p9_3t_to = renderUI({
+    pickerInput(
+      "t3p9_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
+    )
+  })
+  output$t3p10_3t_to = renderUI({
+    pickerInput(
+      "t3p10_3t_to", 
+      "", 
+      choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+      choicesOpt = list(
+        content = c(
+          "",
+          hoopR_espn_nba_teams |>
+            filter(
+              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+            ) |>
+            pull(dropdown_logo)
+        )
+      ),
+      options = list(`dropdown-align-center` = TRUE),
+      selected = ""
     )
   })
   
   ### Traded Asset to Team Input
   # Team 1
-  output$t1a1_2t_to = output$t1a1_3t_to = renderUI({
+  output$t1a1_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t1a1_to", 
+        "t1a1_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
         choicesOpt = list(
@@ -1029,11 +2312,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t1a2_2t_to = output$t1a2_3t_to = renderUI({
+  output$t1a2_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t1a2_to", 
+        "t1a2_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
         choicesOpt = list(
@@ -1047,11 +2330,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t1a3_2t_to = output$t1a3_3t_to = renderUI({
+  output$t1a3_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t1a3_to", 
+        "t1a3_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
         choicesOpt = list(
@@ -1065,11 +2348,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t1a4_2t_to = output$t1a4_3t_to = renderUI({
+  output$t1a4_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t1a4_to", 
+        "t1a4_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
         choicesOpt = list(
@@ -1083,11 +2366,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t1a5_2t_to = output$t1a5_3t_to = renderUI({
+  output$t1a5_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t1a5_to", 
+        "t1a5_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
         choicesOpt = list(
@@ -1101,11 +2384,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t1a6_2t_to = output$t1a6_3t_to = renderUI({
+  output$t1a6_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t1a6_to", 
+        "t1a6_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
         choicesOpt = list(
@@ -1119,11 +2402,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t1a7_2t_to = output$t1a7_3t_to = renderUI({
+  output$t1a7_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t1a7_to", 
+        "t1a7_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
         choicesOpt = list(
@@ -1137,11 +2420,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t1a8_2t_to = output$t1a8_3t_to = renderUI({
+  output$t1a8_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t1a8_to", 
+        "t1a8_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
         choicesOpt = list(
@@ -1155,11 +2438,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t1a9_2t_to = output$t1a9_3t_to = renderUI({
+  output$t1a9_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t1a9_to", 
+        "t1a9_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
         choicesOpt = list(
@@ -1173,11 +2456,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t1a10_2t_to = output$t1a10_3t_to = renderUI({
+  output$t1a10_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t1a10_to", 
+        "t1a10_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
         choicesOpt = list(
@@ -1192,12 +2475,233 @@ server <- function(input, output, session) {
     )
   })
   
+  output$t1a1_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t1a1_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t1a2_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t1a2_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t1a3_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t1a3_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t1a4_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t1a4_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t1a5_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t1a5_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t1a6_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t1a6_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t1a7_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t1a7_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t1a8_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t1a8_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t1a9_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t1a9_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t1a10_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t1a10_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  
   # Team 2
-  output$t2a1_2t_to = output$t2a1_3t_to = renderUI({
+  output$t2a1_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t2a1_to", 
+        "t2a1_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
         choicesOpt = list(
@@ -1211,11 +2715,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t2a2_2t_to = output$t2a2_3t_to = renderUI({
+  output$t2a2_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t2a2_to", 
+        "t2a2_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
         choicesOpt = list(
@@ -1229,11 +2733,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t2a3_2t_to = output$t2a3_3t_to = renderUI({
+  output$t2a3_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t2a3_to", 
+        "t2a3_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
         choicesOpt = list(
@@ -1247,11 +2751,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t2a4_2t_to = output$t2a4_3t_to = renderUI({
+  output$t2a4_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t2a4_to", 
+        "t2a4_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
         choicesOpt = list(
@@ -1265,11 +2769,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t2a5_2t_to = output$t2a5_3t_to = renderUI({
+  output$t2a5_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t2a5_to", 
+        "t2a5_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
         choicesOpt = list(
@@ -1283,11 +2787,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t2a6_2t_to = output$t2a6_3t_to = renderUI({
+  output$t2a6_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t2a6_to", 
+        "t2a6_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
         choicesOpt = list(
@@ -1301,11 +2805,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t2a7_2t_to = output$t2a7_3t_to = renderUI({
+  output$t2a7_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t2a7_to", 
+        "t2a7_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
         choicesOpt = list(
@@ -1319,11 +2823,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t2a8_2t_to = output$t2a8_3t_to = renderUI({
+  output$t2a8_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t2a8_to", 
+        "t2a8_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
         choicesOpt = list(
@@ -1337,11 +2841,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t2a9_2t_to = output$t2a9_3t_to = renderUI({
+  output$t2a9_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t2a9_to", 
+        "t2a9_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
         choicesOpt = list(
@@ -1355,11 +2859,11 @@ server <- function(input, output, session) {
       )
     )
   })
-  output$t2a10_2t_to = output$t2a10_3t_to = renderUI({
+  output$t2a10_2t_to = renderUI({
     div(
       style = "margin-bottom: -0.05rem;",
       pickerInput(
-        "t2a10_to", 
+        "t2a10_2t_to", 
         "", 
         choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
         choicesOpt = list(
@@ -1370,135 +2874,761 @@ server <- function(input, output, session) {
             pull(dropdown_logo)
         ),
         options = list(`dropdown-align-center` = TRUE)
+      )
+    )
+  })
+  
+  output$t2a1_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t2a1_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t2a2_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t2a2_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t2a3_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t2a3_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t2a4_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t2a4_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t2a5_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t2a5_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t2a6_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t2a6_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t2a7_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t2a7_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t2a8_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t2a8_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t2a9_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t2a9_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t2a10_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t2a10_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  
+  # Team 3
+  output$t3a1_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t3a1_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t3a2_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t3a2_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t3a3_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t3a3_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t3a4_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t3a4_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t3a5_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t3a5_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t3a6_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t3a6_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t3a7_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t3a7_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t3a8_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t3a8_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t3a9_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t3a9_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
+      )
+    )
+  })
+  output$t3a10_3t_to = renderUI({
+    div(
+      style = "margin-bottom: -0.05rem;",
+      pickerInput(
+        "t3a10_3t_to", 
+        "", 
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choicesOpt = list(
+          content = c(
+            "",
+            hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
+              ) |>
+              pull(dropdown_logo)
+          )
+        ),
+        options = list(`dropdown-align-center` = TRUE),
+        selected = ""
       )
     )
   })
   
   # Traded Asset Protection Input
   # Team 1
-  output$t1a1_2t_pro= output$t1a1_3t_pro = renderUI({
+  output$t1a1_2t_pro = renderUI({
     textInput(
-      "t1a1_pro", 
+      "t1a1_2t_pro", 
       ""
     )
   })
-  output$t1a2_2t_pro= output$t1a2_3t_pro = renderUI({
+  output$t1a2_2t_pro = renderUI({
     textInput(
-      "t1a2_pro", 
+      "t1a2_2t_pro", 
       ""
     )
   })
-  output$t1a3_2t_pro= output$t1a3_3t_pro = renderUI({
+  output$t1a3_2t_pro = renderUI({
     textInput(
-      "t1a3_pro", 
+      "t1a3_2t_pro", 
       ""
     )
   })
-  output$t1a4_2t_pro= output$t1a4_3t_pro = renderUI({
+  output$t1a4_2t_pro = renderUI({
     textInput(
-      "t1a4_pro", 
+      "t1a4_2t_pro", 
       ""
     )
   })
-  output$t1a5_2t_pro= output$t1a5_3t_pro = renderUI({
+  output$t1a5_2t_pro = renderUI({
     textInput(
-      "t1a5_pro", 
+      "t1a5_2t_pro", 
       ""
     )
   })
-  output$t1a6_2t_pro= output$t1a6_3t_pro = renderUI({
+  output$t1a6_2t_pro = renderUI({
     textInput(
-      "t1a6_pro", 
+      "t1a6_2t_pro", 
       ""
     )
   })
-  output$t1a7_2t_pro= output$t1a7_3t_pro = renderUI({
+  output$t1a7_2t_pro = renderUI({
     textInput(
-      "t1a7_pro", 
+      "t1a7_2t_pro", 
       ""
     )
   })
-  output$t1a8_2t_pro= output$t1a8_3t_pro = renderUI({
+  output$t1a8_2t_pro = renderUI({
     textInput(
-      "t1a8_pro", 
+      "t1a8_2t_pro", 
       ""
     )
   })
-  output$t1a9_2t_pro= output$t1a9_3t_pro = renderUI({
+  output$t1a9_2t_pro = renderUI({
     textInput(
-      "t1a9_pro", 
+      "t1a9_2t_pro", 
       ""
     )
   })
-  output$t1a10_2t_pro= output$t1a10_3t_pro = renderUI({
+  output$t1a10_2t_pro = renderUI({
     textInput(
-      "t1a10_pro", 
+      "t1a10_2t_pro", 
+      ""
+    )
+  })
+  
+  output$t1a1_3t_pro = renderUI({
+    textInput(
+      "t1a1_3t_pro", 
+      ""
+    )
+  })
+  output$t1a2_3t_pro = renderUI({
+    textInput(
+      "t1a2_3t_pro", 
+      ""
+    )
+  })
+  output$t1a3_3t_pro = renderUI({
+    textInput(
+      "t1a3_3t_pro", 
+      ""
+    )
+  })
+  output$t1a4_3t_pro = renderUI({
+    textInput(
+      "t1a4_3t_pro", 
+      ""
+    )
+  })
+  output$t1a5_3t_pro = renderUI({
+    textInput(
+      "t1a5_3t_pro", 
+      ""
+    )
+  })
+  output$t1a6_3t_pro = renderUI({
+    textInput(
+      "t1a6_3t_pro", 
+      ""
+    )
+  })
+  output$t1a7_3t_pro = renderUI({
+    textInput(
+      "t1a7_3t_pro", 
+      ""
+    )
+  })
+  output$t1a8_3t_pro = renderUI({
+    textInput(
+      "t1a8_3t_pro", 
+      ""
+    )
+  })
+  output$t1a9_3t_pro = renderUI({
+    textInput(
+      "t1a9_3t_pro", 
+      ""
+    )
+  })
+  output$t1a10_3t_pro = renderUI({
+    textInput(
+      "t1a10_3t_pro", 
       ""
     )
   })
   
   # Team 2
-  output$t2a1_2t_pro= output$t2a1_3t_pro = renderUI({
+  output$t2a1_2t_pro = renderUI({
     textInput(
-      "t2a1_pro", 
+      "t2a1_2t_pro", 
       ""
     )
   })
-  output$t2a2_2t_pro= output$t2a2_3t_pro = renderUI({
+  output$t2a2_2t_pro = renderUI({
     textInput(
-      "t2a2_pro", 
+      "t2a2_2t_pro", 
       ""
     )
   })
-  output$t2a3_2t_pro= output$t2a3_3t_pro = renderUI({
+  output$t2a3_2t_pro = renderUI({
     textInput(
-      "t2a3_pro", 
+      "t2a3_2t_pro", 
       ""
     )
   })
-  output$t2a4_2t_pro= output$t2a4_3t_pro = renderUI({
+  output$t2a4_2t_pro = renderUI({
     textInput(
-      "t2a4_pro", 
+      "t2a4_2t_pro", 
       ""
     )
   })
-  output$t2a5_2t_pro= output$t2a5_3t_pro = renderUI({
+  output$t2a5_2t_pro = renderUI({
     textInput(
-      "t2a5_pro", 
+      "t2a5_2t_pro", 
       ""
     )
   })
-  output$t2a6_2t_pro= output$t2a6_3t_pro = renderUI({
+  output$t2a6_2t_pro = renderUI({
     textInput(
-      "t2a6_pro", 
+      "t2a6_2t_pro", 
       ""
     )
   })
-  output$t2a7_2t_pro= output$t2a7_3t_pro = renderUI({
+  output$t2a7_2t_pro = renderUI({
     textInput(
-      "t2a7_pro", 
+      "t2a7_2t_pro", 
       ""
     )
   })
-  output$t2a8_2t_pro= output$t2a8_3t_pro = renderUI({
+  output$t2a8_2t_pro = renderUI({
     textInput(
-      "t2a8_pro", 
+      "t2a8_2t_pro", 
       ""
     )
   })
-  output$t2a9_2t_pro= output$t2a9_3t_pro = renderUI({
+  output$t2a9_2t_pro = renderUI({
     textInput(
-      "t2a9_pro", 
+      "t2a9_2t_pro", 
       ""
     )
   })
-  output$t2a10_2t_pro= output$t2a10_3t_pro = renderUI({
+  output$t2a10_2t_pro = renderUI({
     textInput(
-      "t2a10_pro", 
+      "t2a10_2t_pro", 
       ""
     )
   })
   
+  output$t2a1_3t_pro = renderUI({
+    textInput(
+      "t2a1_3t_pro", 
+      ""
+    )
+  })
+  output$t2a2_3t_pro = renderUI({
+    textInput(
+      "t2a2_3t_pro", 
+      ""
+    )
+  })
+  output$t2a3_3t_pro = renderUI({
+    textInput(
+      "t2a3_3t_pro", 
+      ""
+    )
+  })
+  output$t2a4_3t_pro = renderUI({
+    textInput(
+      "t2a4_3t_pro", 
+      ""
+    )
+  })
+  output$t2a5_3t_pro = renderUI({
+    textInput(
+      "t2a5_3t_pro", 
+      ""
+    )
+  })
+  output$t2a6_3t_pro = renderUI({
+    textInput(
+      "t2a6_3t_pro", 
+      ""
+    )
+  })
+  output$t2a7_3t_pro = renderUI({
+    textInput(
+      "t2a7_3t_pro", 
+      ""
+    )
+  })
+  output$t2a8_3t_pro = renderUI({
+    textInput(
+      "t2a8_3t_pro", 
+      ""
+    )
+  })
+  output$t2a9_3t_pro = renderUI({
+    textInput(
+      "t2a9_3t_pro", 
+      ""
+    )
+  })
+  output$t2a10_3t_pro = renderUI({
+    textInput(
+      "t2a10_3t_pro", 
+      ""
+    )
+  })
+  
+  # Team 3
+  output$t3a1_3t_pro = renderUI({
+    textInput(
+      "t3a1_3t_pro", 
+      ""
+    )
+  })
+  output$t3a2_3t_pro = renderUI({
+    textInput(
+      "t3a2_3t_pro", 
+      ""
+    )
+  })
+  output$t3a3_3t_pro = renderUI({
+    textInput(
+      "t3a3_3t_pro", 
+      ""
+    )
+  })
+  output$t3a4_3t_pro = renderUI({
+    textInput(
+      "t3a4_3t_pro", 
+      ""
+    )
+  })
+  output$t3a5_3t_pro = renderUI({
+    textInput(
+      "t3a5_3t_pro", 
+      ""
+    )
+  })
+  output$t3a6_3t_pro = renderUI({
+    textInput(
+      "t3a6_3t_pro", 
+      ""
+    )
+  })
+  output$t3a7_3t_pro = renderUI({
+    textInput(
+      "t3a7_3t_pro", 
+      ""
+    )
+  })
+  output$t3a8_3t_pro = renderUI({
+    textInput(
+      "t3a8_3t_pro", 
+      ""
+    )
+  })
+  output$t3a9_3t_pro = renderUI({
+    textInput(
+      "t3a9_3t_pro", 
+      ""
+    )
+  })
+  output$t3a10_3t_pro = renderUI({
+    textInput(
+      "t3a10_3t_pro", 
+      ""
+    )
+  })
   
 }
 
