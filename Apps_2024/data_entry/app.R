@@ -36,7 +36,7 @@ ui = bootstrapPage(
     div("Trade Entry", 
          style = 'font-weight: bold; text-align: center')
   ),
-  tags$hr(style="border-color:rgba(169,20,20,128); margin-bottom:0px"),
+  tags$hr(style="border-width: 2px; border-color:rgba(169,20,20,128); margin-bottom:0px;"),
   # Input/Button Box
   div(
     class = "row",
@@ -65,6 +65,18 @@ ui = bootstrapPage(
           "Clear Input"
         )
       )
+    )
+  ),
+  # If no teams are selected
+  conditionalPanel(
+    condition = "input.teamsInvolved.length == 0",
+    div(
+      class = "col-xs-12",
+      style = "text-align: center; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
+      h2("Welcome to the 2024 ASU Mock Trade Deadline Competition!", style = "margin-bottom: 1em;"),
+      p("During competiton hours, please enter your trades using this portal. Once the trade is entered, you will recieve a transaction ID for the trade. Please save this ID because once you leave that screen, you will not be able to see it again.", style = "margin-bottom: 1em;"),
+      p("Submitting a trade on this portal does NOT make it official. You and one representivie from each team involved in the trade must take your transaction ID to the trade checkers. It will then be reviewed, and if confirmed legal by them, will then become offical.", style = "margin-bottom: 1em;"),
+      h3("Thank You!")
     )
   ),
   # Two Teams Panel
@@ -273,7 +285,7 @@ ui = bootstrapPage(
           class = "row",
           div(
             class = "col-xs-8",
-            style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
+            style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em; white-space: nowrap;",
             h5("Players Traded:"),
             uiOutput("t1p1_3t"),
             conditionalPanel(condition = "!(input.t1p1_3t== ' '||input.t1p1_3t=='')", uiOutput("t1p2_3t")),
@@ -338,7 +350,7 @@ ui = bootstrapPage(
           div(
             class = "col-xs-2",
             style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
-            h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
+            h5("Add Protection?", style = "font-size: 1.1rem; width: 110%; white-space: nowrap"),
             uiOutput("t1a1_3t_pro"),
             conditionalPanel(condition = "!(input.t1a1_3t== ' '||input.t1a1_3t=='')", uiOutput("t1a2_3t_pro")),
             conditionalPanel(condition = "!(input.t1a2_3t== ' '||input.t1a2_3t=='')", uiOutput("t1a3_3t_pro")),
@@ -364,7 +376,7 @@ ui = bootstrapPage(
           class = "row",
           div(
             class = "col-xs-8",
-            style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
+            style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em; white-space: nowrap;",
             h5("Players Traded:"),
             uiOutput("t2p1_3t"),
             conditionalPanel(condition = "!(input.t2p1_3t== ' '||input.t2p1_3t=='')", uiOutput("t2p2_3t")),
@@ -428,7 +440,7 @@ ui = bootstrapPage(
           ),
           div(
             class = "col-xs-2",
-            style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
+            style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em; white-space: nowrap;",
             h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
             uiOutput("t2a1_3t_pro"),
             conditionalPanel(condition = "!(input.t2a1_3t== ' '||input.t2a1_3t=='')", uiOutput("t2a2_3t_pro")),
@@ -455,7 +467,7 @@ ui = bootstrapPage(
           class = "row",
           div(
             class = "col-xs-8",
-            style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
+            style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em; white-space: nowrap;",
             h5("Players Traded:"),
             uiOutput("t3p1_3t"),
             conditionalPanel(condition = "!(input.t3p1_3t== ' '||input.t3p1_3t=='')", uiOutput("t3p2_3t")),
@@ -520,7 +532,7 @@ ui = bootstrapPage(
           div(
             class = "col-xs-2",
             style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
-            h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
+            h5("Add Protection?", style = "font-size: 1.1rem; width: 110%; white-space: nowrap;"),
             uiOutput("t3a1_3t_pro"),
             conditionalPanel(condition = "!(input.t3a1_3t== ' '||input.t3a1_3t=='')", uiOutput("t3a2_3t_pro")),
             conditionalPanel(condition = "!(input.t3a2_3t== ' '||input.t3a2_3t=='')", uiOutput("t3a3_3t_pro")),
@@ -4311,7 +4323,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p1_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4322,7 +4334,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4332,7 +4345,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p2_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4343,7 +4356,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4353,7 +4367,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p3_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4364,7 +4378,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4374,7 +4389,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p4_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4385,7 +4400,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4395,7 +4411,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p5_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4406,7 +4422,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4416,7 +4433,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p6_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4427,7 +4444,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4437,7 +4455,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p7_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4448,7 +4466,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4458,7 +4477,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p8_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4469,7 +4488,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4479,7 +4499,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p9_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4490,7 +4510,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4500,7 +4521,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p10_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4511,7 +4532,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4522,7 +4544,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p1_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4533,7 +4555,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4543,7 +4566,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p2_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4554,7 +4577,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4564,7 +4588,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p3_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4575,7 +4599,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4585,7 +4610,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p4_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4596,7 +4621,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4606,7 +4632,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p5_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4617,7 +4643,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4627,7 +4654,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p6_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4638,7 +4665,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4648,7 +4676,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p7_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4659,7 +4687,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4669,7 +4698,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p8_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4680,7 +4709,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4690,7 +4720,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p9_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4701,7 +4731,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -4711,7 +4742,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t1p10_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -4722,7 +4753,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5116,7 +5148,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p1_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5127,7 +5159,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5137,7 +5170,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p2_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5148,7 +5181,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5158,7 +5192,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p3_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5169,7 +5203,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5179,7 +5214,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p4_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5190,7 +5225,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5200,7 +5236,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p5_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5211,7 +5247,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5221,7 +5258,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p6_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5232,7 +5269,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5242,7 +5280,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p7_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5253,7 +5291,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5263,7 +5302,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p8_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5274,7 +5313,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5284,7 +5324,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p9_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5295,7 +5335,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5305,7 +5346,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p10_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5316,7 +5357,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5327,7 +5369,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p1_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5338,7 +5380,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5348,7 +5391,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p2_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5359,7 +5402,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5369,7 +5413,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p3_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5380,7 +5424,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5390,7 +5435,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p4_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5401,7 +5446,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5411,7 +5457,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p5_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5422,7 +5468,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5432,7 +5479,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p6_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5443,7 +5490,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5453,7 +5501,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p7_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5464,7 +5512,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5474,7 +5523,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p8_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5485,7 +5534,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5495,7 +5545,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p9_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5506,7 +5556,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5516,7 +5567,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t2p10_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5527,7 +5578,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5750,7 +5802,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p1_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5761,7 +5813,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5771,7 +5824,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p2_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5782,7 +5835,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5792,7 +5846,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p3_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5803,7 +5857,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5813,7 +5868,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p4_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5824,7 +5879,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5834,7 +5890,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p5_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5845,7 +5901,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5855,7 +5912,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p6_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5866,7 +5923,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5876,7 +5934,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p7_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5887,7 +5945,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5897,7 +5956,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p8_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5908,7 +5967,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5918,7 +5978,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p9_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5929,7 +5989,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5939,7 +6000,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p10_3t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5950,7 +6011,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5961,7 +6023,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p1_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5972,7 +6034,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -5982,7 +6045,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p2_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -5993,7 +6056,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6003,7 +6067,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p3_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6014,7 +6078,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6024,7 +6089,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p4_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6035,7 +6100,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6045,7 +6111,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p5_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6056,7 +6122,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6066,7 +6133,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p6_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6077,7 +6144,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6087,7 +6155,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p7_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6098,7 +6166,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6108,7 +6177,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p8_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6119,7 +6188,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6129,7 +6199,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p9_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6140,7 +6210,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6150,7 +6221,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t3p10_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6161,7 +6232,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6384,7 +6456,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t4p1_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6395,7 +6467,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6405,7 +6478,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t4p2_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6416,7 +6489,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6426,7 +6500,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t4p3_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6437,7 +6511,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6447,7 +6522,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t4p4_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6458,7 +6533,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6468,7 +6544,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t4p5_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6479,7 +6555,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6489,7 +6566,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t4p6_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6500,7 +6577,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6510,7 +6588,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t4p7_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6521,7 +6599,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6531,7 +6610,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t4p8_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6542,7 +6621,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6552,7 +6632,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t4p9_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6563,7 +6643,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -6573,7 +6654,7 @@ server <- function(input, output, session) {
       pickerInput(
         "t4p10_4t_to", 
         "", 
-        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+        choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
         choicesOpt = list(
           content = c(
             "",
@@ -6584,7 +6665,8 @@ server <- function(input, output, session) {
               pull(dropdown_logo)
           )
         ),
-        options = list(`dropdown-align-center` = TRUE),
+        options = list(`dropdown-align-center` = TRUE,
+                       placeholder = "Team"),
         selected = ""
       )
     }
@@ -7224,7 +7306,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a1_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7235,7 +7317,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7248,7 +7331,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a2_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7259,7 +7342,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7272,7 +7356,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a3_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7283,7 +7367,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7296,7 +7381,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a4_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7307,7 +7392,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7320,7 +7406,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a5_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7331,7 +7417,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7344,7 +7431,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a6_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7355,7 +7442,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7368,7 +7456,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a7_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7379,7 +7467,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7392,7 +7481,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a8_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7403,7 +7492,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7416,7 +7506,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a9_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7427,7 +7517,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7440,7 +7531,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a10_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7451,7 +7542,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7465,7 +7557,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a1_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7476,7 +7568,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7489,7 +7582,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a2_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7500,7 +7593,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7513,7 +7607,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a3_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7524,7 +7618,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7537,7 +7632,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a4_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7548,7 +7643,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7561,7 +7657,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a5_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7572,7 +7668,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7585,7 +7682,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a6_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7596,7 +7693,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7609,7 +7707,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a7_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7620,7 +7718,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7633,7 +7732,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a8_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7644,7 +7743,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7657,7 +7757,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a9_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7668,7 +7768,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -7681,7 +7782,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t1a10_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -7692,7 +7793,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8149,7 +8251,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a1_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8160,7 +8262,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8173,7 +8276,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a2_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8184,7 +8287,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8197,7 +8301,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a3_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8208,7 +8312,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8221,7 +8326,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a4_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8232,7 +8337,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8245,7 +8351,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a5_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8256,7 +8362,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8269,7 +8376,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a6_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8280,7 +8387,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8293,7 +8401,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a7_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8304,7 +8412,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8317,7 +8426,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a8_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8328,7 +8437,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8341,7 +8451,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a9_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8352,7 +8462,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8365,7 +8476,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a10_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8376,7 +8487,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8390,7 +8502,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a1_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8401,7 +8513,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8414,7 +8527,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a2_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8425,7 +8538,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8438,7 +8552,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a3_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8449,7 +8563,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8462,7 +8577,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a4_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8473,7 +8588,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8486,7 +8602,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a5_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8497,7 +8613,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8510,7 +8627,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a6_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8521,7 +8638,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8534,7 +8652,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a7_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8545,7 +8663,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8558,7 +8677,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a8_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8569,7 +8688,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8582,7 +8702,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a9_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8593,7 +8713,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8606,7 +8727,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t2a10_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8617,7 +8738,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8873,7 +8995,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a1_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8884,7 +9006,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8897,7 +9020,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a2_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8908,7 +9031,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8921,7 +9045,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a3_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8932,7 +9056,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8945,7 +9070,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a4_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8956,7 +9081,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8969,7 +9095,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a5_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -8980,7 +9106,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -8993,7 +9120,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a6_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9004,7 +9131,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9017,7 +9145,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a7_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9028,7 +9156,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9041,7 +9170,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a8_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9052,7 +9181,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9065,7 +9195,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a9_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9076,7 +9206,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9089,7 +9220,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a10_3t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9100,7 +9231,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9114,7 +9246,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a1_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9125,7 +9257,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9138,7 +9271,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a2_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9149,7 +9282,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9162,7 +9296,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a3_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9173,7 +9307,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9186,7 +9321,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a4_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9197,7 +9332,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9210,7 +9346,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a5_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9221,7 +9357,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9234,7 +9371,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a6_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9245,7 +9382,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9258,7 +9396,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a7_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9269,7 +9407,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9282,7 +9421,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a8_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9293,7 +9432,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9306,7 +9446,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a9_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9317,7 +9457,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9330,7 +9471,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t3a10_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9341,7 +9482,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9597,7 +9739,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t4a1_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9608,7 +9750,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9621,7 +9764,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t4a2_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9632,7 +9775,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9645,7 +9789,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t4a3_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9656,7 +9800,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9669,7 +9814,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t4a4_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9680,7 +9825,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9693,7 +9839,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t4a5_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9704,7 +9850,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9717,7 +9864,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t4a6_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9728,7 +9875,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9741,7 +9889,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t4a7_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9752,7 +9900,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9765,7 +9914,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t4a8_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9776,7 +9925,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9789,7 +9939,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t4a9_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9800,7 +9950,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -9813,7 +9964,7 @@ server <- function(input, output, session) {
         pickerInput(
           "t4a10_4t_to", 
           "", 
-          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
+          choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]) |> sort(),
           choicesOpt = list(
             content = c(
               "",
@@ -9824,7 +9975,8 @@ server <- function(input, output, session) {
                 pull(dropdown_logo)
             )
           ),
-          options = list(`dropdown-align-center` = TRUE),
+          options = list(`dropdown-align-center` = TRUE,
+                         placeholder = "Team"),
           selected = ""
         )
       )
@@ -11454,6 +11606,860 @@ server <- function(input, output, session) {
   #     )
   #   }
   # })
+  
+  t1_name = reactive(
+    if(length(input$teamsInvolved) >= 1){
+      input$teamsInvolved[[1]]
+    }
+  )
+
+  t2_name = reactive(
+    if(length(input$teamsInvolved) >= 2){
+      input$teamsInvolved[[2]]
+    }
+  )
+
+  t3_name = reactive(
+    if(length(input$teamsInvolved) >= 3){
+      input$teamsInvolved[[3]]
+    }
+  )
+
+  t4_name = reactive(
+    if(length(input$teamsInvolved) >= 4){
+      input$teamsInvolved[[4]]
+    }
+  )
+
+  # Fill df for new proposed trade
+  # Team 1
+  t1_players = reactive(
+    if(length(input$teamsInvolved) == 2){
+      data.frame(
+        asset = c(
+          input$t1p1_2t,
+          input$t1p2_2t,
+          input$t1p3_2t,
+          input$t1p4_2t,
+          input$t1p5_2t,
+          input$t1p6_2t,
+          input$t1p7_2t,
+          input$t1p8_2t,
+          input$t1p9_2t,
+          input$t1p10_2t
+        ),
+        away_from_team = rep(t1_name(), 10),
+        to_team = c(
+          input$t1p1_2t_to,
+          input$t1p2_2t_to,
+          input$t1p3_2t_to,
+          input$t1p4_2t_to,
+          input$t1p5_2t_to,
+          input$t1p6_2t_to,
+          input$t1p7_2t_to,
+          input$t1p8_2t_to,
+          input$t1p9_2t_to,
+          input$t1p10_2t_to
+        ),
+        note = rep("", 10)
+      )
+    }
+    else if(length(input$teamsInvolved) == 3){
+      data.frame(
+        asset = c(
+          input$t1p1_3t,
+          input$t1p2_3t,
+          input$t1p3_3t,
+          input$t1p4_3t,
+          input$t1p5_3t,
+          input$t1p6_3t,
+          input$t1p7_3t,
+          input$t1p8_3t,
+          input$t1p9_3t,
+          input$t1p10_3t
+        ),
+        away_from_team = rep(t1_name(), 10),
+        to_team = c(
+          input$t1p1_3t_to,
+          input$t1p2_3t_to,
+          input$t1p3_3t_to,
+          input$t1p4_3t_to,
+          input$t1p5_3t_to,
+          input$t1p6_3t_to,
+          input$t1p7_3t_to,
+          input$t1p8_3t_to,
+          input$t1p9_3t_to,
+          input$t1p10_3t_to
+        ),
+        note = rep("", 10)
+      )
+    }
+    else if(length(input$teamsInvolved) == 4){
+      data.frame(
+        asset = c(
+          input$t1p1_4t,
+          input$t1p2_4t,
+          input$t1p3_4t,
+          input$t1p4_4t,
+          input$t1p5_4t,
+          input$t1p6_4t,
+          input$t1p7_4t,
+          input$t1p8_4t,
+          input$t1p9_4t,
+          input$t1p10_4t
+        ),
+        away_from_team = rep(t1_name(), 10),
+        to_team = c(
+          input$t1p1_4t_to,
+          input$t1p2_4t_to,
+          input$t1p3_4t_to,
+          input$t1p4_4t_to,
+          input$t1p5_4t_to,
+          input$t1p6_4t_to,
+          input$t1p7_4t_to,
+          input$t1p8_4t_to,
+          input$t1p9_4t_to,
+          input$t1p10_4t_to
+        ),
+        note = rep("", 10)
+      )
+    }
+  )
+  
+
+  t1_picks = reactive(
+    if(length(input$teamsInvolved) == 2){
+      data.frame(
+        asset = c(
+          input$t1a1_2t,
+          input$t1a2_2t,
+          input$t1a3_2t,
+          input$t1a4_2t,
+          input$t1a5_2t,
+          input$t1a6_2t,
+          input$t1a7_2t,
+          input$t1a8_2t,
+          input$t1a9_2t,
+          input$t1a10_2t
+        ),
+        away_from_team = rep(t1_name(), 10),
+        to_team = c(
+          input$t1a1_2t_to,
+          input$t1a2_2t_to,
+          input$t1a3_2t_to,
+          input$t1a4_2t_to,
+          input$t1a5_2t_to,
+          input$t1a6_2t_to,
+          input$t1a7_2t_to,
+          input$t1a8_2t_to,
+          input$t1a9_2t_to,
+          input$t1a10_2t_to
+        ),
+        note = c(
+          input$t1a1_2t_pro,
+          input$t1a2_2t_pro,
+          input$t1a3_2t_pro,
+          input$t1a4_2t_pro,
+          input$t1a5_2t_pro,
+          input$t1a6_2t_pro,
+          input$t1a7_2t_pro,
+          input$t1a8_2t_pro,
+          input$t1a9_2t_pro,
+          input$t1a10_2t_pro
+        )
+      )
+    }
+    else if(length(input$teamsInvolved) == 3){
+      data.frame(
+        asset = c(
+          input$t1a1_3t,
+          input$t1a2_3t,
+          input$t1a3_3t,
+          input$t1a4_3t,
+          input$t1a5_3t,
+          input$t1a6_3t,
+          input$t1a7_3t,
+          input$t1a8_3t,
+          input$t1a9_3t,
+          input$t1a10_3t
+        ),
+        away_from_team = rep(t1_name(), 10),
+        to_team = c(
+          input$t1a1_3t_to,
+          input$t1a2_3t_to,
+          input$t1a3_3t_to,
+          input$t1a4_3t_to,
+          input$t1a5_3t_to,
+          input$t1a6_3t_to,
+          input$t1a7_3t_to,
+          input$t1a8_3t_to,
+          input$t1a9_3t_to,
+          input$t1a10_3t_to
+        ),
+        note = c(
+          input$t1a1_3t_pro,
+          input$t1a2_3t_pro,
+          input$t1a3_3t_pro,
+          input$t1a4_3t_pro,
+          input$t1a5_3t_pro,
+          input$t1a6_3t_pro,
+          input$t1a7_3t_pro,
+          input$t1a8_3t_pro,
+          input$t1a9_3t_pro,
+          input$t1a10_3t_pro
+        )
+      )
+    }
+    else if(length(input$teamsInvolved) == 4){
+      data.frame(
+        asset = c(
+          input$t1a1_4t,
+          input$t1a2_4t,
+          input$t1a3_4t,
+          input$t1a4_4t,
+          input$t1a5_4t,
+          input$t1a6_4t,
+          input$t1a7_4t,
+          input$t1a8_4t,
+          input$t1a9_4t,
+          input$t1a10_4t
+        ),
+        away_from_team = rep(t1_name(), 10),
+        to_team = c(
+          input$t1a1_4t_to,
+          input$t1a2_4t_to,
+          input$t1a3_4t_to,
+          input$t1a4_4t_to,
+          input$t1a5_4t_to,
+          input$t1a6_4t_to,
+          input$t1a7_4t_to,
+          input$t1a8_4t_to,
+          input$t1a9_4t_to,
+          input$t1a10_4t_to
+        ),
+        note = c(
+          input$t1a1_4t_pro,
+          input$t1a2_4t_pro,
+          input$t1a3_4t_pro,
+          input$t1a4_4t_pro,
+          input$t1a5_4t_pro,
+          input$t1a6_4t_pro,
+          input$t1a7_4t_pro,
+          input$t1a8_4t_pro,
+          input$t1a9_4t_pro,
+          input$t1a10_4t_pro
+        )
+      )
+    }
+  )
+
+  # Team 2
+  t2_players = reactive(
+    if(length(input$teamsInvolved) == 2){
+      data.frame(
+        asset = c(
+          input$t2p1_2t,
+          input$t2p2_2t,
+          input$t2p3_2t,
+          input$t2p4_2t,
+          input$t2p5_2t,
+          input$t2p6_2t,
+          input$t2p7_2t,
+          input$t2p8_2t,
+          input$t2p9_2t,
+          input$t2p10_2t
+        ),
+        away_from_team = rep(t2_name(), 10),
+        to_team = c(
+          input$t2p1_2t_to,
+          input$t2p2_2t_to,
+          input$t2p3_2t_to,
+          input$t2p4_2t_to,
+          input$t2p5_2t_to,
+          input$t2p6_2t_to,
+          input$t2p7_2t_to,
+          input$t2p8_2t_to,
+          input$t2p9_2t_to,
+          input$t2p10_2t_to
+        ),
+        note = rep("", 10)
+      )
+    }
+    else if(length(input$teamsInvolved) == 3){
+      data.frame(
+        asset = c(
+          input$t2p1_3t,
+          input$t2p2_3t,
+          input$t2p3_3t,
+          input$t2p4_3t,
+          input$t2p5_3t,
+          input$t2p6_3t,
+          input$t2p7_3t,
+          input$t2p8_3t,
+          input$t2p9_3t,
+          input$t2p10_3t
+        ),
+        away_from_team = rep(t2_name(), 10),
+        to_team = c(
+          input$t2p1_3t_to,
+          input$t2p2_3t_to,
+          input$t2p3_3t_to,
+          input$t2p4_3t_to,
+          input$t2p5_3t_to,
+          input$t2p6_3t_to,
+          input$t2p7_3t_to,
+          input$t2p8_3t_to,
+          input$t2p9_3t_to,
+          input$t2p10_3t_to
+        ),
+        note = rep("", 10)
+      )
+    }
+    else if(length(input$teamsInvolved) == 4){
+      data.frame(
+        asset = c(
+          input$t2p1_4t,
+          input$t2p2_4t,
+          input$t2p3_4t,
+          input$t2p4_4t,
+          input$t2p5_4t,
+          input$t2p6_4t,
+          input$t2p7_4t,
+          input$t2p8_4t,
+          input$t2p9_4t,
+          input$t2p10_4t
+        ),
+        away_from_team = rep(t2_name(), 10),
+        to_team = c(
+          input$t2p1_4t_to,
+          input$t2p2_4t_to,
+          input$t2p3_4t_to,
+          input$t2p4_4t_to,
+          input$t2p5_4t_to,
+          input$t2p6_4t_to,
+          input$t2p7_4t_to,
+          input$t2p8_4t_to,
+          input$t2p9_4t_to,
+          input$t2p10_4t_to
+        ),
+        note = rep("", 10)
+      )
+    }
+  )
+
+  t2_picks = reactive(
+    if(length(input$teamsInvolved) == 2){
+      data.frame(
+        asset = c(
+          input$t2a1_2t,
+          input$t2a2_2t,
+          input$t2a3_2t,
+          input$t2a4_2t,
+          input$t2a5_2t,
+          input$t2a6_2t,
+          input$t2a7_2t,
+          input$t2a8_2t,
+          input$t2a9_2t,
+          input$t2a10_2t
+        ),
+        away_from_team = rep(t2_name(), 10),
+        to_team = c(
+          input$t2a1_2t_to,
+          input$t2a2_2t_to,
+          input$t2a3_2t_to,
+          input$t2a4_2t_to,
+          input$t2a5_2t_to,
+          input$t2a6_2t_to,
+          input$t2a7_2t_to,
+          input$t2a8_2t_to,
+          input$t2a9_2t_to,
+          input$t2a10_2t_to
+        ),
+        note = c(
+          input$t2a1_2t_pro,
+          input$t2a2_2t_pro,
+          input$t2a3_2t_pro,
+          input$t2a4_2t_pro,
+          input$t2a5_2t_pro,
+          input$t2a6_2t_pro,
+          input$t2a7_2t_pro,
+          input$t2a8_2t_pro,
+          input$t2a9_2t_pro,
+          input$t2a10_2t_pro
+        )
+      )
+    }
+    else if(length(input$teamsInvolved) == 3){
+      data.frame(
+        asset = c(
+          input$t2a1_3t,
+          input$t2a2_3t,
+          input$t2a3_3t,
+          input$t2a4_3t,
+          input$t2a5_3t,
+          input$t2a6_3t,
+          input$t2a7_3t,
+          input$t2a8_3t,
+          input$t2a9_3t,
+          input$t2a10_3t
+        ),
+        away_from_team = rep(t2_name(), 10),
+        to_team = c(
+          input$t2a1_3t_to,
+          input$t2a2_3t_to,
+          input$t2a3_3t_to,
+          input$t2a4_3t_to,
+          input$t2a5_3t_to,
+          input$t2a6_3t_to,
+          input$t2a7_3t_to,
+          input$t2a8_3t_to,
+          input$t2a9_3t_to,
+          input$t2a10_3t_to
+        ),
+        note = c(
+          input$t2a1_3t_pro,
+          input$t2a2_3t_pro,
+          input$t2a3_3t_pro,
+          input$t2a4_3t_pro,
+          input$t2a5_3t_pro,
+          input$t2a6_3t_pro,
+          input$t2a7_3t_pro,
+          input$t2a8_3t_pro,
+          input$t2a9_3t_pro,
+          input$t2a10_3t_pro
+        )
+      )
+    }
+    else if(length(input$teamsInvolved) == 4){
+      data.frame(
+        asset = c(
+          input$t2a1_4t,
+          input$t2a2_4t,
+          input$t2a3_4t,
+          input$t2a4_4t,
+          input$t2a5_4t,
+          input$t2a6_4t,
+          input$t2a7_4t,
+          input$t2a8_4t,
+          input$t2a9_4t,
+          input$t2a10_4t
+        ),
+        away_from_team = rep(t1_name(), 10),
+        to_team = c(
+          input$t2a1_4t_to,
+          input$t2a2_4t_to,
+          input$t2a3_4t_to,
+          input$t2a4_4t_to,
+          input$t2a5_4t_to,
+          input$t2a6_4t_to,
+          input$t2a7_4t_to,
+          input$t2a8_4t_to,
+          input$t2a9_4t_to,
+          input$t2a10_4t_to
+        ),
+        note = c(
+          input$t2a1_4t_pro,
+          input$t2a2_4t_pro,
+          input$t2a3_4t_pro,
+          input$t2a4_4t_pro,
+          input$t2a5_4t_pro,
+          input$t2a6_4t_pro,
+          input$t2a7_4t_pro,
+          input$t2a8_4t_pro,
+          input$t2a9_4t_pro,
+          input$t2a10_4t_pro
+        )
+      )
+    }
+  )
+
+  # Team 3
+  t3_players = reactive(
+    if(length(input$teamsInvolved) == 3){
+      data.frame(
+        asset = c(
+          input$t3p1_3t,
+          input$t3p2_3t,
+          input$t3p3_3t,
+          input$t3p4_3t,
+          input$t3p5_3t,
+          input$t3p6_3t,
+          input$t3p7_3t,
+          input$t3p8_3t,
+          input$t3p9_3t,
+          input$t3p10_3t
+        ),
+        away_from_team = rep(t3_name(), 10),
+        to_team = c(
+          input$t3p1_3t_to,
+          input$t3p2_3t_to,
+          input$t3p3_3t_to,
+          input$t3p4_3t_to,
+          input$t3p5_3t_to,
+          input$t3p6_3t_to,
+          input$t3p7_3t_to,
+          input$t3p8_3t_to,
+          input$t3p9_3t_to,
+          input$t3p10_3t_to
+        ),
+        note = rep("", 10)
+      )
+    }
+    else if(length(input$teamsInvolved) == 4){
+      data.frame(
+        asset = c(
+          input$t3p1_4t,
+          input$t3p2_4t,
+          input$t3p3_4t,
+          input$t3p4_4t,
+          input$t3p5_4t,
+          input$t3p6_4t,
+          input$t3p7_4t,
+          input$t3p8_4t,
+          input$t3p9_4t,
+          input$t3p10_4t
+        ),
+        away_from_team = rep(t3_name(), 10),
+        to_team = c(
+          input$t3p1_4t_to,
+          input$t3p2_4t_to,
+          input$t3p3_4t_to,
+          input$t3p4_4t_to,
+          input$t3p5_4t_to,
+          input$t3p6_4t_to,
+          input$t3p7_4t_to,
+          input$t3p8_4t_to,
+          input$t3p9_4t_to,
+          input$t3p10_4t_to
+        ),
+        note = rep("", 10)
+      )
+    }
+  )
+
+  t3_picks = reactive(
+    if(length(input$teamsInvolved) == 3){
+      data.frame(
+        asset = c(
+          input$t3a1_3t,
+          input$t3a2_3t,
+          input$t3a3_3t,
+          input$t3a4_3t,
+          input$t3a5_3t,
+          input$t3a6_3t,
+          input$t3a7_3t,
+          input$t3a8_3t,
+          input$t3a9_3t,
+          input$t3a10_3t
+        ),
+        away_from_team = rep(t3_name(), 10),
+        to_team = c(
+          input$t3a1_3t_to,
+          input$t3a2_3t_to,
+          input$t3a3_3t_to,
+          input$t3a4_3t_to,
+          input$t3a5_3t_to,
+          input$t3a6_3t_to,
+          input$t3a7_3t_to,
+          input$t3a8_3t_to,
+          input$t3a9_3t_to,
+          input$t3a10_3t_to
+        ),
+        note = c(
+          input$t3a1_3t_pro,
+          input$t3a2_3t_pro,
+          input$t3a3_3t_pro,
+          input$t3a4_3t_pro,
+          input$t3a5_3t_pro,
+          input$t3a6_3t_pro,
+          input$t3a7_3t_pro,
+          input$t3a8_3t_pro,
+          input$t3a9_3t_pro,
+          input$t3a10_3t_pro
+        )
+      )
+    }
+    else if(length(input$teamsInvolved) == 4){
+      data.frame(
+        asset = c(
+          input$t3a1_4t,
+          input$t3a2_4t,
+          input$t3a3_4t,
+          input$t3a4_4t,
+          input$t3a5_4t,
+          input$t3a6_4t,
+          input$t3a7_4t,
+          input$t3a8_4t,
+          input$t3a9_4t,
+          input$t3a10_4t
+        ),
+        away_from_team = rep(t3_name(), 10),
+        to_team = c(
+          input$t3a1_4t_to,
+          input$t3a2_4t_to,
+          input$t3a3_4t_to,
+          input$t3a4_4t_to,
+          input$t3a5_4t_to,
+          input$t3a6_4t_to,
+          input$t3a7_4t_to,
+          input$t3a8_4t_to,
+          input$t3a9_4t_to,
+          input$t3a10_4t_to
+        ),
+        note = c(
+          input$t3a1_4t_pro,
+          input$t3a2_4t_pro,
+          input$t3a3_4t_pro,
+          input$t3a4_4t_pro,
+          input$t3a5_4t_pro,
+          input$t3a6_4t_pro,
+          input$t3a7_4t_pro,
+          input$t3a8_4t_pro,
+          input$t3a9_4t_pro,
+          input$t3a10_4t_pro
+        )
+      )
+    }
+  )
+
+  # Team 4
+  t4_players = reactive(
+    if(length(input$teamsInvolved) == 4){
+      data.frame(
+        asset = c(
+          input$t4p1_4t,
+          input$t4p2_4t,
+          input$t4p3_4t,
+          input$t4p4_4t,
+          input$t4p5_4t,
+          input$t4p6_4t,
+          input$t4p7_4t,
+          input$t4p8_4t,
+          input$t4p9_4t,
+          input$t4p10_4t
+        ),
+        away_from_team = rep(t4_name(), 10),
+        to_team = c(
+          input$t4p1_4t_to,
+          input$t4p2_4t_to,
+          input$t4p3_4t_to,
+          input$t4p4_4t_to,
+          input$t4p5_4t_to,
+          input$t4p6_4t_to,
+          input$t4p7_4t_to,
+          input$t4p8_4t_to,
+          input$t4p9_4t_to,
+          input$t4p10_4t_to
+        ),
+        note = rep("", 10)
+      )
+    }
+  )
+
+  t4_picks = reactive(
+    if(length(input$teamsInvolved) == 4){
+      data.frame(
+        asset = c(
+          input$t4a1_4t,
+          input$t4a2_4t,
+          input$t4a3_4t,
+          input$t4a4_4t,
+          input$t4a5_4t,
+          input$t4a6_4t,
+          input$t4a7_4t,
+          input$t4a8_4t,
+          input$t4a9_4t,
+          input$t4a10_4t
+        ),
+        away_from_team = rep(t4_name(), 10),
+        to_team = c(
+          input$t4a1_4t_to,
+          input$t4a2_4t_to,
+          input$t4a3_4t_to,
+          input$t4a4_4t_to,
+          input$t4a5_4t_to,
+          input$t4a6_4t_to,
+          input$t4a7_4t_to,
+          input$t4a8_4t_to,
+          input$t4a9_4t_to,
+          input$t4a10_4t_to
+        ),
+        note = c(
+          input$t4a1_4t_pro,
+          input$t4a2_4t_pro,
+          input$t4a3_4t_pro,
+          input$t4a4_4t_pro,
+          input$t4a5_4t_pro,
+          input$t4a6_4t_pro,
+          input$t4a7_4t_pro,
+          input$t4a8_4t_pro,
+          input$t4a9_4t_pro,
+          input$t4a10_4t_pro
+        )
+      )
+    }
+  )
+
+  proposedTrade = reactive(
+    if(length(input$teamsInvolved) == 2){
+      rbind(t1_players(), t2_players(), t1_picks(), t2_picks()) |>
+        filter(asset != "")
+    }
+    else if(length(input$teamsInvolved) == 3){
+      rbind(t1_players(), t2_players(), t3_players(),
+            t1_picks(), t2_picks(), t3_picks()) |>
+        filter(asset != "")
+    }
+    else if(length(input$teamsInvolved) == 4){
+      rbind(t1_players(), t2_players(), t3_players(), t4_players(),
+            t1_picks(), t2_picks(), t3_picks(), t4_picks()) |>
+        filter(asset != "")
+    }
+  )
+  
+  proposedTrade_players = reactive(
+    proposedTrade() |>
+      group_by(to_team) |>
+      arrange(asset) |>
+      filter(
+        substr(asset, 1, 2) != '20',
+        substr(asset, 1, 19) != "Cash Considerations"
+      ) |>
+      mutate(
+        players = paste(asset, collapse = ", ")
+      ) |>
+      select(to_team, players) |>
+      unique()
+  )
+  
+  proposedTrade_picks = reactive(
+    proposedTrade() |>
+      group_by(to_team) |>
+      arrange(asset) |>
+      filter(
+        substr(asset, 1, 2) == '20' | 
+          substr(asset, 1, 19) == "Cash Considerations"
+      ) |>
+      mutate(
+        picks = paste(asset, collapse = ", "),
+        notes = paste(note, collapse = ", ")
+      ) |>
+      select(to_team, picks, notes) |>
+      unique()
+  )
+  
+  proposedTrade_incoming_by_team = reactive(
+    full_join(
+        proposedTrade_players(), 
+        proposedTrade_picks(), 
+        by = c('to_team')
+      ) |>
+      mutate(
+        players = ifelse(is.na(players), "", players),
+        picks = ifelse(is.na(picks), "", picks),
+        notes = ifelse(is.na(notes), "", notes)
+      ) |>
+      ungroup() |>
+      arrange(to_team) %>%
+      left_join(
+        hoopR_espn_nba_teams |> select(display_name, logo), 
+        by = c("to_team" = "display_name")
+      ) |>
+      select(logo, to_team, players, picks, notes)
+  )
+  
+  # Launch confirmation
+  observeEvent(
+    input$submit, {
+    showModal(
+      modalDialog(
+        easyClose = TRUE,
+        size = "l",
+        title = "Confirm this trade?",
+        render_gt(
+          width = "100%",
+          proposedTrade_incoming_by_team() |>
+            mutate(
+              players = str_replace_all(players, ", ", "<br>"),
+              picks = str_replace_all(picks, ", ", "<br>"),
+              notes = str_replace_all(notes, ", ", "<br>"),
+              notes = str_replace_all(notes, "NA", " ")
+            ) |>
+            gt() |>
+            gt_img_rows(columns = logo, height = 25) |>
+            gt_theme_pff() |>
+            #vertical align in players and picks cells
+            tab_style(
+              style = "vertical-align:top",
+              locations = cells_body(columns = c("players", "picks", "notes"))
+            ) |>
+            cols_hide(columns = c(to_team)) |>
+            fmt_markdown(columns = c("players", "picks", "notes")) |>
+            cols_width(
+              players ~ pct(25),
+              logo ~ pct(8),
+              picks ~ pct(30),
+              notes ~ pct(37)
+            ) |>
+            cols_align(
+              align = "left",
+              columns = c("notes", "picks")
+            ) |>
+            cols_label(logo = "Team")
+        ),
+        footer = tagList(
+          actionButton("confirm", "Confirm Trade"),
+          actionButton("notyet", "Not Yet")
+        )
+      )
+    )
+  })
+  
+  # Not yet button from trade submit
+  observeEvent(input$notyet, {
+    removeModal()
+  })
+  
+  # Finish button from trade submit
+  observeEvent(input$finish, {
+    session$reload()
+  })
+  
+  # Confirm trade
+  observeEvent(
+    input$confirm, {
+      new_transID = read_sheet(ss, sheet = "All_TL") |>
+        pull(trans_ID) |>
+        substr(1,3) |>
+        max() |>
+        as.numeric()+1
+      
+      enteredTrade = proposedTrade() |>
+        mutate(
+          trans_ID = paste0(new_transID, runif(1, 0, 99) |> round(digits = 0) |> sprintf(fmt = "%02d")),
+          status = "Entered"
+        ) |>
+        select(trans_ID, asset, away_from_team, to_team, note, status)
+    
+    sheet_append(ss, enteredTrade, sheet = "All_TL")
+    removeModal()
+    showModal(
+      modalDialog(
+        easyClose = FALSE,
+        title = "Success!",
+        h4("Your transaction ID for this trade is:"),
+        h2(enteredTrade |> pull(trans_ID) |> unique()),
+        h2(""),
+        h6("This is the last time you will see this ID and you will not be able to recover it later."),
+        footer = tagList(
+          actionButton("finish", "Close this Popup")
+        )
+      )
+    )
+  })
+  
+  
+  
   
 }
 
