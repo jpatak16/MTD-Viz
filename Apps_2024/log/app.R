@@ -8,123 +8,90 @@ library(googlesheets4)
 
 gs4_auth(path = ".secrets/asu-mtd-c191882d31e3.json")
 
-hoopR_espn_nba_teams = read.csv("espn_nba_teams.csv")
+hoopR_espn_nba_teams <- read.csv("espn_nba_teams.csv")
 
-nba_teams = hoopR_espn_nba_teams |> 
+nba_teams <- hoopR_espn_nba_teams |> 
   pull(display_name)
 
+ui = bootstrapPage(
+  theme = bs_theme(version = 5, bootswatch = "journal"),
+  div(
+    class = "title",
+    img(
+      src="ASU-NTDC-Logo.png", 
+      width = "100vw",
+      style = "display: block; margin-left: auto; margin-right: auto;"
+    ),
+    div("2024 NBA Trade Deadline Competition", 
+        style = 'color:rgba(169,20,20,128); text-align: center'), 
+    div("Transaction Log", 
+        style = 'font-weight: bold; text-align: center')
+  ),
+  tags$hr(style="border-width: 2px; border-color:rgba(169,20,20,128); margin-bottom:0px;"),
+  # Input/Button Box
+  div(
+    class = "row",
+    style = "background-color: #dddddd; padding-top: 10px; padding-bottom: 10px; align-items: center; padding-left: 10px",
+    div(
+      class = "col-4",
+      radioButtons(
+        "showNotes", 
+        "Show Notes?", 
+        choices = c("Yes", "No"), 
+        selected = "No"
+      )
+    ),
+    div(
+      class = "col-4",
+      radioButtons(
+        "tabSorting", 
+        "Sort", 
+        choices = c("By Trade", "By Team"), 
+        selected = "By Trade"
+      ) 
+    ),
+    div(
+      class = "col-4",
+      style = "margin-bottom: 10px; margin-top: 10px",
+      actionButton(
+        "refreshPage", 
+        "Refresh the Page"
+      )
+    )
+  ),
+  # TL by trade ID
+  conditionalPanel(
+    condition = "input.tabSorting == 'By Trade'",
+    gt_output("TransactionLog")
+  ),
+  # TL by team
+  conditionalPanel(
+    condition = "input.tabSorting == 'By Team'",
+    div(
+      class = "col-12",
+      style = "display: flex; justify-content: center;",
+      selectInput(
+        "teamSelect",
+        "Team",
+        choices = c("All", nba_teams),
+        selected = "All",
+      )
+    ),
+    div(
+      clas = "col-12",
+      gt_output("bt_tl")
+    )
+  )
+)
 
-ui = navbarPage("2024 NBA Trade Deadline Competition", fluid = TRUE,
-                tabPanel(
-                  "Transaction Log",
-                  tags$style(
-                    type="text/css",
-                    ".shiny-output-error { visibility: hidden; }",
-                    ".shiny-output-error:before { visibility: hidden; }",
-                    ".modal-dialog { width: fit-content !important; }"
-                  ),
-                  fluidRow(
-                    column(
-                      9, 
-                      h1(span("2024 NBA Trade Deadline Competition", 
-                              style = 'color:rgba(169,20,20,128);')), 
-                      h1(span("Transaction Log", 
-                              style = 'font-size: 60px; font-weight: bold;'))
-                    ),
-                    column(
-                      3, 
-                      img(src="ASU-NTDC-Logo.png", 
-                          height = 180, width = 240)
-                    )
-                  ),
-                  tags$hr(style="border-color:rgba(169,20,20,128);"),
-                  fluidRow(
-                    column(
-                      3, 
-                      radioButtons(
-                        "showNotes", 
-                        "Show Notes?", 
-                        choices = c("Yes", "No"), 
-                        selected = "No"
-                      )
-                    ),
-                    column(
-                      3, 
-                      actionButton(
-                        "refreshPage", 
-                        "Refresh the Page"
-                      )
-                    )
-                  ),
-                  fluidRow(
-                    column(
-                      12, 
-                      gt_output("TransactionLog")
-                    )
-                  )
-                ),
-                tabPanel(
-                  "Transactions by Team",
-                  tags$style(
-                    type="text/css",
-                    ".shiny-output-error { visibility: hidden; }",
-                    ".shiny-output-error:before { visibility: hidden; }",
-                    ".modal-dialog { width: fit-content !important; }"
-                  ),
-                  fluidRow(
-                    column(
-                      9, 
-                      h1(span("2024 NBA Trade Deadline Competition", 
-                              style = 'color:rgba(169,20,20,128);')), 
-                      h1(span("Transactions By Team", 
-                              style = 'font-size: 60px; font-weight: bold;'))
-                    ),
-                    column(
-                      3, 
-                      img(src="ASU-NTDC-Logo.png", height = 180, width = 240)
-                    )
-                  ),
-                  tags$hr(style="border-color:rgba(169,20,20,128);"),
-                  fluidRow(
-                    column(
-                      3, 
-                      selectInput(
-                        "teamSelect", 
-                        "Select Team", 
-                        choices = c("All", nba_teams)
-                      )
-                    ),
-                    column(
-                      3, 
-                      radioButtons(
-                        "showNotes_bt", 
-                        "Show Notes?", 
-                        choices = c("Yes", "No"), 
-                        selected = "No"
-                      )
-                    ),
-                    column(
-                      3, 
-                      actionButton(
-                        "refreshPage_bt", 
-                        "Refresh the Page"
-                      )
-                    )
-                  ),
-                  fluidRow(
-                    column(
-                      12, 
-                      gt_output("bt_tl")
-                    )
-                  )
-                )
-              )
-                
 
 server <- function(input, output, session) {
   
-  transaction_log <- reactiveVal(
-      value = read_sheet("https://docs.google.com/spreadsheets/d/13TtpNrsgFBv9UR4s-mw15uDd17UruiV9OZM6fWs03kE/edit?usp=sharing")
+  transaction_log <- reactive(
+      read_sheet("https://docs.google.com/spreadsheets/d/13TtpNrsgFBv9UR4s-mw15uDd17UruiV9OZM6fWs03kE/edit?usp=sharing") |>
+        filter(
+          status == "Complete"
+        )
     )
   
   players <- reactive(
@@ -179,7 +146,8 @@ server <- function(input, output, session) {
       ungroup() |>
       arrange(trans_ID, to_team) |>
       mutate(
-        first = c(1, diff(trans_ID)) == 1
+        first = ifelse(row_number() == 1, 1, 0),
+        .by = trans_ID
       ) |>
       left_join(
         hoopR_espn_nba_teams, 
@@ -210,7 +178,7 @@ server <- function(input, output, session) {
             columns = logo, 
             height = 75
           ) |>
-          gt_theme_pff() %>%
+          gt_theme_guardian() %>%
           #dark borders between trades
           tab_style(
             style = list(
@@ -227,6 +195,10 @@ server <- function(input, output, session) {
             locations = cells_body(
               columns = c("players", "picks", "notes")
             )
+          ) |>
+          tab_style(
+            style = list(cell_borders(sides = "top", color = "white")),
+            locations = cells_column_labels()
           ) |>
           cols_hide(
             columns = c(trans_ID, to_team, first, status)
@@ -251,7 +223,8 @@ server <- function(input, output, session) {
         cols_label(
           logo = "Team",
           players = "Incoming Players",
-          picks = "Incoming Picks"
+          picks = "Incoming Picks",
+          notes = "Notes"
         )
         
   }else{
@@ -272,7 +245,7 @@ server <- function(input, output, session) {
         columns = logo, 
         height = 75
       ) |>
-      gt_theme_pff() |>
+      gt_theme_guardian() |>
       #dark borders between trades
       tab_style(
         style = list(
@@ -284,6 +257,10 @@ server <- function(input, output, session) {
       tab_style(
         style = "vertical-align:top",
         locations = cells_body(columns = c("players", "picks"))
+      ) |>
+      tab_style(
+        style = list(cell_borders(sides = "top", color = "white")),
+        locations = cells_column_labels()
       ) |>
       cols_hide(
         columns = c(trans_ID, to_team, first, status)
@@ -301,7 +278,9 @@ server <- function(input, output, session) {
         columns = "picks"
       ) |>
       cols_label(
-        logo = "Team"
+        logo = "Team",
+        players = "Players",
+        picks = "Picks"
       )
   }
   )
@@ -313,10 +292,6 @@ server <- function(input, output, session) {
     session$reload()
   })
   
-  observeEvent(input$refreshPage_bt, {
-    transaction_log()
-    session$reload()
-  })
   
   bt_ia_player <- reactive(
       transaction_log() |> 
@@ -329,7 +304,7 @@ server <- function(input, output, session) {
       mutate(
         players = paste(asset, collapse = ", "),
         note1 = paste(rep("NA", length(asset)), 
-                      collapse = ", ")
+                      collapse = ",, ")
       ) |>
       select(
         trans_ID, to_team, players, note1, status
@@ -347,7 +322,7 @@ server <- function(input, output, session) {
       ) |>
       mutate(
         picks = paste(asset, collapse = ", "),
-        note2 = paste(note, collapse = ", ")
+        note2 = paste(note, collapse = ",, ")
       ) |>
       select(
         trans_ID, to_team, picks, note2, status
@@ -366,7 +341,7 @@ server <- function(input, output, session) {
         notes = paste0(note1, "<br>", note2)
       ) |>
       mutate(
-        notes = str_replace_all(notes, ", ", "<br>"),
+        notes = str_replace_all(notes, ",, ", "<br>"),
         incoming_asset = str_replace_all(incoming_asset, ", ", "<br>")
       ) |>
       mutate(
@@ -388,7 +363,7 @@ server <- function(input, output, session) {
       ) |>
       mutate(
         players = paste(asset, collapse = ", "),
-        note1 = paste(rep("NA", length(asset)), collapse = ", ")
+        note1 = paste(rep("NA", length(asset)), collapse = ",, ")
       ) |>
       select(
         trans_ID, away_from_team, players, note1, status
@@ -406,7 +381,7 @@ server <- function(input, output, session) {
       ) |>
       mutate(
         picks = paste(asset, collapse = ", "),
-        note2 = paste(note, collapse = ", ")
+        note2 = paste(note, collapse = ",, ")
       ) |>
       select(
         trans_ID, away_from_team, picks, note2, status
@@ -425,7 +400,7 @@ server <- function(input, output, session) {
         notes = paste0(note1, "<br>", note2)
       ) |>
       mutate(
-        notes = str_replace_all(notes, ", ", "<br>"),
+        notes = str_replace_all(notes, ",, ", "<br>"),
         outgoing_asset = str_replace_all(outgoing_asset, ", ", "<br>")
       ) |>
       mutate(
@@ -457,7 +432,7 @@ server <- function(input, output, session) {
     )
   
   output$bt_tl <- render_gt(
-      if(input$showNotes_bt == "Yes"){
+      if(input$showNotes == "Yes"){
         bt_tl_filtered1() |>
         ungroup() |>
         left_join(
@@ -472,7 +447,7 @@ server <- function(input, output, session) {
           columns = logo, 
           height = 50
         ) |>
-        gt_theme_pff() |>
+        gt_theme_guardian() |>
         #dark borders between trades
         tab_style(
           style = list(
@@ -489,6 +464,10 @@ server <- function(input, output, session) {
         tab_style(
           style = "vertical-align:top",
           locations = cells_body(columns = c("incoming_asset", "outgoing_asset", "notes_i", "notes_o"))
+        ) |>
+        tab_style(
+          style = list(cell_borders(sides = "top", color = "white")),
+          locations = cells_column_labels()
         ) |>
         cols_hide(
           columns = c(trans_ID, team)
@@ -535,7 +514,7 @@ server <- function(input, output, session) {
           columns = logo, 
           height = 75
         ) |>
-        gt_theme_pff() %>%
+        gt_theme_guardian() %>%
         #dark borders between trades
         tab_style(
           style = list(
@@ -552,6 +531,10 @@ server <- function(input, output, session) {
         tab_style(
           style = "vertical-align:top",
           locations = cells_body(columns = c("incoming_asset", "outgoing_asset"))
+        ) |>
+        tab_style(
+          style = list(cell_borders(sides = "top", color = "white")),
+          locations = cells_column_labels()
         ) |>
         cols_hide(
           columns = c(trans_ID, team)
