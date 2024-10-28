@@ -5,97 +5,94 @@ library(stringr)
 library(gt)
 library(gtExtras)
 library(googlesheets4)
+library(bslib)
 
 gs4_auth(path = ".secrets/asu-mtd-c191882d31e3.json")
 
-hoopR_espn_nba_teams = read.csv("espn_nba_teams.csv")
+hoopR_espn_nba_teams <- read.csv("espn_nba_teams.csv")
 
-nba_teams = hoopR_espn_nba_teams |>
+nba_teams <- hoopR_espn_nba_teams |>
   pull(display_name)
 
-# Define UI for application that draws a histogram
-ui = navbarPage("2024 NBA Trade Deadline Competition", 
-                fluid = TRUE,
-                tabPanel(
-                  "Transaction Log",
-                  tags$style(
-                    type="text/css",
-                    ".shiny-output-error { visibility: hidden; }",
-                    ".shiny-output-error:before { visibility: hidden; }",
-                    ".modal-dialog { width: fit-content !important; }"
-                  ),
-                  fluidRow(
-                    column(
-                      12, 
-                      h1(span(textOutput("countdown"), 
-                              style = 'font-size: 40px; font-weight: bold;'))
-                    ), 
-                    align = 'center'
-                  ),
-                  fluidRow(
-                    column(
-                      6, 
-                      gt_output("TransactionLog1")
-                    ),
-                    column(
-                      6, 
-                      gt_output("TransactionLog2")
-                    )
-                  )
-                )
-              )
-                
+# Define the deadline date and time
+deadline <- as.POSIXct("2024-11-08 16:00:00")
 
-# Define server logic required to draw a histogram
+ui = bootstrapPage(
+  theme = bs_theme(version = 5, bootswatch = "journal"),
+  div(
+    class = "row",
+    # Title Header
+    div(
+      class = "col-6",
+      img(
+        src="ASU-NTDC-Logo.png", 
+        width = "100vw",
+        style = "display: block; margin-left: auto; margin-right: auto;"
+      ),
+      div("2024 NBA Trade Deadline Competition", 
+          style = 'color:rgba(169,20,20,128); text-align: center'), 
+      div("Transaction Log", 
+          style = 'font-weight: bold; text-align: center')
+    ),
+    # Countdown Clock
+    div(
+      class = "col-6",
+      style = "display: flex; align-items: center; justify-content: center;",
+      h3(uiOutput("countdown_output"), style = "text-align: center;"),
+    )
+  ),
+  tags$hr(style="border-width: 2px; border-color:rgba(169,20,20,128); margin-bottom:0px;"),
+  # Transaction Log
+  div(
+    class = "row",
+    div(
+      class = "col-6",
+      style = "text-align: center; padding-left: 1.2em; padding-right: 0.2em;",
+      gt_output("TransactionLog1")
+    ),
+    div(
+      class = "col-6",
+      style = "text-align: center; padding-left: 0.2em; padding-right: 1.2em;",
+      gt_output("TransactionLog2")
+    )
+  )
+  
+)
+
 server <- function(input, output, session) {
   
-  sec_rem <- reactiveVal(
-      1699059600 - as.numeric(Sys.time())
-    )
+  # Create a reactive timer that updates every second
+  countdownTimer <- reactiveTimer(1000)
   
-  hours_rem <- reactive(
-      ifelse(
-        floor(sec_rem() / 3600) |> as.numeric() > 0, 
-        floor(sec_rem() / 3600) |> as.numeric(), 
-        0
+  # Calculate the time remaining
+  output$countdown_output <- renderText({
+    countdownTimer()  # Trigger every second
+    
+    # Calculate the time left
+    time_left <- difftime(deadline, Sys.time(), units = "secs") |> as.numeric()
+    
+    # Check if countdown has finished
+    if (time_left <= 0) {
+      HTML("Time Is Up!")
+    } else {
+      # Calculate days, hours, minutes, and seconds left
+      hours <- as.integer(time_left %/% (60 * 60))
+      minutes <- as.integer((time_left %% (60 * 60)) %/% 60)
+      seconds <- as.integer(time_left %% 60)
+      
+      # Format the output
+      HTML(paste0("Time Remaining:", "<br>", hours, " Hours, ", minutes, " Minutes, ", seconds, " Seconds"))
+    }
+  })
+  
+  transaction_log <- reactive({
+    refresh_timer()
+    
+    read_sheet("https://docs.google.com/spreadsheets/d/13TtpNrsgFBv9UR4s-mw15uDd17UruiV9OZM6fWs03kE/edit?usp=sharing", sheet = "All_TL") |>
+      filter(
+        status == "Complete"
       )
-    )
-  
-  mins_rem <- reactive(
-      ifelse(
-        floor((sec_rem() - (hours_rem()*3600)) / 60) |> as.numeric() >= 0, 
-        floor((sec_rem() - (hours_rem()*3600)) / 60) |> as.numeric(), 
-        0
-      )
-    )
-  
-  time_to_sub <- reactive(
-      hours_rem()*3600 + mins_rem()*60
-    )
-  
-  sec_rem_fix <- reactive(
-      ifelse(
-        floor(sec_rem() - time_to_sub()) >= 0, 
-        floor(sec_rem() - time_to_sub()), 
-        0
-      )
-    )
-  
-  output$countdown <- renderText(
-      paste0(
-        "Time Remaining: ", 
-        hours_rem(), 
-        " Hours, ", 
-        mins_rem(), 
-        " Minutes, ", 
-        sec_rem_fix(), 
-        " Seconds!"
-      )
-    )
-  
-  transaction_log <- reactiveVal(
-      value = read_sheet("https://docs.google.com/spreadsheets/d/13TtpNrsgFBv9UR4s-mw15uDd17UruiV9OZM6fWs03kE/edit?usp=sharing")
-    )
+  })
   
   players <- reactive(
       transaction_log() |> 
@@ -133,16 +130,16 @@ server <- function(input, output, session) {
     )
   
   incoming_by_team <- reactive(
-      full_join(
-        players(), 
-        picks(), 
-        by = c('trans_ID', 'to_team', 'status')
-      ) |>
-      mutate(
-        players = ifelse(is.na(players), "", players),
-        picks = ifelse(is.na(picks), "", picks),
-        notes = ifelse(is.na(notes), "", notes)
-      ) |>
+    full_join(
+      players(), 
+      picks(), 
+      by = c('trans_ID', 'to_team', 'status')
+    ) |>
+    mutate(
+      players = ifelse(is.na(players), "", players),
+      picks = ifelse(is.na(picks), "", picks),
+      notes = ifelse(is.na(notes), "", notes)
+    ) |>
     select(
       trans_ID, to_team, players, picks, notes, status
     ) |>
@@ -151,7 +148,8 @@ server <- function(input, output, session) {
       trans_ID, to_team
     ) |>
     mutate(
-      first = c(1, diff(trans_ID)) == 1
+      first = ifelse(row_number() == 1, 1, 0),
+      .by = trans_ID
     ) |>
     left_join(
       hoopR_espn_nba_teams, 
@@ -208,11 +206,11 @@ server <- function(input, output, session) {
       ) |>
       #vertical align in players and picks cells
       tab_style(
-        style = list(cell_text(weight = "bold", size = "16px")),
+        style = list(cell_text(weight = "bold", size = "18px")),
         locations = cells_body(columns = c("players", "picks"))
       ) |>
       cols_hide(
-        columns = c(trans_ID, to_team, first, status)
+        columns = c(trans_ID, to_team, first, status, notes)
       ) |>
       fmt_markdown(
         columns = c("players", "picks", "notes")
@@ -255,11 +253,11 @@ server <- function(input, output, session) {
       ) |>
       #vertical align in players and picks cells
       tab_style(
-        style = list(cell_text(weight = "bold", size = "16px")),
+        style = list(cell_text(weight = "bold", size = "18px")),
         locations = cells_body(columns = c("players", "picks"))
       ) |>
       cols_hide(
-        columns = c(trans_ID, to_team, first, status)
+        columns = c(trans_ID, to_team, first, status, notes)
       ) |>
       fmt_markdown(
         columns = c("players", "picks", "notes")
@@ -280,19 +278,14 @@ server <- function(input, output, session) {
     )
     
   
-  output$TransactionLog1 <- render_gt(tl_1())
-  output$TransactionLog2 <- render_gt(tl_2())
+  refresh_timer <- reactiveTimer(30000)
   
+  output$TransactionLog1 <- render_gt({
+    tl_1()
+  })
   
-  counter <- reactiveVal(0)
-  
-  observe({
-    invalidateLater(1000*35, session)
-    if (isolate(counter()) > 0) {
-      session$reload()
-    } else{
-      counter(isolate(counter()) + 1)
-    }
+  output$TransactionLog2 <- render_gt({
+    tl_2()
   })
   
 }
