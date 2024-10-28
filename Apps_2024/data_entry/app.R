@@ -79,6 +79,68 @@ ui = bootstrapPage(
       h3("Thank You!")
     )
   ),
+  # One Team Panel
+  conditionalPanel(
+    condition = "input.teamsInvolved.length == 1",
+    div(
+      class = "row",
+      div(
+        class = "col-md-12",
+        style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
+        h5(""),
+        htmlOutput("team1_logo"),
+        h5(""),
+        # Players Traded
+        div(
+          class = "row",
+          div(
+            class = "col-2",
+            conditionalPanel(
+              condition = "input.t1p1_1t== 'HiddenPanel'",
+              h3("_")
+            )
+          ),
+          div(
+            class = "col-4",
+            style = "text-align: left; padding-left: 1.2em; padding-right: 0.6em;",
+            h5("Player:"),
+            uiOutput("t1p1_1t"),
+            conditionalPanel(condition = "!(input.t1p1_1t== ' '||input.t1p1_1t=='')", uiOutput("t1p2_1t")),
+            conditionalPanel(condition = "!(input.t1p2_1t== ' '||input.t1p2_1t=='')", uiOutput("t1p3_1t")),
+            conditionalPanel(condition = "!(input.t1p3_1t== ' '||input.t1p3_1t=='')", uiOutput("t1p4_1t")),
+            conditionalPanel(condition = "!(input.t1p4_1t== ' '||input.t1p4_1t=='')", uiOutput("t1p5_1t")),
+            conditionalPanel(condition = "!(input.t1p5_1t== ' '||input.t1p5_1t=='')", uiOutput("t1p6_1t")),
+            conditionalPanel(condition = "!(input.t1p6_1t== ' '||input.t1p6_1t=='')", uiOutput("t1p7_1t")),
+            conditionalPanel(condition = "!(input.t1p7_1t== ' '||input.t1p7_1t=='')", uiOutput("t1p8_1t")),
+            conditionalPanel(condition = "!(input.t1p8_1t== ' '||input.t1p8_1t=='')", uiOutput("t1p9_1t")),
+            conditionalPanel(condition = "!(input.t1p9_1t== ' '||input.t1p9_1t=='')", uiOutput("t1p10_1t"))
+          ),
+          div(
+            class = "col-4",
+            style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
+            h5("To:"),
+            uiOutput("t1p1_1t_to"),
+            conditionalPanel(condition = "!(input.t1p1_1t== ' '||input.t1p1_1t=='')", uiOutput("t1p2_1t_to")),
+            conditionalPanel(condition = "!(input.t1p2_1t== ' '||input.t1p2_1t=='')", uiOutput("t1p3_1t_to")),
+            conditionalPanel(condition = "!(input.t1p3_1t== ' '||input.t1p3_1t=='')", uiOutput("t1p4_1t_to")),
+            conditionalPanel(condition = "!(input.t1p4_1t== ' '||input.t1p4_1t=='')", uiOutput("t1p5_1t_to")),
+            conditionalPanel(condition = "!(input.t1p5_1t== ' '||input.t1p5_1t=='')", uiOutput("t1p6_1t_to")),
+            conditionalPanel(condition = "!(input.t1p6_1t== ' '||input.t1p6_1t=='')", uiOutput("t1p7_1t_to")),
+            conditionalPanel(condition = "!(input.t1p7_1t== ' '||input.t1p7_1t=='')", uiOutput("t1p8_1t_to")),
+            conditionalPanel(condition = "!(input.t1p8_1t== ' '||input.t1p8_1t=='')", uiOutput("t1p9_1t_to")),
+            conditionalPanel(condition = "!(input.t1p9_1t== ' '||input.t1p9_1t=='')", uiOutput("t1p10_1t_to"))
+          ),
+          div(
+            class = "col-2",
+            conditionalPanel(
+              condition = "input.t1p1_1t== 'HiddenPanel'",
+              h3("_")
+            )
+          )
+        )
+      )
+    )
+  ),
   # Two Teams Panel
   conditionalPanel(
     condition = "input.teamsInvolved.length == 2",
@@ -929,469 +991,7 @@ ui = bootstrapPage(
       h2(""),
       h2("Thank You")
     )
-  ),
-  # # Five Team Panel
-  # conditionalPanel(
-  #   condition = "input.teamsInvolved.length == 5",
-  #   div(
-  #     class = "row",
-  #     # Team 1
-  #     div(
-  #       class = "col-lg-4 col-md-6",
-  #       style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
-  #       h5(""),
-  #       htmlOutput("team1_logo5"),
-  #       h5(""),
-  #       # Players Traded
-  #       div(
-  #         class = "row",
-  #         div(
-  #           class = "col-xs-8",
-  #           style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
-  #           h5("Players Traded:"),
-  #           uiOutput("t1p1_5t"),
-  #           conditionalPanel(condition = "!(input.t1p1_5t== ' '||input.t1p1_5t=='')", uiOutput("t1p2_5t")),
-  #           conditionalPanel(condition = "!(input.t1p2_5t== ' '||input.t1p2_5t=='')", uiOutput("t1p3_5t")),
-  #           conditionalPanel(condition = "!(input.t1p3_5t== ' '||input.t1p3_5t=='')", uiOutput("t1p4_5t")),
-  #           conditionalPanel(condition = "!(input.t1p4_5t== ' '||input.t1p4_5t=='')", uiOutput("t1p5_5t")),
-  #           conditionalPanel(condition = "!(input.t1p5_5t== ' '||input.t1p5_5t=='')", uiOutput("t1p6_5t")),
-  #           conditionalPanel(condition = "!(input.t1p6_5t== ' '||input.t1p6_5t=='')", uiOutput("t1p7_5t")),
-  #           conditionalPanel(condition = "!(input.t1p7_5t== ' '||input.t1p7_5t=='')", uiOutput("t1p8_5t")),
-  #           conditionalPanel(condition = "!(input.t1p8_5t== ' '||input.t1p8_5t=='')", uiOutput("t1p9_5t")),
-  #           conditionalPanel(condition = "!(input.t1p9_5t== ' '||input.t1p9_5t=='')", uiOutput("t1p10_5t"))
-  #         ),
-  #         div(
-  #           class = "col-xs-4",
-  #           style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
-  #           h5("To:"),
-  #           uiOutput("t1p1_5t_to"),
-  #           conditionalPanel(condition = "!(input.t1p1_5t== ' '||input.t1p1_5t=='')", uiOutput("t1p2_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1p2_5t== ' '||input.t1p2_5t=='')", uiOutput("t1p3_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1p3_5t== ' '||input.t1p3_5t=='')", uiOutput("t1p4_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1p4_5t== ' '||input.t1p4_5t=='')", uiOutput("t1p5_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1p5_5t== ' '||input.t1p5_5t=='')", uiOutput("t1p6_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1p6_5t== ' '||input.t1p6_5t=='')", uiOutput("t1p7_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1p7_5t== ' '||input.t1p7_5t=='')", uiOutput("t1p8_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1p8_5t== ' '||input.t1p8_5t=='')", uiOutput("t1p9_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1p9_5t== ' '||input.t1p9_5t=='')", uiOutput("t1p10_5t_to"))
-  #         )
-  #       ),
-  #       # Other Assets Traded
-  #       div(
-  #         class = "row",
-  #         div(
-  #           class = "col-xs-5",
-  #           style = "text-align: left; width: 40%; padding-left: 1.2em; padding-right: .6em;",
-  #           h5("Other Assets:", style = "font-size: 1.1rem;"),
-  #           uiOutput("t1a1_5t"),
-  #           conditionalPanel(condition = "!(input.t1a1_5t== ' '||input.t1a1_5t=='')", uiOutput("t1a2_5t")),
-  #           conditionalPanel(condition = "!(input.t1a2_5t== ' '||input.t1a2_5t=='')", uiOutput("t1a3_5t")),
-  #           conditionalPanel(condition = "!(input.t1a3_5t== ' '||input.t1a3_5t=='')", uiOutput("t1a4_5t")),
-  #           conditionalPanel(condition = "!(input.t1a4_5t== ' '||input.t1a4_5t=='')", uiOutput("t1a5_5t")),
-  #           conditionalPanel(condition = "!(input.t1a5_5t== ' '||input.t1a5_5t=='')", uiOutput("t1a6_5t")),
-  #           conditionalPanel(condition = "!(input.t1a6_5t== ' '||input.t1a6_5t=='')", uiOutput("t1a7_5t")),
-  #           conditionalPanel(condition = "!(input.t1a7_5t== ' '||input.t1a7_5t=='')", uiOutput("t1a8_5t")),
-  #           conditionalPanel(condition = "!(input.t1a8_5t== ' '||input.t1a8_5t=='')", uiOutput("t1a9_5t")),
-  #           conditionalPanel(condition = "!(input.t1a9_5t== ' '||input.t1a9_5t=='')", uiOutput("t1a10_5t"))
-  #         ),
-  #         div(
-  #           class = "col-xs-3",
-  #           style = "text-align: left; width: 25%; padding-left: .6em; padding-right: .6em;",
-  #           h5("To:", style = "font-size: 1.1rem;"),
-  #           uiOutput("t1a1_5t_to"),
-  #           conditionalPanel(condition = "!(input.t1a1_5t== ' '||input.t1a1_5t=='')", uiOutput("t1a2_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1a2_5t== ' '||input.t1a2_5t=='')", uiOutput("t1a3_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1a3_5t== ' '||input.t1a3_5t=='')", uiOutput("t1a4_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1a4_5t== ' '||input.t1a4_5t=='')", uiOutput("t1a5_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1a5_5t== ' '||input.t1a5_5t=='')", uiOutput("t1a6_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1a6_5t== ' '||input.t1a6_5t=='')", uiOutput("t1a7_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1a7_5t== ' '||input.t1a7_5t=='')", uiOutput("t1a8_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1a8_5t== ' '||input.t1a8_5t=='')", uiOutput("t1a9_5t_to")),
-  #           conditionalPanel(condition = "!(input.t1a9_5t== ' '||input.t1a9_5t=='')", uiOutput("t1a10_5t_to"))
-  #         ),
-  #         div(
-  #           class = "col-xs-2",
-  #           style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
-  #           h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
-  #           uiOutput("t1a1_5t_pro"),
-  #           conditionalPanel(condition = "!(input.t1a1_5t== ' '||input.t1a1_5t=='')", uiOutput("t1a2_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t1a2_5t== ' '||input.t1a2_5t=='')", uiOutput("t1a3_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t1a3_5t== ' '||input.t1a3_5t=='')", uiOutput("t1a4_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t1a4_5t== ' '||input.t1a4_5t=='')", uiOutput("t1a5_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t1a5_5t== ' '||input.t1a5_5t=='')", uiOutput("t1a6_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t1a6_5t== ' '||input.t1a6_5t=='')", uiOutput("t1a7_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t1a7_5t== ' '||input.t1a7_5t=='')", uiOutput("t1a8_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t1a8_5t== ' '||input.t1a8_5t=='')", uiOutput("t1a9_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t1a9_5t== ' '||input.t1a9_5t=='')", uiOutput("t1a10_5t_pro"))
-  #         )
-  #       )
-  #     ),
-  #     # Team 2
-  #     div(
-  #       class = "col-lg-4 col-md-6",
-  #       style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
-  #       h5(""),
-  #       htmlOutput("team2_logo5"),
-  #       h5(""),
-  #       # Players Traded
-  #       div(
-  #         class = "row",
-  #         div(
-  #           class = "col-xs-8",
-  #           style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
-  #           h5("Players Traded:"),
-  #           uiOutput("t2p1_5t"),
-  #           conditionalPanel(condition = "!(input.t2p1_5t== ' '||input.t2p1_5t=='')", uiOutput("t2p2_5t")),
-  #           conditionalPanel(condition = "!(input.t2p2_5t== ' '||input.t2p2_5t=='')", uiOutput("t2p3_5t")),
-  #           conditionalPanel(condition = "!(input.t2p3_5t== ' '||input.t2p3_5t=='')", uiOutput("t2p4_5t")),
-  #           conditionalPanel(condition = "!(input.t2p4_5t== ' '||input.t2p4_5t=='')", uiOutput("t2p5_5t")),
-  #           conditionalPanel(condition = "!(input.t2p5_5t== ' '||input.t2p5_5t=='')", uiOutput("t2p6_5t")),
-  #           conditionalPanel(condition = "!(input.t2p6_5t== ' '||input.t2p6_5t=='')", uiOutput("t2p7_5t")),
-  #           conditionalPanel(condition = "!(input.t2p7_5t== ' '||input.t2p7_5t=='')", uiOutput("t2p8_5t")),
-  #           conditionalPanel(condition = "!(input.t2p8_5t== ' '||input.t2p8_5t=='')", uiOutput("t2p9_5t")),
-  #           conditionalPanel(condition = "!(input.t2p9_5t== ' '||input.t2p9_5t=='')", uiOutput("t2p10_5t"))
-  #         ),
-  #         div(
-  #           class = "col-xs-4",
-  #           style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
-  #           h5("To:"),
-  #           uiOutput("t2p1_5t_to"),
-  #           conditionalPanel(condition = "!(input.t2p1_5t== ' '||input.t2p1_5t=='')", uiOutput("t2p2_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2p2_5t== ' '||input.t2p2_5t=='')", uiOutput("t2p3_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2p3_5t== ' '||input.t2p3_5t=='')", uiOutput("t2p4_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2p4_5t== ' '||input.t2p4_5t=='')", uiOutput("t2p5_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2p5_5t== ' '||input.t2p5_5t=='')", uiOutput("t2p6_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2p6_5t== ' '||input.t2p6_5t=='')", uiOutput("t2p7_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2p7_5t== ' '||input.t2p7_5t=='')", uiOutput("t2p8_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2p8_5t== ' '||input.t2p8_5t=='')", uiOutput("t2p9_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2p9_5t== ' '||input.t2p9_5t=='')", uiOutput("t2p10_5t_to"))
-  #         )
-  #       ),
-  #       # Other Assets Traded
-  #       div(
-  #         class = "row",
-  #         div(
-  #           class = "col-xs-5",
-  #           style = "text-align: left; width: 40%; padding-left: 1.2em; padding-right: .6em;",
-  #           h5("Other Assets:", style = "font-size: 1.1rem;"),
-  #           uiOutput("t2a1_5t"),
-  #           conditionalPanel(condition = "!(input.t2a1_5t== ' '||input.t2a1_5t=='')", uiOutput("t2a2_5t")),
-  #           conditionalPanel(condition = "!(input.t2a2_5t== ' '||input.t2a2_5t=='')", uiOutput("t2a3_5t")),
-  #           conditionalPanel(condition = "!(input.t2a3_5t== ' '||input.t2a3_5t=='')", uiOutput("t2a4_5t")),
-  #           conditionalPanel(condition = "!(input.t2a4_5t== ' '||input.t2a4_5t=='')", uiOutput("t2a5_5t")),
-  #           conditionalPanel(condition = "!(input.t2a5_5t== ' '||input.t2a5_5t=='')", uiOutput("t2a6_5t")),
-  #           conditionalPanel(condition = "!(input.t2a6_5t== ' '||input.t2a6_5t=='')", uiOutput("t2a7_5t")),
-  #           conditionalPanel(condition = "!(input.t2a7_5t== ' '||input.t2a7_5t=='')", uiOutput("t2a8_5t")),
-  #           conditionalPanel(condition = "!(input.t2a8_5t== ' '||input.t2a8_5t=='')", uiOutput("t2a9_5t")),
-  #           conditionalPanel(condition = "!(input.t2a9_5t== ' '||input.t2a9_5t=='')", uiOutput("t2a10_5t"))
-  #         ),
-  #         div(
-  #           class = "col-xs-3",
-  #           style = "text-align: left; width: 25%; padding-left: .6em; padding-right: .6em;",
-  #           h5("To:", style = "font-size: 1.1rem;"),
-  #           uiOutput("t2a1_5t_to"),
-  #           conditionalPanel(condition = "!(input.t2a1_5t== ' '||input.t2a1_5t=='')", uiOutput("t2a2_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2a2_5t== ' '||input.t2a2_5t=='')", uiOutput("t2a3_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2a3_5t== ' '||input.t2a3_5t=='')", uiOutput("t2a4_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2a4_5t== ' '||input.t2a4_5t=='')", uiOutput("t2a5_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2a5_5t== ' '||input.t2a5_5t=='')", uiOutput("t2a6_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2a6_5t== ' '||input.t2a6_5t=='')", uiOutput("t2a7_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2a7_5t== ' '||input.t2a7_5t=='')", uiOutput("t2a8_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2a8_5t== ' '||input.t2a8_5t=='')", uiOutput("t2a9_5t_to")),
-  #           conditionalPanel(condition = "!(input.t2a9_5t== ' '||input.t2a9_5t=='')", uiOutput("t2a10_5t_to"))
-  #         ),
-  #         div(
-  #           class = "col-xs-2",
-  #           style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
-  #           h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
-  #           uiOutput("t2a1_5t_pro"),
-  #           conditionalPanel(condition = "!(input.t2a1_5t== ' '||input.t2a1_5t=='')", uiOutput("t2a2_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t2a2_5t== ' '||input.t2a2_5t=='')", uiOutput("t2a3_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t2a3_5t== ' '||input.t2a3_5t=='')", uiOutput("t2a4_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t2a4_5t== ' '||input.t2a4_5t=='')", uiOutput("t2a5_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t2a5_5t== ' '||input.t2a5_5t=='')", uiOutput("t2a6_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t2a6_5t== ' '||input.t2a6_5t=='')", uiOutput("t2a7_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t2a7_5t== ' '||input.t2a7_5t=='')", uiOutput("t2a8_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t2a8_5t== ' '||input.t2a8_5t=='')", uiOutput("t2a9_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t2a9_5t== ' '||input.t2a9_5t=='')", uiOutput("t2a10_5t_pro"))
-  #         )
-  #       )
-  #     ),
-  #     # Team 3
-  #     div(
-  #       class = "col-lg-4 col-md-6",
-  #       style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
-  #       h5(""),
-  #       htmlOutput("team3_logo5"),
-  #       h5(""),
-  #       # Players Traded
-  #       div(
-  #         class = "row",
-  #         div(
-  #           class = "col-xs-8",
-  #           style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
-  #           h5("Players Traded:"),
-  #           uiOutput("t3p1_5t"),
-  #           conditionalPanel(condition = "!(input.t3p1_5t== ' '||input.t3p1_5t=='')", uiOutput("t3p2_5t")),
-  #           conditionalPanel(condition = "!(input.t3p2_5t== ' '||input.t3p2_5t=='')", uiOutput("t3p3_5t")),
-  #           conditionalPanel(condition = "!(input.t3p3_5t== ' '||input.t3p3_5t=='')", uiOutput("t3p4_5t")),
-  #           conditionalPanel(condition = "!(input.t3p4_5t== ' '||input.t3p4_5t=='')", uiOutput("t3p5_5t")),
-  #           conditionalPanel(condition = "!(input.t3p5_5t== ' '||input.t3p5_5t=='')", uiOutput("t3p6_5t")),
-  #           conditionalPanel(condition = "!(input.t3p6_5t== ' '||input.t3p6_5t=='')", uiOutput("t3p7_5t")),
-  #           conditionalPanel(condition = "!(input.t3p7_5t== ' '||input.t3p7_5t=='')", uiOutput("t3p8_5t")),
-  #           conditionalPanel(condition = "!(input.t3p8_5t== ' '||input.t3p8_5t=='')", uiOutput("t3p9_5t")),
-  #           conditionalPanel(condition = "!(input.t3p9_5t== ' '||input.t3p9_5t=='')", uiOutput("t3p10_5t"))
-  #         ),
-  #         div(
-  #           class = "col-xs-4",
-  #           style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
-  #           h5("To:"),
-  #           uiOutput("t3p1_5t_to"),
-  #           conditionalPanel(condition = "!(input.t3p1_5t== ' '||input.t3p1_5t=='')", uiOutput("t3p2_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3p2_5t== ' '||input.t3p2_5t=='')", uiOutput("t3p3_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3p3_5t== ' '||input.t3p3_5t=='')", uiOutput("t3p4_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3p4_5t== ' '||input.t3p4_5t=='')", uiOutput("t3p5_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3p5_5t== ' '||input.t3p5_5t=='')", uiOutput("t3p6_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3p6_5t== ' '||input.t3p6_5t=='')", uiOutput("t3p7_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3p7_5t== ' '||input.t3p7_5t=='')", uiOutput("t3p8_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3p8_5t== ' '||input.t3p8_5t=='')", uiOutput("t3p9_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3p9_5t== ' '||input.t3p9_5t=='')", uiOutput("t3p10_5t_to"))
-  #         )
-  #       ),
-  #       # Other Assets Traded
-  #       div(
-  #         class = "row",
-  #         div(
-  #           class = "col-xs-5",
-  #           style = "text-align: left; width: 40%; padding-left: 1.2em; padding-right: .6em;",
-  #           h5("Other Assets:", style = "font-size: 1.1rem;"),
-  #           uiOutput("t3a1_5t"),
-  #           conditionalPanel(condition = "!(input.t3a1_5t== ' '||input.t3a1_5t=='')", uiOutput("t3a2_5t")),
-  #           conditionalPanel(condition = "!(input.t3a2_5t== ' '||input.t3a2_5t=='')", uiOutput("t3a3_5t")),
-  #           conditionalPanel(condition = "!(input.t3a3_5t== ' '||input.t3a3_5t=='')", uiOutput("t3a4_5t")),
-  #           conditionalPanel(condition = "!(input.t3a4_5t== ' '||input.t3a4_5t=='')", uiOutput("t3a5_5t")),
-  #           conditionalPanel(condition = "!(input.t3a5_5t== ' '||input.t3a5_5t=='')", uiOutput("t3a6_5t")),
-  #           conditionalPanel(condition = "!(input.t3a6_5t== ' '||input.t3a6_5t=='')", uiOutput("t3a7_5t")),
-  #           conditionalPanel(condition = "!(input.t3a7_5t== ' '||input.t3a7_5t=='')", uiOutput("t3a8_5t")),
-  #           conditionalPanel(condition = "!(input.t3a8_5t== ' '||input.t3a8_5t=='')", uiOutput("t3a9_5t")),
-  #           conditionalPanel(condition = "!(input.t3a9_5t== ' '||input.t3a9_5t=='')", uiOutput("t3a10_5t"))
-  #         ),
-  #         div(
-  #           class = "col-xs-3",
-  #           style = "text-align: left; width: 25%; padding-left: .6em; padding-right: .6em;",
-  #           h5("To:", style = "font-size: 1.1rem;"),
-  #           uiOutput("t3a1_5t_to"),
-  #           conditionalPanel(condition = "!(input.t3a1_5t== ' '||input.t3a1_5t=='')", uiOutput("t3a2_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3a2_5t== ' '||input.t3a2_5t=='')", uiOutput("t3a3_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3a3_5t== ' '||input.t3a3_5t=='')", uiOutput("t3a4_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3a4_5t== ' '||input.t3a4_5t=='')", uiOutput("t3a5_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3a5_5t== ' '||input.t3a5_5t=='')", uiOutput("t3a6_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3a6_5t== ' '||input.t3a6_5t=='')", uiOutput("t3a7_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3a7_5t== ' '||input.t3a7_5t=='')", uiOutput("t3a8_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3a8_5t== ' '||input.t3a8_5t=='')", uiOutput("t3a9_5t_to")),
-  #           conditionalPanel(condition = "!(input.t3a9_5t== ' '||input.t3a9_5t=='')", uiOutput("t3a10_5t_to"))
-  #         ),
-  #         div(
-  #           class = "col-xs-2",
-  #           style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
-  #           h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
-  #           uiOutput("t3a1_5t_pro"),
-  #           conditionalPanel(condition = "!(input.t3a1_5t== ' '||input.t3a1_5t=='')", uiOutput("t3a2_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t3a2_5t== ' '||input.t3a2_5t=='')", uiOutput("t3a3_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t3a3_5t== ' '||input.t3a3_5t=='')", uiOutput("t3a4_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t3a4_5t== ' '||input.t3a4_5t=='')", uiOutput("t3a5_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t3a5_5t== ' '||input.t3a5_5t=='')", uiOutput("t3a6_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t3a6_5t== ' '||input.t3a6_5t=='')", uiOutput("t3a7_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t3a7_5t== ' '||input.t3a7_5t=='')", uiOutput("t3a8_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t3a8_5t== ' '||input.t3a8_5t=='')", uiOutput("t3a9_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t3a9_5t== ' '||input.t3a9_5t=='')", uiOutput("t3a10_5t_pro"))
-  #         )
-  #       )
-  #     ),
-  #     # Team 4
-  #     div(
-  #       class = "col-lg-4 col-md-6",
-  #       style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
-  #       h5(""),
-  #       htmlOutput("team4_logo5"),
-  #       h5(""),
-  #       # Players Traded
-  #       div(
-  #         class = "row",
-  #         div(
-  #           class = "col-xs-8",
-  #           style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
-  #           h5("Players Traded:"),
-  #           uiOutput("t4p1_5t"),
-  #           conditionalPanel(condition = "!(input.t4p1_5t== ' '||input.t4p1_5t=='')", uiOutput("t4p2_5t")),
-  #           conditionalPanel(condition = "!(input.t4p2_5t== ' '||input.t4p2_5t=='')", uiOutput("t4p3_5t")),
-  #           conditionalPanel(condition = "!(input.t4p3_5t== ' '||input.t4p3_5t=='')", uiOutput("t4p4_5t")),
-  #           conditionalPanel(condition = "!(input.t4p4_5t== ' '||input.t4p4_5t=='')", uiOutput("t4p5_5t")),
-  #           conditionalPanel(condition = "!(input.t4p5_5t== ' '||input.t4p5_5t=='')", uiOutput("t4p6_5t")),
-  #           conditionalPanel(condition = "!(input.t4p6_5t== ' '||input.t4p6_5t=='')", uiOutput("t4p7_5t")),
-  #           conditionalPanel(condition = "!(input.t4p7_5t== ' '||input.t4p7_5t=='')", uiOutput("t4p8_5t")),
-  #           conditionalPanel(condition = "!(input.t4p8_5t== ' '||input.t4p8_5t=='')", uiOutput("t4p9_5t")),
-  #           conditionalPanel(condition = "!(input.t4p9_5t== ' '||input.t4p9_5t=='')", uiOutput("t4p10_5t"))
-  #         ),
-  #         div(
-  #           class = "col-xs-4",
-  #           style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
-  #           h5("To:"),
-  #           uiOutput("t4p1_5t_to"),
-  #           conditionalPanel(condition = "!(input.t4p1_5t== ' '||input.t4p1_5t=='')", uiOutput("t4p2_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4p2_5t== ' '||input.t4p2_5t=='')", uiOutput("t4p3_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4p3_5t== ' '||input.t4p3_5t=='')", uiOutput("t4p4_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4p4_5t== ' '||input.t4p4_5t=='')", uiOutput("t4p5_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4p5_5t== ' '||input.t4p5_5t=='')", uiOutput("t4p6_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4p6_5t== ' '||input.t4p6_5t=='')", uiOutput("t4p7_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4p7_5t== ' '||input.t4p7_5t=='')", uiOutput("t4p8_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4p8_5t== ' '||input.t4p8_5t=='')", uiOutput("t4p9_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4p9_5t== ' '||input.t4p9_5t=='')", uiOutput("t4p10_5t_to"))
-  #         )
-  #       ),
-  #       # Other Assets Traded
-  #       div(
-  #         class = "row",
-  #         div(
-  #           class = "col-xs-5",
-  #           style = "text-align: left; width: 40%; padding-left: 1.2em; padding-right: .6em;",
-  #           h5("Other Assets:", style = "font-size: 1.1rem;"),
-  #           uiOutput("t4a1_5t"),
-  #           conditionalPanel(condition = "!(input.t4a1_5t== ' '||input.t4a1_5t=='')", uiOutput("t4a2_5t")),
-  #           conditionalPanel(condition = "!(input.t4a2_5t== ' '||input.t4a2_5t=='')", uiOutput("t4a3_5t")),
-  #           conditionalPanel(condition = "!(input.t4a3_5t== ' '||input.t4a3_5t=='')", uiOutput("t4a4_5t")),
-  #           conditionalPanel(condition = "!(input.t4a4_5t== ' '||input.t4a4_5t=='')", uiOutput("t4a5_5t")),
-  #           conditionalPanel(condition = "!(input.t4a5_5t== ' '||input.t4a5_5t=='')", uiOutput("t4a6_5t")),
-  #           conditionalPanel(condition = "!(input.t4a6_5t== ' '||input.t4a6_5t=='')", uiOutput("t4a7_5t")),
-  #           conditionalPanel(condition = "!(input.t4a7_5t== ' '||input.t4a7_5t=='')", uiOutput("t4a8_5t")),
-  #           conditionalPanel(condition = "!(input.t4a8_5t== ' '||input.t4a8_5t=='')", uiOutput("t4a9_5t")),
-  #           conditionalPanel(condition = "!(input.t4a9_5t== ' '||input.t4a9_5t=='')", uiOutput("t4a10_5t"))
-  #         ),
-  #         div(
-  #           class = "col-xs-3",
-  #           style = "text-align: left; width: 25%; padding-left: .6em; padding-right: .6em;",
-  #           h5("To:", style = "font-size: 1.1rem;"),
-  #           uiOutput("t4a1_5t_to"),
-  #           conditionalPanel(condition = "!(input.t4a1_5t== ' '||input.t4a1_5t=='')", uiOutput("t4a2_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4a2_5t== ' '||input.t4a2_5t=='')", uiOutput("t4a3_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4a3_5t== ' '||input.t4a3_5t=='')", uiOutput("t4a4_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4a4_5t== ' '||input.t4a4_5t=='')", uiOutput("t4a5_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4a5_5t== ' '||input.t4a5_5t=='')", uiOutput("t4a6_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4a6_5t== ' '||input.t4a6_5t=='')", uiOutput("t4a7_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4a7_5t== ' '||input.t4a7_5t=='')", uiOutput("t4a8_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4a8_5t== ' '||input.t4a8_5t=='')", uiOutput("t4a9_5t_to")),
-  #           conditionalPanel(condition = "!(input.t4a9_5t== ' '||input.t4a9_5t=='')", uiOutput("t4a10_5t_to"))
-  #         ),
-  #         div(
-  #           class = "col-xs-2",
-  #           style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
-  #           h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
-  #           uiOutput("t4a1_5t_pro"),
-  #           conditionalPanel(condition = "!(input.t4a1_5t== ' '||input.t4a1_5t=='')", uiOutput("t4a2_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t4a2_5t== ' '||input.t4a2_5t=='')", uiOutput("t4a3_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t4a3_5t== ' '||input.t4a3_5t=='')", uiOutput("t4a4_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t4a4_5t== ' '||input.t4a4_5t=='')", uiOutput("t4a5_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t4a5_5t== ' '||input.t4a5_5t=='')", uiOutput("t4a6_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t4a6_5t== ' '||input.t4a6_5t=='')", uiOutput("t4a7_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t4a7_5t== ' '||input.t4a7_5t=='')", uiOutput("t4a8_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t4a8_5t== ' '||input.t4a8_5t=='')", uiOutput("t4a9_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t4a9_5t== ' '||input.t4a9_5t=='')", uiOutput("t4a10_5t_pro"))
-  #         )
-  #       )
-  #     ),
-  #     # Team 5
-  #     div(
-  #       class = "col-lg-4 col-md-6",
-  #       style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
-  #       h5(""),
-  #       htmlOutput("team5_logo"),
-  #       h5(""),
-  #       # Players Traded
-  #       div(
-  #         class = "row",
-  #         div(
-  #           class = "col-xs-8",
-  #           style = "text-align: left; width: 60%; padding-left: 1.2em; padding-right: .6em;",
-  #           h5("Players Traded:"),
-  #           uiOutput("t5p1_5t"),
-  #           conditionalPanel(condition = "!(input.t5p1_5t== ' '||input.t5p1_5t=='')", uiOutput("t5p2_5t")),
-  #           conditionalPanel(condition = "!(input.t5p2_5t== ' '||input.t5p2_5t=='')", uiOutput("t5p3_5t")),
-  #           conditionalPanel(condition = "!(input.t5p3_5t== ' '||input.t5p3_5t=='')", uiOutput("t5p4_5t")),
-  #           conditionalPanel(condition = "!(input.t5p4_5t== ' '||input.t5p4_5t=='')", uiOutput("t5p5_5t")),
-  #           conditionalPanel(condition = "!(input.t5p5_5t== ' '||input.t5p5_5t=='')", uiOutput("t5p6_5t")),
-  #           conditionalPanel(condition = "!(input.t5p6_5t== ' '||input.t5p6_5t=='')", uiOutput("t5p7_5t")),
-  #           conditionalPanel(condition = "!(input.t5p7_5t== ' '||input.t5p7_5t=='')", uiOutput("t5p8_5t")),
-  #           conditionalPanel(condition = "!(input.t5p8_5t== ' '||input.t5p8_5t=='')", uiOutput("t5p9_5t")),
-  #           conditionalPanel(condition = "!(input.t5p9_5t== ' '||input.t5p9_5t=='')", uiOutput("t5p10_5t"))
-  #         ),
-  #         div(
-  #           class = "col-xs-4",
-  #           style = "text-align: left; width: 38%; padding-left: .6em; padding-right: 1.2em;",
-  #           h5("To:"),
-  #           uiOutput("t5p1_5t_to"),
-  #           conditionalPanel(condition = "!(input.t5p1_5t== ' '||input.t5p1_5t=='')", uiOutput("t5p2_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5p2_5t== ' '||input.t5p2_5t=='')", uiOutput("t5p3_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5p3_5t== ' '||input.t5p3_5t=='')", uiOutput("t5p4_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5p4_5t== ' '||input.t5p4_5t=='')", uiOutput("t5p5_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5p5_5t== ' '||input.t5p5_5t=='')", uiOutput("t5p6_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5p6_5t== ' '||input.t5p6_5t=='')", uiOutput("t5p7_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5p7_5t== ' '||input.t5p7_5t=='')", uiOutput("t5p8_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5p8_5t== ' '||input.t5p8_5t=='')", uiOutput("t5p9_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5p9_5t== ' '||input.t5p9_5t=='')", uiOutput("t5p10_5t_to"))
-  #         )
-  #       ),
-  #       # Other Assets Traded
-  #       div(
-  #         class = "row",
-  #         div(
-  #           class = "col-xs-5",
-  #           style = "text-align: left; width: 40%; padding-left: 1.2em; padding-right: .6em;",
-  #           h5("Other Assets:", style = "font-size: 1.1rem;"),
-  #           uiOutput("t5a1_5t"),
-  #           conditionalPanel(condition = "!(input.t5a1_5t== ' '||input.t5a1_5t=='')", uiOutput("t5a2_5t")),
-  #           conditionalPanel(condition = "!(input.t5a2_5t== ' '||input.t5a2_5t=='')", uiOutput("t5a3_5t")),
-  #           conditionalPanel(condition = "!(input.t5a3_5t== ' '||input.t5a3_5t=='')", uiOutput("t5a4_5t")),
-  #           conditionalPanel(condition = "!(input.t5a4_5t== ' '||input.t5a4_5t=='')", uiOutput("t5a5_5t")),
-  #           conditionalPanel(condition = "!(input.t5a5_5t== ' '||input.t5a5_5t=='')", uiOutput("t5a6_5t")),
-  #           conditionalPanel(condition = "!(input.t5a6_5t== ' '||input.t5a6_5t=='')", uiOutput("t5a7_5t")),
-  #           conditionalPanel(condition = "!(input.t5a7_5t== ' '||input.t5a7_5t=='')", uiOutput("t5a8_5t")),
-  #           conditionalPanel(condition = "!(input.t5a8_5t== ' '||input.t5a8_5t=='')", uiOutput("t5a9_5t")),
-  #           conditionalPanel(condition = "!(input.t5a9_5t== ' '||input.t5a9_5t=='')", uiOutput("t5a10_5t"))
-  #         ),
-  #         div(
-  #           class = "col-xs-3",
-  #           style = "text-align: left; width: 25%; padding-left: .6em; padding-right: .6em;",
-  #           h5("To:", style = "font-size: 1.1rem;"),
-  #           uiOutput("t5a1_5t_to"),
-  #           conditionalPanel(condition = "!(input.t5a1_5t== ' '||input.t5a1_5t=='')", uiOutput("t5a2_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5a2_5t== ' '||input.t5a2_5t=='')", uiOutput("t5a3_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5a3_5t== ' '||input.t5a3_5t=='')", uiOutput("t5a4_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5a4_5t== ' '||input.t5a4_5t=='')", uiOutput("t5a5_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5a5_5t== ' '||input.t5a5_5t=='')", uiOutput("t5a6_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5a6_5t== ' '||input.t5a6_5t=='')", uiOutput("t5a7_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5a7_5t== ' '||input.t5a7_5t=='')", uiOutput("t5a8_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5a8_5t== ' '||input.t5a8_5t=='')", uiOutput("t5a9_5t_to")),
-  #           conditionalPanel(condition = "!(input.t5a9_5t== ' '||input.t5a9_5t=='')", uiOutput("t5a10_5t_to"))
-  #         ),
-  #         div(
-  #           class = "col-xs-2",
-  #           style = "text-align: left; width: 35%; padding-left: .6em; padding-right: 1.2em;",
-  #           h5("Add Protection?", style = "font-size: 1.1rem; width: 110%;"),
-  #           uiOutput("t5a1_5t_pro"),
-  #           conditionalPanel(condition = "!(input.t5a1_5t== ' '||input.t5a1_5t=='')", uiOutput("t5a2_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t5a2_5t== ' '||input.t5a2_5t=='')", uiOutput("t5a3_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t5a3_5t== ' '||input.t5a3_5t=='')", uiOutput("t5a4_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t5a4_5t== ' '||input.t5a4_5t=='')", uiOutput("t5a5_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t5a5_5t== ' '||input.t5a5_5t=='')", uiOutput("t5a6_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t5a6_5t== ' '||input.t5a6_5t=='')", uiOutput("t5a7_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t5a7_5t== ' '||input.t5a7_5t=='')", uiOutput("t5a8_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t5a8_5t== ' '||input.t5a8_5t=='')", uiOutput("t5a9_5t_pro")),
-  #           conditionalPanel(condition = "!(input.t5a9_5t== ' '||input.t5a9_5t=='')", uiOutput("t5a10_5t_pro"))
-  #         )
-  #       )
-  #     )
-  #   )
-  # )
+  )
 )
 
 server <- function(input, output, session) {
@@ -1473,1536 +1073,822 @@ server <- function(input, output, session) {
     )
   })
   
-  # logo5_url <- reactive(
-  #   hoopR_espn_nba_teams |>
-  #     filter(
-  #       display_name == input$teamsInvolved[[5]]
-  #     ) |>
-  #     pull(logo)
-  # )
-  # 
-  # output$team5_logo = output$team5_logo6 = renderText({
-  #   paste0(
-  #     '<img src ="', 
-  #     logo5_url(), 
-  #     '" style="width:75px;">'
-  #   )
-  # })
-  
-  
-  # Player List for teamsInvolved
-  team1_players <- reactive(
-    if(length(input$teamsInvolved) < 1){}
-    else{
-      read_sheet(
-        ss,
-        sheet = hoopR_espn_nba_teams |>
-          filter(
-            display_name == input$teamsInvolved[[1]]
-          ) |>
-          pull(abbreviation)
-      ) |>
-        mutate(
-          Player = ifelse(is.na(Player), "", Player)
-        ) |>
-        pull(Player)
-    }
-  )
-  
-  team2_players <- reactive(
-    if(length(input$teamsInvolved) < 2){}
-    else{
-      read_sheet(
-        ss,
-        sheet = hoopR_espn_nba_teams |>
-          filter(
-            display_name == input$teamsInvolved[[2]]
-          ) |>
-          pull(abbreviation)
-      ) |>
-        mutate(
-          Player = ifelse(is.na(Player), "", Player)
-        ) |>
-        pull(Player)
-    }
-  )
-  
-  team3_players <- reactive(
-    if(length(input$teamsInvolved) < 3){}
-    else{
-      read_sheet(
-        ss,
-        sheet = hoopR_espn_nba_teams |>
-          filter(
-            display_name == input$teamsInvolved[[3]]
-          ) |>
-          pull(abbreviation)
-      ) |>
-        mutate(
-          Player = ifelse(is.na(Player), "", Player)
-        ) |>
-        pull(Player)
-    }
-  )
-  
-  team4_players <- reactive(
-    if(length(input$teamsInvolved) < 4){}
-    else{
-      read_sheet(
-        ss,
-        sheet = hoopR_espn_nba_teams |>
-          filter(
-            display_name == input$teamsInvolved[[4]]
-          ) |>
-          pull(abbreviation)
-      ) |>
-        mutate(
-          Player = ifelse(is.na(Player), "", Player)
-        ) |>
-        pull(Player)
-    }
-  )
-  
-  # team5_players <- reactive(
-  #   if(length(input$teamsInvolved) < 5){}
-  #   else{
-  #     read_sheet(
-  #       ss,
-  #       sheet = hoopR_espn_nba_teams |>
-  #         filter(
-  #           display_name == input$teamsInvolved[[5]]
-  #         ) |>
-  #         pull(abbreviation)
-  #     ) |>
-  #       mutate(
-  #         Player = ifelse(is.na(Player), "", Player)
-  #       ) |>
-  #       pull(Player)
-  #   }
-  # )
-  
-  
   ########## UI Outputs for Inputs
   
   ### Traded Player Inputs
   # Team 1
+  output$t1p1_1t = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      textInput(
+        "t1p1_1t", 
+        ""
+      )
+    }
+  })
+  output$t1p2_1t = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      textInput(
+        "t1p2_1t", 
+        ""
+      )
+    }
+  })
+  output$t1p3_1t = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      textInput(
+        "t1p3_1t", 
+        ""
+      )
+    }
+  })
+  output$t1p4_1t = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      textInput(
+        "t1p4_1t", 
+        ""
+      )
+    }
+  })
+  output$t1p5_1t = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      textInput(
+        "t1p5_1t", 
+        ""
+      )
+    }
+  })
+  output$t1p6_1t = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      textInput(
+        "t1p6_1t", 
+        ""
+      )
+    }
+  })
+  output$t1p7_1t = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      textInput(
+        "t1p7_1t", 
+        ""
+      )
+    }
+  })
+  output$t1p8_1t = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      textInput(
+        "t1p8_1t", 
+        ""
+      )
+    }
+  })
+  output$t1p9_1t = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      textInput(
+        "t1p9_1t", 
+        ""
+      )
+    }
+  })
+  output$t1p10_1t = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      textInput(
+        "t1p10_1t", 
+        ""
+      )
+    }
+  })
+  
   output$t1p1_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t1p1_2t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p2_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t1p2_2t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p3_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t1p3_2t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p4_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t1p4_2t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p5_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t1p5_2t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p6_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t1p6_2t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p7_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t1p7_2t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p8_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t1p8_2t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p9_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t1p9_2t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p10_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t1p10_2t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   
   output$t1p1_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t1p1_3t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p2_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t1p2_3t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p3_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t1p3_3t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p4_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t1p4_3t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p5_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t1p5_3t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p6_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t1p6_3t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p7_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t1p7_3t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p8_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t1p8_3t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p9_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t1p9_3t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p10_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t1p10_3t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   
   output$t1p1_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t1p1_4t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p2_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t1p2_4t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p3_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t1p3_4t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p4_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t1p4_4t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p5_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t1p5_4t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p6_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t1p6_4t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p7_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t1p7_4t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p8_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t1p8_4t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p9_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t1p9_4t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t1p10_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t1p10_4t", 
-        "", 
-        choices = team1_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   
-  # output$t1p1_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t1p1_5t", 
-  #       "", 
-  #       choices = team1_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t1p2_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t1p2_5t", 
-  #       "", 
-  #       choices = team1_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t1p3_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t1p3_5t", 
-  #       "", 
-  #       choices = team1_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t1p4_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t1p4_5t", 
-  #       "", 
-  #       choices = team1_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t1p5_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t1p5_5t", 
-  #       "", 
-  #       choices = team1_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t1p6_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t1p6_5t", 
-  #       "", 
-  #       choices = team1_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t1p7_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t1p7_5t", 
-  #       "", 
-  #       choices = team1_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t1p8_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t1p8_5t", 
-  #       "", 
-  #       choices = team1_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t1p9_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t1p9_5t", 
-  #       "", 
-  #       choices = team1_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t1p10_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t1p10_5t", 
-  #       "", 
-  #       choices = team1_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  
   # Team 2 
   output$t2p1_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t2p1_2t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p2_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t2p2_2t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p3_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t2p3_2t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p4_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t2p4_2t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p5_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t2p5_2t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p6_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t2p6_2t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p7_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t2p7_2t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p8_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t2p8_2t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p9_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t2p9_2t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p10_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
-      selectizeInput(
+      textInput(
         "t2p10_2t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   
   output$t2p1_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t2p1_3t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p2_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t2p2_3t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p3_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t2p3_3t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p4_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t2p4_3t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p5_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t2p5_3t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p6_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t2p6_3t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p7_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t2p7_3t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p8_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t2p8_3t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p9_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t2p9_3t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p10_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t2p10_3t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   
   output$t2p1_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t2p1_4t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p2_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t2p2_4t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p3_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t2p3_4t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p4_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t2p4_4t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p5_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t2p5_4t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p6_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t2p6_4t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p7_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t2p7_4t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p8_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t2p8_4t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p9_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t2p9_4t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t2p10_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t2p10_4t", 
-        "", 
-        choices = team2_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   
-  # output$t2p1_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t2p1_5t", 
-  #       "", 
-  #       choices = team2_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t2p2_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t2p2_5t", 
-  #       "", 
-  #       choices = team2_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t2p3_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t2p3_5t", 
-  #       "", 
-  #       choices = team2_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t2p4_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t2p4_5t", 
-  #       "", 
-  #       choices = team2_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t2p5_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t2p5_5t", 
-  #       "", 
-  #       choices = team2_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t2p6_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t2p6_5t", 
-  #       "", 
-  #       choices = team2_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t2p7_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t2p7_5t", 
-  #       "", 
-  #       choices = team2_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t2p8_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t2p8_5t", 
-  #       "", 
-  #       choices = team2_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t2p9_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t2p9_5t", 
-  #       "", 
-  #       choices = team2_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t2p10_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t2p10_5t", 
-  #       "", 
-  #       choices = team2_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  
   # Team 3
   output$t3p1_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t3p1_3t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p2_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t3p2_3t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p3_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t3p3_3t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p4_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t3p4_3t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p5_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t3p5_3t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p6_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t3p6_3t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p7_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t3p7_3t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p8_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t3p8_3t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p9_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t3p9_3t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p10_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
-      selectizeInput(
+      textInput(
         "t3p10_3t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   
   output$t3p1_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t3p1_4t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p2_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t3p2_4t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p3_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t3p3_4t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p4_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t3p4_4t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p5_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t3p5_4t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p6_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t3p6_4t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p7_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t3p7_4t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p8_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t3p8_4t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p9_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t3p9_4t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t3p10_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t3p10_4t", 
-        "", 
-        choices = team3_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   
-  # output$t3p1_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t3p1_5t", 
-  #       "", 
-  #       choices = team3_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t3p2_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t3p2_5t", 
-  #       "", 
-  #       choices = team3_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t3p3_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t3p3_5t", 
-  #       "", 
-  #       choices = team3_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t3p4_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t3p4_5t", 
-  #       "", 
-  #       choices = team3_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t3p5_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t3p5_5t", 
-  #       "", 
-  #       choices = team3_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t3p6_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t3p6_5t", 
-  #       "", 
-  #       choices = team3_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t3p7_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t3p7_5t", 
-  #       "", 
-  #       choices = team3_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t3p8_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t3p8_5t", 
-  #       "", 
-  #       choices = team3_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t3p9_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t3p9_5t", 
-  #       "", 
-  #       choices = team3_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t3p10_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t3p10_5t", 
-  #       "", 
-  #       choices = team3_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  
   # Team 4
   output$t4p1_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t4p1_4t", 
-        "", 
-        choices = team4_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t4p2_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t4p2_4t", 
-        "", 
-        choices = team4_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t4p3_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t4p3_4t", 
-        "", 
-        choices = team4_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t4p4_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t4p4_4t", 
-        "", 
-        choices = team4_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t4p5_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t4p5_4t", 
-        "", 
-        choices = team4_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t4p6_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t4p6_4t", 
-        "", 
-        choices = team4_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t4p7_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t4p7_4t", 
-        "", 
-        choices = team4_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t4p8_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t4p8_4t", 
-        "", 
-        choices = team4_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t4p9_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t4p9_4t", 
-        "", 
-        choices = team4_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
   output$t4p10_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
-      selectizeInput(
+      textInput(
         "t4p10_4t", 
-        "", 
-        choices = team4_players(), 
-        options = list(create = TRUE)
+        ""
       )
     }
   })
-  
-  # output$t4p1_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t4p1_5t", 
-  #       "", 
-  #       choices = team4_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t4p2_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t4p2_5t", 
-  #       "", 
-  #       choices = team4_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t4p3_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t4p3_5t", 
-  #       "", 
-  #       choices = team4_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t4p4_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t4p4_5t", 
-  #       "", 
-  #       choices = team4_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t4p5_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t4p5_5t", 
-  #       "", 
-  #       choices = team4_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t4p6_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t4p6_5t", 
-  #       "", 
-  #       choices = team4_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t4p7_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t4p7_5t", 
-  #       "", 
-  #       choices = team4_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t4p8_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t4p8_5t", 
-  #       "", 
-  #       choices = team4_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t4p9_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t4p9_5t", 
-  #       "", 
-  #       choices = team4_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t4p10_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t4p10_5t", 
-  #       "", 
-  #       choices = team4_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  
-  # # Team 5
-  # output$t5p1_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t5p1_5t", 
-  #       "", 
-  #       choices = team5_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t5p2_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t5p2_5t", 
-  #       "", 
-  #       choices = team5_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t5p3_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t5p3_5t", 
-  #       "", 
-  #       choices = team5_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t5p4_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t5p4_5t", 
-  #       "", 
-  #       choices = team5_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t5p5_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t5p5_5t", 
-  #       "", 
-  #       choices = team5_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t5p6_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t5p6_5t", 
-  #       "", 
-  #       choices = team5_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t5p7_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t5p7_5t", 
-  #       "", 
-  #       choices = team5_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t5p8_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t5p8_5t", 
-  #       "", 
-  #       choices = team5_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t5p9_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t5p9_5t", 
-  #       "", 
-  #       choices = team5_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
-  # output$t5p10_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     selectizeInput(
-  #       "t5p10_5t", 
-  #       "", 
-  #       choices = team5_players(), 
-  #       options = list(create = TRUE)
-  #     )
-  #   }
-  # })
   
   ### Traded Asset Input
   # Team 1
@@ -3249,87 +2135,6 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t1a1_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a1_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t1a2_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a2_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t1a3_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a3_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t1a4_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a4_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t1a5_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a5_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t1a6_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a6_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t1a7_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a7_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t1a8_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a8_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t1a9_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a9_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t1a10_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a10_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  
   # Team 2
   output$t2a1_2t = renderUI({
     if(length(input$teamsInvolved) == 2){
@@ -3574,87 +2379,6 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t2a1_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a1_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t2a2_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a2_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t2a3_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a3_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t2a4_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a4_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t2a5_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a5_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t2a6_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a6_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t2a7_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a7_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t2a8_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a8_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t2a9_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a9_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t2a10_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a10_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  
   # Team 3
   output$t3a1_3t = renderUI({
     if(length(input$teamsInvolved) == 3){
@@ -3818,87 +2542,6 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t3a1_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a1_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t3a2_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a2_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t3a3_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a3_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t3a4_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a4_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t3a5_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a5_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t3a6_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a6_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t3a7_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a7_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t3a8_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a8_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t3a9_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a9_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t3a10_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a10_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  
   # Team 4
   output$t4a1_4t = renderUI({
     if(length(input$teamsInvolved) == 4){
@@ -3981,172 +2624,109 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t4a1_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a1_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t4a2_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a2_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t4a3_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a3_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t4a4_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a4_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t4a5_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a5_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t4a6_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a6_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t4a7_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a7_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t4a8_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a8_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t4a9_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a9_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t4a10_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a10_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  
-  # # Team 5
-  # output$t5a1_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a1_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t5a2_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a2_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t5a3_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a3_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t5a4_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a4_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t5a5_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a5_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t5a6_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a6_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t5a7_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a7_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t5a8_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a8_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t5a9_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a9_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  # output$t5a10_5t = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a10_5t", 
-  #       ""
-  #     ) 
-  #   }
-  # })
-  
-  
   ### Traded Player To Team Input
   # Team 1
+  output$t1p1_1t_to = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      pickerInput(
+        "t1p1_1t_to", 
+        "", 
+        choices = c("Waive"),
+        options = list(`dropdown-align-center` = TRUE),
+      )
+    }
+  })
+  output$t1p2_1t_to = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      pickerInput(
+        "t1p2_1t_to", 
+        "", 
+        choices = c("Waive"),
+        options = list(`dropdown-align-center` = TRUE),
+      )
+    }
+  })
+  output$t1p3_1t_to = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      pickerInput(
+        "t1p3_1t_to", 
+        "", 
+        choices = c("Waive"),
+        options = list(`dropdown-align-center` = TRUE),
+      )
+    }
+  })
+  output$t1p4_1t_to = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      pickerInput(
+        "t1p4_1t_to", 
+        "", 
+        choices = c("Waive"),
+        options = list(`dropdown-align-center` = TRUE),
+      )
+    }
+  })
+  output$t1p5_1t_to = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      pickerInput(
+        "t1p5_1t_to", 
+        "", 
+        choices = c("Waive"),
+        options = list(`dropdown-align-center` = TRUE),
+      )
+    }
+  })
+  output$t1p6_1t_to = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      pickerInput(
+        "t1p6_1t_to", 
+        "", 
+        choices = c("Waive"),
+        options = list(`dropdown-align-center` = TRUE),
+      )
+    }
+  })
+  output$t1p7_1t_to = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      pickerInput(
+        "t1p7_1t_to", 
+        "", 
+        choices = c("Waive"),
+        options = list(`dropdown-align-center` = TRUE),
+      )
+    }
+  })
+  output$t1p8_1t_to = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      pickerInput(
+        "t1p8_1t_to", 
+        "", 
+        choices = c("Waive"),
+        options = list(`dropdown-align-center` = TRUE),
+      )
+    }
+  })
+  output$t1p9_1t_to = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      pickerInput(
+        "t1p9_1t_to", 
+        "", 
+        choices = c("Waive"),
+        options = list(`dropdown-align-center` = TRUE),
+      )
+    }
+  })
+  output$t1p10_1t_to = renderUI({
+    if(length(input$teamsInvolved) == 1){
+      pickerInput(
+        "t1p10_1t_to", 
+        "", 
+        choices = c("Waive"),
+        options = list(`dropdown-align-center` = TRUE),
+      )
+    }
+  })
+  
   output$t1p1_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
       pickerInput(
@@ -4759,217 +3339,6 @@ server <- function(input, output, session) {
       )
     }
   })
-  
-  # output$t1p1_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t1p1_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t1p2_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t1p2_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t1p3_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t1p3_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t1p4_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t1p4_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t1p5_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t1p5_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t1p6_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t1p6_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t1p7_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t1p7_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t1p8_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t1p8_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t1p9_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t1p9_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t1p10_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t1p10_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
   
   # Team 2
   output$t2p1_2t_to = renderUI({
@@ -5585,217 +3954,6 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t2p1_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t2p1_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t2p2_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t2p2_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t2p3_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t2p3_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t2p4_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t2p4_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t2p5_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t2p5_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t2p6_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t2p6_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t2p7_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t2p7_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t2p8_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t2p8_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t2p9_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t2p9_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t2p10_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t2p10_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  
   # Team 3
   output$t3p1_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
@@ -6239,217 +4397,6 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t3p1_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t3p1_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t3p2_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t3p2_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t3p3_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t3p3_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t3p4_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t3p4_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t3p5_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t3p5_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t3p6_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t3p6_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t3p7_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t3p7_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t3p8_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t3p8_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t3p9_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t3p9_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t3p10_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t3p10_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  
   # Team 4
   output$t4p1_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
@@ -6672,429 +4619,6 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t4p1_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t4p1_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t4p2_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t4p2_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t4p3_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t4p3_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t4p4_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t4p4_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t4p5_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t4p5_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t4p6_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t4p6_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t4p7_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t4p7_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t4p8_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t4p8_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t4p9_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t4p9_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t4p10_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t4p10_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  
-  # # Team 5
-  # output$t5p1_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t5p1_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t5p2_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t5p2_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t5p3_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t5p3_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t5p4_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t5p4_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t5p5_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t5p5_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t5p6_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t5p6_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t5p7_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t5p7_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t5p8_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t5p8_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t5p9_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t5p9_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  # output$t5p10_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     pickerInput(
-  #       "t5p10_5t_to", 
-  #       "", 
-  #       choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #       choicesOpt = list(
-  #         content = c(
-  #           "",
-  #           hoopR_espn_nba_teams |>
-  #             filter(
-  #               display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #             ) |>
-  #             pull(dropdown_logo)
-  #         )
-  #       ),
-  #       options = list(`dropdown-align-center` = TRUE),
-  #       selected = ""
-  #     )
-  #   }
-  # })
-  
   
   ### Traded Asset to Team Input
   # Team 1
@@ -7302,7 +4826,6 @@ server <- function(input, output, session) {
   output$t1a1_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a1_3t_to", 
           "", 
@@ -7327,7 +4850,6 @@ server <- function(input, output, session) {
   output$t1a2_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a2_3t_to", 
           "", 
@@ -7352,7 +4874,6 @@ server <- function(input, output, session) {
   output$t1a3_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a3_3t_to", 
           "", 
@@ -7377,7 +4898,6 @@ server <- function(input, output, session) {
   output$t1a4_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a4_3t_to", 
           "", 
@@ -7402,7 +4922,6 @@ server <- function(input, output, session) {
   output$t1a5_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a5_3t_to", 
           "", 
@@ -7427,7 +4946,6 @@ server <- function(input, output, session) {
   output$t1a6_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a6_3t_to", 
           "", 
@@ -7452,7 +4970,6 @@ server <- function(input, output, session) {
   output$t1a7_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a7_3t_to", 
           "", 
@@ -7477,7 +4994,6 @@ server <- function(input, output, session) {
   output$t1a8_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a8_3t_to", 
           "", 
@@ -7502,7 +5018,6 @@ server <- function(input, output, session) {
   output$t1a9_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a9_3t_to", 
           "", 
@@ -7527,7 +5042,6 @@ server <- function(input, output, session) {
   output$t1a10_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a10_3t_to", 
           "", 
@@ -7553,7 +5067,6 @@ server <- function(input, output, session) {
   output$t1a1_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a1_4t_to", 
           "", 
@@ -7578,7 +5091,6 @@ server <- function(input, output, session) {
   output$t1a2_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a2_4t_to", 
           "", 
@@ -7603,7 +5115,6 @@ server <- function(input, output, session) {
   output$t1a3_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a3_4t_to", 
           "", 
@@ -7628,7 +5139,6 @@ server <- function(input, output, session) {
   output$t1a4_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a4_4t_to", 
           "", 
@@ -7653,7 +5163,6 @@ server <- function(input, output, session) {
   output$t1a5_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a5_4t_to", 
           "", 
@@ -7678,7 +5187,6 @@ server <- function(input, output, session) {
   output$t1a6_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a6_4t_to", 
           "", 
@@ -7703,7 +5211,6 @@ server <- function(input, output, session) {
   output$t1a7_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a7_4t_to", 
           "", 
@@ -7728,7 +5235,6 @@ server <- function(input, output, session) {
   output$t1a8_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a8_4t_to", 
           "", 
@@ -7753,7 +5259,6 @@ server <- function(input, output, session) {
   output$t1a9_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a9_4t_to", 
           "", 
@@ -7778,7 +5283,6 @@ server <- function(input, output, session) {
   output$t1a10_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t1a10_4t_to", 
           "", 
@@ -7800,247 +5304,6 @@ server <- function(input, output, session) {
       )
     }
   })
-  
-  # output$t1a1_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t1a1_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t1a2_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t1a2_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t1a3_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t1a3_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t1a4_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t1a4_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t1a5_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t1a5_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t1a6_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t1a6_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t1a7_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t1a7_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t1a8_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t1a8_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t1a9_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t1a9_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t1a10_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t1a10_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
   
   # Team 2
   output$t2a1_2t_to = renderUI({
@@ -8247,7 +5510,6 @@ server <- function(input, output, session) {
   output$t2a1_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a1_3t_to", 
           "", 
@@ -8272,7 +5534,6 @@ server <- function(input, output, session) {
   output$t2a2_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a2_3t_to", 
           "", 
@@ -8297,7 +5558,6 @@ server <- function(input, output, session) {
   output$t2a3_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a3_3t_to", 
           "", 
@@ -8322,7 +5582,6 @@ server <- function(input, output, session) {
   output$t2a4_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a4_3t_to", 
           "", 
@@ -8347,7 +5606,6 @@ server <- function(input, output, session) {
   output$t2a5_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a5_3t_to", 
           "", 
@@ -8372,7 +5630,6 @@ server <- function(input, output, session) {
   output$t2a6_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a6_3t_to", 
           "", 
@@ -8397,7 +5654,6 @@ server <- function(input, output, session) {
   output$t2a7_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a7_3t_to", 
           "", 
@@ -8422,7 +5678,6 @@ server <- function(input, output, session) {
   output$t2a8_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a8_3t_to", 
           "", 
@@ -8447,7 +5702,6 @@ server <- function(input, output, session) {
   output$t2a9_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a9_3t_to", 
           "", 
@@ -8472,7 +5726,6 @@ server <- function(input, output, session) {
   output$t2a10_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a10_3t_to", 
           "", 
@@ -8498,7 +5751,6 @@ server <- function(input, output, session) {
   output$t2a1_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a1_4t_to", 
           "", 
@@ -8523,7 +5775,6 @@ server <- function(input, output, session) {
   output$t2a2_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a2_4t_to", 
           "", 
@@ -8548,7 +5799,6 @@ server <- function(input, output, session) {
   output$t2a3_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a3_4t_to", 
           "", 
@@ -8573,7 +5823,6 @@ server <- function(input, output, session) {
   output$t2a4_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a4_4t_to", 
           "", 
@@ -8598,7 +5847,6 @@ server <- function(input, output, session) {
   output$t2a5_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a5_4t_to", 
           "", 
@@ -8623,7 +5871,6 @@ server <- function(input, output, session) {
   output$t2a6_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a6_4t_to", 
           "", 
@@ -8648,7 +5895,6 @@ server <- function(input, output, session) {
   output$t2a7_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a7_4t_to", 
           "", 
@@ -8673,7 +5919,6 @@ server <- function(input, output, session) {
   output$t2a8_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a8_4t_to", 
           "", 
@@ -8698,7 +5943,6 @@ server <- function(input, output, session) {
   output$t2a9_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a9_4t_to", 
           "", 
@@ -8723,7 +5967,6 @@ server <- function(input, output, session) {
   output$t2a10_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t2a10_4t_to", 
           "", 
@@ -8746,252 +5989,10 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t2a1_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t2a1_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t2a2_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t2a2_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t2a3_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t2a3_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t2a4_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t2a4_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t2a5_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t2a5_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t2a6_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t2a6_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t2a7_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t2a7_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t2a8_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t2a8_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t2a9_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t2a9_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t2a10_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t2a10_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  
   # Team 3
   output$t3a1_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a1_3t_to", 
           "", 
@@ -9016,7 +6017,6 @@ server <- function(input, output, session) {
   output$t3a2_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a2_3t_to", 
           "", 
@@ -9041,7 +6041,6 @@ server <- function(input, output, session) {
   output$t3a3_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a3_3t_to", 
           "", 
@@ -9066,7 +6065,6 @@ server <- function(input, output, session) {
   output$t3a4_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a4_3t_to", 
           "", 
@@ -9091,7 +6089,6 @@ server <- function(input, output, session) {
   output$t3a5_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a5_3t_to", 
           "", 
@@ -9116,7 +6113,6 @@ server <- function(input, output, session) {
   output$t3a6_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a6_3t_to", 
           "", 
@@ -9141,7 +6137,6 @@ server <- function(input, output, session) {
   output$t3a7_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a7_3t_to", 
           "", 
@@ -9166,7 +6161,6 @@ server <- function(input, output, session) {
   output$t3a8_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a8_3t_to", 
           "", 
@@ -9191,7 +6185,6 @@ server <- function(input, output, session) {
   output$t3a9_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a9_3t_to", 
           "", 
@@ -9216,7 +6209,6 @@ server <- function(input, output, session) {
   output$t3a10_3t_to = renderUI({
     if(length(input$teamsInvolved) == 3){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a10_3t_to", 
           "", 
@@ -9242,7 +6234,6 @@ server <- function(input, output, session) {
   output$t3a1_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a1_4t_to", 
           "", 
@@ -9267,7 +6258,6 @@ server <- function(input, output, session) {
   output$t3a2_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a2_4t_to", 
           "", 
@@ -9292,7 +6282,6 @@ server <- function(input, output, session) {
   output$t3a3_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a3_4t_to", 
           "", 
@@ -9317,7 +6306,6 @@ server <- function(input, output, session) {
   output$t3a4_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a4_4t_to", 
           "", 
@@ -9342,7 +6330,6 @@ server <- function(input, output, session) {
   output$t3a5_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a5_4t_to", 
           "", 
@@ -9367,7 +6354,6 @@ server <- function(input, output, session) {
   output$t3a6_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a6_4t_to", 
           "", 
@@ -9392,7 +6378,6 @@ server <- function(input, output, session) {
   output$t3a7_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a7_4t_to", 
           "", 
@@ -9417,7 +6402,6 @@ server <- function(input, output, session) {
   output$t3a8_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a8_4t_to", 
           "", 
@@ -9442,7 +6426,6 @@ server <- function(input, output, session) {
   output$t3a9_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a9_4t_to", 
           "", 
@@ -9467,7 +6450,6 @@ server <- function(input, output, session) {
   output$t3a10_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t3a10_4t_to", 
           "", 
@@ -9490,252 +6472,10 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t3a1_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t3a1_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t3a2_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t3a2_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t3a3_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t3a3_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t3a4_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t3a4_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t3a5_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t3a5_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t3a6_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t3a6_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t3a7_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t3a7_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t3a8_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t3a8_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t3a9_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t3a9_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t3a10_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t3a10_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[3]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  
   # Team 4
   output$t4a1_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t4a1_4t_to", 
           "", 
@@ -9760,7 +6500,6 @@ server <- function(input, output, session) {
   output$t4a2_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t4a2_4t_to", 
           "", 
@@ -9785,7 +6524,6 @@ server <- function(input, output, session) {
   output$t4a3_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t4a3_4t_to", 
           "", 
@@ -9810,7 +6548,6 @@ server <- function(input, output, session) {
   output$t4a4_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t4a4_4t_to", 
           "", 
@@ -9835,7 +6572,6 @@ server <- function(input, output, session) {
   output$t4a5_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t4a5_4t_to", 
           "", 
@@ -9860,7 +6596,6 @@ server <- function(input, output, session) {
   output$t4a6_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t4a6_4t_to", 
           "", 
@@ -9885,7 +6620,6 @@ server <- function(input, output, session) {
   output$t4a7_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t4a7_4t_to", 
           "", 
@@ -9910,7 +6644,6 @@ server <- function(input, output, session) {
   output$t4a8_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t4a8_4t_to", 
           "", 
@@ -9935,7 +6668,6 @@ server <- function(input, output, session) {
   output$t4a9_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t4a9_4t_to", 
           "", 
@@ -9960,7 +6692,6 @@ server <- function(input, output, session) {
   output$t4a10_4t_to = renderUI({
     if(length(input$teamsInvolved) == 4){
       div(
-        style = "margin-bottom: -0.05rem;",
         pickerInput(
           "t4a10_4t_to", 
           "", 
@@ -9982,490 +6713,6 @@ server <- function(input, output, session) {
       )
     }
   })
-  
-  # output$t4a1_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t4a1_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t4a2_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t4a2_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t4a3_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t4a3_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t4a4_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t4a4_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t4a5_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t4a5_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t4a6_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t4a6_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t4a7_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t4a7_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t4a8_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t4a8_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t4a9_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t4a9_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t4a10_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t4a10_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[4]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  
-  # # Team 5
-  # output$t5a1_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t5a1_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t5a2_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t5a2_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t5a3_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t5a3_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t5a4_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t5a4_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t5a5_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t5a5_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t5a6_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t5a6_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t5a7_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t5a7_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t5a8_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t5a8_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t5a9_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t5a9_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  # output$t5a10_5t_to = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     div(
-  #       style = "margin-bottom: -0.05rem;",
-  #       pickerInput(
-  #         "t5a10_5t_to", 
-  #         "", 
-  #         choices = c("", input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]),
-  #         choicesOpt = list(
-  #           content = c(
-  #             "",
-  #             hoopR_espn_nba_teams |>
-  #               filter(
-  #                 display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[5]]]
-  #               ) |>
-  #               pull(dropdown_logo)
-  #           )
-  #         ),
-  #         options = list(`dropdown-align-center` = TRUE),
-  #         selected = ""
-  #       )
-  #     )
-  #   }
-  # })
-  
   
   # Traded Asset Protection Input
   # Team 1
@@ -10712,87 +6959,6 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t1a1_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a1_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t1a2_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a2_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t1a3_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a3_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t1a4_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a4_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t1a5_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a5_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t1a6_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a6_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t1a7_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a7_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t1a8_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a8_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t1a9_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a9_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t1a10_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t1a10_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  
   # Team 2
   output$t2a1_2t_pro = renderUI({
     if(length(input$teamsInvolved) == 2){
@@ -11037,87 +7203,6 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t2a1_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a1_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t2a2_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a2_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t2a3_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a3_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t2a4_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a4_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t2a5_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a5_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t2a6_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a6_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t2a7_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a7_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t2a8_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a8_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t2a9_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a9_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t2a10_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t2a10_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  
   # Team 3
   output$t3a1_3t_pro = renderUI({
     if(length(input$teamsInvolved) == 3){
@@ -11281,87 +7366,6 @@ server <- function(input, output, session) {
     }
   })
   
-  # output$t3a1_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a1_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t3a2_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a2_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t3a3_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a3_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t3a4_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a4_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t3a5_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a5_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t3a6_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a6_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t3a7_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a7_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t3a8_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a8_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t3a9_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a9_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t3a10_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t3a10_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  
   # Team 4
   output$t4a1_4t_pro = renderUI({
     if(length(input$teamsInvolved) == 4){
@@ -11443,169 +7447,6 @@ server <- function(input, output, session) {
       )
     }
   })
-  
-  # output$t4a1_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a1_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t4a2_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a2_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t4a3_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a3_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t4a4_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a4_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t4a5_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a5_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t4a6_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a6_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t4a7_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a7_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t4a8_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a8_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t4a9_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a9_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t4a10_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t4a10_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  
-  # # Team 5
-  # output$t5a1_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a1_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t5a2_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a2_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t5a3_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a3_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t5a4_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a4_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t5a5_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a5_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t5a6_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a6_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t5a7_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a7_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t5a8_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a8_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t5a9_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a9_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
-  # output$t5a10_5t_pro = renderUI({
-  #   if(length(input$teamsInvolved) == 5){
-  #     textInput(
-  #       "t5a10_5t_pro", 
-  #       ""
-  #     )
-  #   }
-  # })
   
   t1_name = reactive(
     if(length(input$teamsInvolved) >= 1){
