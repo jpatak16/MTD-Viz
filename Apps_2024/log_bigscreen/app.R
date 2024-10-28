@@ -197,7 +197,7 @@ server <- function(input, output, session) {
         columns = logo, 
         height = 75
       ) |>
-      gt_theme_pff() |>
+      gt_theme_guardian() |>
       #dark borders between trades
       tab_style(
         style = list(
@@ -208,6 +208,10 @@ server <- function(input, output, session) {
       tab_style(
         style = list(cell_text(weight = "bold", size = "18px")),
         locations = cells_body(columns = c("players", "picks"))
+      ) |>
+      tab_style(
+        style = list(cell_borders(sides = "top", color = "white")),
+        locations = cells_column_labels()
       ) |>
       cols_hide(
         columns = c(trans_ID, to_team, first, status, notes)
@@ -226,7 +230,9 @@ server <- function(input, output, session) {
         columns = "picks"
       ) |>
       cols_label(
-        logo = "Team"
+        logo = "Team",
+        players = "Players",
+        picks = "Picks"
       )
     )
   
@@ -244,7 +250,7 @@ server <- function(input, output, session) {
         columns = logo, 
         height = 75
       ) |>
-      gt_theme_pff() |>
+      gt_theme_guardian() |>
       #dark borders between trades
       tab_style(
         style = list(
@@ -255,6 +261,10 @@ server <- function(input, output, session) {
       tab_style(
         style = list(cell_text(weight = "bold", size = "18px")),
         locations = cells_body(columns = c("players", "picks"))
+      ) |>
+      tab_style(
+        style = list(cell_borders(sides = "top", color = "white")),
+        locations = cells_column_labels()
       ) |>
       cols_hide(
         columns = c(trans_ID, to_team, first, status, notes)
@@ -273,7 +283,9 @@ server <- function(input, output, session) {
         columns = "picks"
       ) |>
       cols_label(
-        logo = "Team"
+        logo = "Team",
+        players = "Players",
+        picks = "Picks"
       )
     )
     
