@@ -2729,171 +2729,201 @@ server <- function(input, output, session) {
   
   output$t1p1_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t1p1_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t1p1_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t1p2_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t1p2_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t1p2_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t1p3_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t1p3_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t1p3_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t1p4_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t1p4_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t1p4_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t1p5_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t1p5_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t1p5_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t1p6_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t1p6_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t1p6_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t1p7_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t1p7_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t1ap7_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t1p8_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t1p8_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t1ap8_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t1p9_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t1p9_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t1p9_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t1p10_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t1p10_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t1p10_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
@@ -3343,171 +3373,201 @@ server <- function(input, output, session) {
   # Team 2
   output$t2p1_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t2p1_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t2p1_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t2p2_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t2p2_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t2p2_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t2p3_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t2p3_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t2p3_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t2p4_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t2p4_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t2p4_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t2p5_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t2p5_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t2p5_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t2p6_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t2p6_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t2p6_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t2p7_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t2p7_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t2ap7_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t2p8_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t2p8_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t2ap8_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t2p9_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t2p9_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t2p9_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
   output$t2p10_2t_to = renderUI({
     if(length(input$teamsInvolved) == 2){
-      pickerInput(
-        "t2p10_2t_to", 
-        "", 
-        choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
-        choicesOpt = list(
-          content = hoopR_espn_nba_teams |>
-            filter(
-              display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
-            ) |>
-            pull(dropdown_logo)
-        ),
-        options = list(`dropdown-align-center` = TRUE),
+      div(
+        style = "margin-bottom: -0.05rem;",
+        pickerInput(
+          "t2p10_2t_to", 
+          "", 
+          choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
+          choicesOpt = list(
+            content = hoopR_espn_nba_teams |>
+              filter(
+                display_name %in% input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]]
+              ) |>
+              pull(dropdown_logo)
+          ),
+          options = list(`dropdown-align-center` = TRUE)
+        )
       )
     }
   })
@@ -7565,6 +7625,28 @@ server <- function(input, output, session) {
         note = rep("", 10)
       )
     }
+    else if(length(input$teamsInvolved) == 1){
+      data.frame(
+        asset = c(
+          paste0(input$t1p1_1t, " Waived"),
+          paste0(input$t1p2_1t, " Waived"),
+          paste0(input$t1p3_1t, " Waived"),
+          paste0(input$t1p4_1t, " Waived"),
+          paste0(input$t1p5_1t, " Waived"),
+          paste0(input$t1p6_1t, " Waived"),
+          paste0(input$t1p7_1t, " Waived"),
+          paste0(input$t1p8_1t, " Waived"),
+          paste0(input$t1p9_1t, " Waived"),
+          paste0(input$t1p10_1t, " Waived")
+        ),
+        away_from_team = rep(t1_name(), 10),
+        to_team = rep(t1_name(), 10),
+        note = rep("", 10)
+      ) |>
+      mutate(
+        asset = ifelse(asset == " Waived", "", asset)
+      )
+    }
   )
   
 
@@ -7690,6 +7772,14 @@ server <- function(input, output, session) {
           input$t1a9_4t_pro,
           input$t1a10_4t_pro
         )
+      )
+    }
+    else if(length(input$teamsInvolved) == 1){
+      data.frame(
+        asset = NA,
+        away_from_team = NA,
+        to_team = NA,
+        note = NA
       )
     }
   )
@@ -8156,6 +8246,10 @@ server <- function(input, output, session) {
             t1_picks(), t2_picks(), t3_picks(), t4_picks()) |>
         filter(asset != "")
     }
+    else if(length(input$teamsInvolved) == 1){
+      rbind(t1_players()) |>
+        filter(asset != "")
+    }
   )
   
   proposedTrade_players = reactive(
@@ -8228,11 +8322,15 @@ server <- function(input, output, session) {
             ) |>
             gt() |>
             gt_img_rows(columns = logo, height = 25) |>
-            gt_theme_pff() |>
+            gt_theme_guardian() |>
             #vertical align in players and picks cells
             tab_style(
               style = "vertical-align:top",
               locations = cells_body(columns = c("players", "picks", "notes"))
+            ) |>
+            tab_style(
+              style = list(cell_borders(sides = "top", color = "white")),
+              locations = cells_column_labels()
             ) |>
             cols_hide(columns = c(to_team)) |>
             fmt_markdown(columns = c("players", "picks", "notes")) |>
@@ -8246,7 +8344,10 @@ server <- function(input, output, session) {
               align = "left",
               columns = c("notes", "picks")
             ) |>
-            cols_label(logo = "Team")
+            cols_label(logo = "Team",
+                       players = "Players",
+                       picks = "Picks",
+                       notes = "Notes")
         ),
         footer = tagList(
           actionButton("confirm", "Confirm Trade"),
