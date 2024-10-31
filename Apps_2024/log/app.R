@@ -189,16 +189,13 @@ server <- function(input, output, session) {
             ),
             locations = cells_body(rows = first==TRUE)
           ) |>
-          #vertical align in players and picks cells
-          tab_style(
-            style = "vertical-align:top",
-            locations = cells_body(
-              columns = c("players", "picks", "notes")
-            )
-          ) |>
           tab_style(
             style = list(cell_borders(sides = "top", color = "white")),
             locations = cells_column_labels()
+          ) |>
+          tab_style(
+            style = "white-space: nowrap;",
+            locations = cells_body()
           ) |>
           cols_hide(
             columns = c(trans_ID, to_team, first, status)
@@ -207,10 +204,7 @@ server <- function(input, output, session) {
             columns = c("players", "picks", "notes")
           ) |>
           cols_width(
-            logo ~ pct(5),
-            players ~ pct(8),
-            picks ~ pct(12),
-            notes ~ pct(23),
+            everything() ~ "auto"
           ) |>
           cols_align(
             align = "left",
@@ -225,7 +219,14 @@ server <- function(input, output, session) {
           players = "Incoming Players",
           picks = "Incoming Picks",
           notes = "Notes"
-        )
+        ) |>
+          #vertical align in players and picks cells
+          tab_style(
+            style = "vertical-align:top",
+            locations = cells_body(
+              columns = c("players", "picks", "notes")
+            )
+          )
         
   }else{
     incoming_by_team() |>
@@ -460,28 +461,23 @@ server <- function(input, output, session) {
             cell_borders(sides = "left", weight = px(1))),
           locations = cells_body(columns = c(incoming_asset, outgoing_asset))
         ) |>
-        #vertical align in players and picks cells
-        tab_style(
-          style = "vertical-align:top",
-          locations = cells_body(columns = c("incoming_asset", "outgoing_asset", "notes_i", "notes_o"))
-        ) |>
         tab_style(
           style = list(cell_borders(sides = "top", color = "white")),
           locations = cells_column_labels()
         ) |>
+          tab_style(
+            style = "white-space: nowrap;",
+            locations = cells_body()
+          ) |>
         cols_hide(
           columns = c(trans_ID, team)
         ) |>
         fmt_markdown(
           columns = c("incoming_asset", "outgoing_asset", "notes_i", "notes_o")
         ) |>
-        cols_width(
-          logo ~ pct(5),
-          incoming_asset ~ pct(10),
-          outgoing_asset ~ pct(15),
-          notes_i ~ pct(18),
-          notes_o ~ pct(18)
-        ) |>
+          cols_width(
+            everything() ~ "auto"
+          ) |>
         cols_align(
           align = "left",
           columns = "notes_i"
@@ -496,7 +492,12 @@ server <- function(input, output, session) {
           notes_o = "Notes",
           incoming_asset = "Incoming Assets",
           outgoing_asset = "Outgoing Assets"
-        )
+        ) |>
+          #vertical align in players and picks cells
+          tab_style(
+            style = "vertical-align:top",
+            locations = cells_body(columns = c("incoming_asset", "outgoing_asset", "notes_i", "notes_o"))
+          )
         
     }else{
       bt_tl_filtered1() |>

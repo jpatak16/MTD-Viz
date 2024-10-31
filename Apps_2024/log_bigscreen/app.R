@@ -23,7 +23,7 @@ ui = bootstrapPage(
     class = "row",
     # Title Header
     div(
-      class = "col-6",
+      class = "col-3",
       img(
         src="ASU-NTDC-Logo.png", 
         width = "100vw",
@@ -36,9 +36,10 @@ ui = bootstrapPage(
     ),
     # Countdown Clock
     div(
-      class = "col-6",
+      class = "col-9",
       style = "display: flex; align-items: center; justify-content: center;",
-      h3(uiOutput("countdown_output"), style = "text-align: center;"),
+      h3(uiOutput("countdown_output"), style = "text-align: center; margin-right: 7em;"),
+      h3(uiOutput("trades_output"), style = "text-align: center;")
     )
   ),
   tags$hr(style="border-width: 2px; border-color:rgba(169,20,20,128); margin-bottom:0px;"),
@@ -83,6 +84,24 @@ server <- function(input, output, session) {
       # Format the output
       HTML(paste0("Time Remaining:", "<br>", hours, " Hours, ", minutes, " Minutes, ", seconds, " Seconds"))
     }
+  })
+  
+  output$trades_output <- renderText({
+    
+    # Calculate the total completed trades
+    total_trades <- transaction_log() |>
+      filter(
+        !str_detect(
+          asset,
+          "Waived"
+        )
+      ) |>
+      pull(trans_ID) |>
+      unique() |>
+      length()
+    
+    HTML(paste0("Trades Completed:", "<br>", total_trades))
+    
   })
   
   transaction_log <- reactive({

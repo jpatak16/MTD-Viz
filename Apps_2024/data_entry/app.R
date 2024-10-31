@@ -8379,7 +8379,7 @@ server <- function(input, output, session) {
       enteredTrade = proposedTrade() |>
         mutate(
           trans_ID = paste0(new_transID, runif(1, 0, 99) |> round(digits = 0) |> sprintf(fmt = "%02d")),
-          status = "Entered"
+          status = "Pending"
         ) |>
         select(trans_ID, asset, away_from_team, to_team, note, status)
     
