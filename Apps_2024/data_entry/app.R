@@ -1,4 +1,3 @@
-library(pacman)
 library(shiny)
 library(bslib)
 library(shinyWidgets)
@@ -2852,7 +2851,7 @@ server <- function(input, output, session) {
       div(
         style = "margin-bottom: -0.05rem;",
         pickerInput(
-          "t1ap7_2t_to", 
+          "t1p7_2t_to", 
           "", 
           choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
           choicesOpt = list(
@@ -2872,7 +2871,7 @@ server <- function(input, output, session) {
       div(
         style = "margin-bottom: -0.05rem;",
         pickerInput(
-          "t1ap8_2t_to", 
+          "t1p8_2t_to", 
           "", 
           choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[1]]],
           choicesOpt = list(
@@ -3496,7 +3495,7 @@ server <- function(input, output, session) {
       div(
         style = "margin-bottom: -0.05rem;",
         pickerInput(
-          "t2ap7_2t_to", 
+          "t2p7_2t_to", 
           "", 
           choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
           choicesOpt = list(
@@ -3516,7 +3515,7 @@ server <- function(input, output, session) {
       div(
         style = "margin-bottom: -0.05rem;",
         pickerInput(
-          "t2ap8_2t_to", 
+          "t2p8_2t_to", 
           "", 
           choices = input$teamsInvolved[input$teamsInvolved != input$teamsInvolved[[2]]],
           choicesOpt = list(
