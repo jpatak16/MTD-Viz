@@ -18,6 +18,9 @@ nba_teams <- hoopR_espn_nba_teams |>
 
 ui = bootstrapPage(
   theme = bs_theme(version = 5, bootswatch = "journal"),
+  tags$head(
+    tags$title("NTDC Judge Review")
+  ),
   div(
     class = "title",
     img(

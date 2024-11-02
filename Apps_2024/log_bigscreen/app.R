@@ -19,6 +19,9 @@ deadline <- as.POSIXct("2024-11-08 16:00:00")
 
 ui = bootstrapPage(
   theme = bs_theme(version = 5, bootswatch = "journal"),
+  tags$head(
+    tags$title("NTDC Big Screen")
+  ),
   div(
     class = "row",
     # Title Header
