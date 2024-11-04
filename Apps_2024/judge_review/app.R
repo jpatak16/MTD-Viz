@@ -6,6 +6,7 @@ library(gt)
 library(gtExtras)
 library(googlesheets4)
 library(bslib)
+library(shinycssloaders)
 
 gs4_auth(path = ".secrets/asu-mtd-c191882d31e3.json")
 
