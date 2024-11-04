@@ -199,12 +199,20 @@ server <- function(input, output, session) {
         ) |>
         min()
       
+      new_confID = read_sheet(ss, sheet = "All_TL") |>
+        pull(confirmID) |>
+        substr(1,3) |>
+        max(na.rm = T) |>
+        as.numeric()+1
+      
       range_write(
         ss,
         data = trade() |>
           mutate(
             status = "Complete",
-            reason = input$reason
+            reason = input$reason,
+            confirmID = paste0(new_confID, runif(1, 0, 99) |> round(digits = 0) |> sprintf(fmt = "%02d")),
+            time_reviewed = format(Sys.time(), "%H:%M:%S")
           ),
         range = paste0("A", start_row+1),
         col_names = FALSE,
@@ -259,12 +267,20 @@ server <- function(input, output, session) {
       ) |>
         min()
       
+      new_confID = read_sheet(ss, sheet = "All_TL") |>
+        pull(confirmID) |>
+        substr(1,3) |>
+        max(na.rm = T) |>
+        as.numeric()+1
+      
       range_write(
         ss,
         data = trade() |>
           mutate(
             status = "Conditionally Approved",
-            reason = input$reason
+            reason = input$reason,
+            confirmID = paste0(new_confID, runif(1, 0, 99) |> round(digits = 0) |> sprintf(fmt = "%02d")),
+            time_reviewed = format(Sys.time(), "%H:%M:%S")
           ),
         range = paste0("A", start_row+1),
         col_names = FALSE,
@@ -328,12 +344,20 @@ server <- function(input, output, session) {
       ) |>
         min()
       
+      new_confID = read_sheet(ss, sheet = "All_TL") |>
+        pull(confirmID) |>
+        substr(1,3) |>
+        max(na.rm = T) |>
+        as.numeric()+1
+      
       range_write(
         ss,
         data = trade() |>
           mutate(
             status = "Rejected",
-            reason = input$reason
+            reason = input$reason,
+            confirmID = paste0(new_confID, runif(1, 0, 99) |> round(digits = 0) |> sprintf(fmt = "%02d")),
+            time_reviewed = format(Sys.time(), "%H:%M:%S")
           ),
         range = paste0("A", start_row+1),
         col_names = FALSE,

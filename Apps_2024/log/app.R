@@ -42,7 +42,7 @@ ui = bootstrapPage(
         "showNotes", 
         "Show Notes?", 
         choices = c("Yes", "No"), 
-        selected = "No"
+        selected = "Yes"
       )
     ),
     div(
@@ -110,7 +110,7 @@ server <- function(input, output, session) {
         players = paste(asset, collapse = ", ")
       ) |>
       select(
-        trans_ID, to_team, players, status
+        trans_ID, to_team, players, status, confirmID
       ) |>
       unique()
     )
@@ -128,7 +128,7 @@ server <- function(input, output, session) {
         notes = paste(note, collapse = ",, ")
       ) |>
       select(
-        trans_ID, to_team, picks, notes, status
+        trans_ID, to_team, picks, notes, status, confirmID
       ) |>
       unique()
     )
@@ -137,7 +137,7 @@ server <- function(input, output, session) {
       full_join(
         players(), 
         picks(), 
-        by = c('trans_ID', 'to_team', 'status')
+        by = c('trans_ID', 'to_team', 'status', 'confirmID')
       ) |>
       mutate(
         players = ifelse(is.na(players), "", players),
@@ -145,10 +145,10 @@ server <- function(input, output, session) {
         notes = ifelse(is.na(notes), "", notes)
       ) |>
       select(
-        trans_ID, to_team, players, picks, notes, status
+        trans_ID, to_team, players, picks, notes, status, confirmID
       ) |>
       ungroup() |>
-      arrange(trans_ID, to_team) |>
+      arrange(confirmID, to_team) |>
       mutate(
         first = ifelse(row_number() == 1, 1, 0),
         .by = trans_ID
@@ -158,7 +158,7 @@ server <- function(input, output, session) {
         by = c("to_team" = "display_name")
       ) |>
       select(
-        trans_ID, status, to_team, logo, players, picks, first, notes
+        trans_ID, status, to_team, logo, players, picks, first, notes, confirmID
       )
     )
   
@@ -171,7 +171,7 @@ server <- function(input, output, session) {
             notes = str_replace_all(notes, ",, ", "<br>"),
             notes = str_replace_all(notes, "NA", "")
           ) |>
-          arrange(desc(trans_ID)) |>
+          arrange(desc(confirmID)) |>
           group_by(trans_ID) |>
           mutate(
             status = ifelse(row_number() == 1, status, "")
@@ -202,7 +202,7 @@ server <- function(input, output, session) {
             locations = cells_body()
           ) |>
           cols_hide(
-            columns = c(trans_ID, to_team, first, status)
+            columns = c(trans_ID, to_team, first, status, confirmID)
           ) |>
           fmt_markdown(
             columns = c("players", "picks", "notes")
@@ -239,7 +239,7 @@ server <- function(input, output, session) {
         players = str_replace_all(players, ", ", "<br>"),
         picks = str_replace_all(picks, ", ", "<br>")
       ) |> 
-      arrange(desc(trans_ID)) |>
+      arrange(desc(confirmID)) |>
       group_by(trans_ID) |>
       mutate(
         status = ifelse(row_number() == 1, status, "")
@@ -268,7 +268,7 @@ server <- function(input, output, session) {
         locations = cells_column_labels()
       ) |>
       cols_hide(
-        columns = c(trans_ID, to_team, first, status)
+        columns = c(trans_ID, to_team, first, status, confirmID)
       ) |>
       fmt_markdown(
         columns = c("players", "picks")
@@ -312,7 +312,7 @@ server <- function(input, output, session) {
                       collapse = ",, ")
       ) |>
       select(
-        trans_ID, to_team, players, note1, status
+        trans_ID, to_team, players, note1, status, confirmID
       ) |>
       unique()
     )
@@ -330,7 +330,7 @@ server <- function(input, output, session) {
         note2 = paste(note, collapse = ",, ")
       ) |>
       select(
-        trans_ID, to_team, picks, note2, status
+        trans_ID, to_team, picks, note2, status, confirmID
       ) |>
       unique()
     )
@@ -339,7 +339,7 @@ server <- function(input, output, session) {
       full_join(
         bt_ia_player(), 
         bt_ia_picks(), 
-        by = c("trans_ID", "to_team", "status")
+        by = c("trans_ID", "to_team", "status", "confirmID")
       ) |>
       mutate(
         incoming_asset = paste0(players, "<br>", picks),
@@ -354,7 +354,7 @@ server <- function(input, output, session) {
         incoming_asset = str_replace_all(incoming_asset, "NA", "")
       ) |>
       select(
-        trans_ID, team=to_team, incoming_asset, notes_i=notes, status
+        trans_ID, team=to_team, incoming_asset, notes_i=notes, status, confirmID
       )
     )
   
@@ -371,7 +371,7 @@ server <- function(input, output, session) {
         note1 = paste(rep("NA", length(asset)), collapse = ",, ")
       ) |>
       select(
-        trans_ID, away_from_team, players, note1, status
+        trans_ID, away_from_team, players, note1, status, confirmID
       ) |>
       unique()
     )
@@ -389,7 +389,7 @@ server <- function(input, output, session) {
         note2 = paste(note, collapse = ",, ")
       ) |>
       select(
-        trans_ID, away_from_team, picks, note2, status
+        trans_ID, away_from_team, picks, note2, status, confirmID
       ) |>
       unique()
     )
@@ -398,7 +398,7 @@ server <- function(input, output, session) {
       full_join(
         bt_oa_player(), 
         bt_oa_picks(), 
-        by = c("trans_ID", "away_from_team", "status")
+        by = c("trans_ID", "away_from_team", "status", "confirmID")
       ) |>
       mutate(
         outgoing_asset = paste0(players, "<br>", picks),
@@ -413,7 +413,7 @@ server <- function(input, output, session) {
         outgoing_asset = str_replace_all(outgoing_asset, "NA", "")
       ) |>
       select(
-        trans_ID, team=away_from_team, outgoing_asset, notes_o=notes, status
+        trans_ID, team=away_from_team, outgoing_asset, notes_o=notes, status, confirmID
       )
     )
   
@@ -421,7 +421,7 @@ server <- function(input, output, session) {
       full_join(
         bt_ia(), 
         bt_oa(), 
-        by = c("trans_ID", "team", "status")
+        by = c("trans_ID", "team", "status", "confirmID")
       )
     )
   
@@ -445,8 +445,8 @@ server <- function(input, output, session) {
           by = c("team" = "display_name")
         ) |>
         select(
-          trans_ID, logo, team, incoming_asset, notes_i, outgoing_asset, notes_o) |>
-        arrange(desc(trans_ID)) |>
+          trans_ID, logo, team, incoming_asset, notes_i, outgoing_asset, notes_o, confirmID) |>
+        arrange(desc(confirmID)) |>
         gt() |>
         gt_img_rows(
           columns = logo, 
@@ -474,7 +474,7 @@ server <- function(input, output, session) {
             locations = cells_body()
           ) |>
         cols_hide(
-          columns = c(trans_ID, team)
+          columns = c(trans_ID, team, confirmID)
         ) |>
         fmt_markdown(
           columns = c("incoming_asset", "outgoing_asset", "notes_i", "notes_o")
@@ -511,9 +511,9 @@ server <- function(input, output, session) {
           by = c("team" = "display_name")
         ) |>
         select(
-          trans_ID, logo, team, incoming_asset, outgoing_asset
+          trans_ID, logo, team, incoming_asset, outgoing_asset, confirmID
         ) |>
-        arrange(desc(trans_ID)) |>
+        arrange(desc(confirmID)) |>
         gt() |>
         gt_img_rows(
           columns = logo, 
@@ -542,7 +542,7 @@ server <- function(input, output, session) {
           locations = cells_column_labels()
         ) |>
         cols_hide(
-          columns = c(trans_ID, team)
+          columns = c(trans_ID, team, confirmID)
         ) |>
         fmt_markdown(
           columns = c("incoming_asset", "outgoing_asset")

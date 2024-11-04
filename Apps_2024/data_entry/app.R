@@ -8381,9 +8381,14 @@ server <- function(input, output, session) {
       enteredTrade = proposedTrade() |>
         mutate(
           trans_ID = paste0(new_transID, runif(1, 0, 99) |> round(digits = 0) |> sprintf(fmt = "%02d")),
-          status = "Pending"
+          status = "Pending",
+          reason = "",
+          confirmID = "",
+          time_entered = format(Sys.time(), "%H:%M:%S"),
+          time_reviewed = ""
         ) |>
-        select(trans_ID, asset, away_from_team, to_team, note, status)
+        select(trans_ID, asset, away_from_team, to_team, note, status,
+               reason, confirmID, time_entered, time_reviewed)
     
     sheet_append(ss, enteredTrade, sheet = "All_TL")
     removeModal()
