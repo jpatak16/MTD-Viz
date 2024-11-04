@@ -7,6 +7,7 @@ library(stringr)
 library(gt)
 library(gtExtras)
 library(googlesheets4)
+library(shinycssloaders)
 
 gs4_auth(path = ".secrets/asu-mtd-c191882d31e3.json")
 
@@ -90,7 +91,7 @@ ui = bootstrapPage(
         class = "col-md-12",
         style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
         h5(""),
-        htmlOutput("team1_logo"),
+        withSpinner(htmlOutput("team1_logo")),
         h5(""),
         # Players Traded
         div(
@@ -153,7 +154,7 @@ ui = bootstrapPage(
         class = "col-md-6",
         style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
         h5(""),
-        htmlOutput("team1_logo2"),
+        withSpinner(htmlOutput("team1_logo2")),
         h5(""),
         # Players Traded
         div(
@@ -244,7 +245,7 @@ ui = bootstrapPage(
         class = "col-md-6",
         style = "text-align: center; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
         h5(""),
-        htmlOutput("team2_logo"),
+        withSpinner(htmlOutput("team2_logo")),
         h5(""),
         # Players Traded
         div(
@@ -342,7 +343,7 @@ ui = bootstrapPage(
         class = "col-lg-4 col-md-6",
         style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
         h5(""),
-        htmlOutput("team1_logo3"),
+        withSpinner(htmlOutput("team1_logo3")),
         h5(""),
         # Players Traded
         div(
@@ -433,7 +434,7 @@ ui = bootstrapPage(
         class = "col-lg-4 col-md-6",
         style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
         h5(""),
-        htmlOutput("team2_logo3"),
+        withSpinner(htmlOutput("team2_logo3")),
         h5(""),
         # Players Traded
         div(
@@ -524,7 +525,7 @@ ui = bootstrapPage(
         class = "col-lg-4 col-md-6",
         style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
         h5(""),
-        htmlOutput("team3_logo"),
+        withSpinner(htmlOutput("team3_logo")),
         h5(""),
         # Players Traded
         div(
@@ -622,7 +623,7 @@ ui = bootstrapPage(
         class = "col-md-6",
         style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
         h5(""),
-        htmlOutput("team1_logo4"),
+        withSpinner(htmlOutput("team1_logo4")),
         h5(""),
         # Players Traded
         div(
@@ -713,7 +714,7 @@ ui = bootstrapPage(
         class = "col-md-6",
         style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
         h5(""),
-        htmlOutput("team2_logo4"),
+        withSpinner(htmlOutput("team2_logo4")),
         h5(""),
         # Players Traded
         div(
@@ -804,7 +805,7 @@ ui = bootstrapPage(
         class = "col-md-6",
         style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
         h5(""),
-        htmlOutput("team3_logo4"),
+        withSpinner(htmlOutput("team3_logo4")),
         h5(""),
         # Players Traded
         div(
@@ -895,7 +896,7 @@ ui = bootstrapPage(
         class = "col-md-6",
         style = "text-align: center; border-right: 2px solid black; border-top: 2px solid black; padding-left: 1.2em; padding-right: 1.2em;",
         h5(""),
-        htmlOutput("team4_logo"),
+        withSpinner(htmlOutput("team4_logo")),
         h5(""),
         # Players Traded
         div(

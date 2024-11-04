@@ -162,7 +162,10 @@ server <- function(input, output, session) {
   
   observeEvent(
     input$submitID, {
+      showPageSpinner()
       submittedID(input$tradeID)
+      Sys.sleep(1)
+      hidePageSpinner()
     })
   
   # Approve Trade Button
