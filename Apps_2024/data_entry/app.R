@@ -8312,7 +8312,7 @@ server <- function(input, output, session) {
     showModal(
       modalDialog(
         easyClose = TRUE,
-        size = "l",
+        size = "xl",
         title = "Confirm this trade?",
         render_gt(
           width = "100%",
@@ -8396,6 +8396,7 @@ server <- function(input, output, session) {
     showModal(
       modalDialog(
         easyClose = FALSE,
+        size = "xl",
         title = "Success!",
         h4("Your transaction ID for this trade is:"),
         h2(enteredTrade |> pull(trans_ID) |> unique()),
