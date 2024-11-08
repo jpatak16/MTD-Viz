@@ -15,7 +15,7 @@ nba_teams <- hoopR_espn_nba_teams |>
   pull(display_name)
 
 # Define the deadline date and time
-deadline <- as.POSIXct("2024-11-08 16:00:00")
+deadline <- as.POSIXct("2024-11-09 1:00:00")
 
 ui = bootstrapPage(
   theme = bs_theme(version = 5, bootswatch = "journal"),
