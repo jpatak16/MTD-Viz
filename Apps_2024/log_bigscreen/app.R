@@ -100,27 +100,11 @@ server <- function(input, output, session) {
   output$trades_output <- renderText({
     
     # Calculate the total completed trades
-      tt <- reactive(transaction_log() |>
-        filter(
-          !str_detect(
-            asset,
-            "Waived"
-          )
-        ) |>
-      filter(
-        !str_detect(
-          asset,
-          "Signed"
-        )
-      ) |>
-        pull(trans_ID) |>
-        unique() |>
-        length()
-      )
+    
       
 
     
-    HTML(paste0("Trades Completed:", "<br>", tt()))
+    HTML(paste0("Trades Completed:", "<br>", total_trades()))
     
   })
   
@@ -132,6 +116,12 @@ server <- function(input, output, session) {
         !str_detect(
           asset,
           "Waived"
+        )
+      ) |>
+      filter(
+        !str_detect(
+          asset,
+          "Signed"
         )
       ) |>
       pull(trans_ID) |>
@@ -149,14 +139,21 @@ server <- function(input, output, session) {
           "Waived"
         )
       ) |>
+      filter(
+        !str_detect(
+          asset,
+          "Signed"
+        )
+      ) |>
       pull(trans_ID) |>
       unique() |>
       length()
   })
   
   observe({
-    if(last_tc() != total_trades()){
+    if(total_trades() != last_tc()){
       runjs("document.getElementById('sound').play();")
+      Sys.sleep(30)
     }
   })
   
