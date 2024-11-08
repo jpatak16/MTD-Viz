@@ -216,7 +216,7 @@ server <- function(input, output, session) {
             status = "Complete",
             reason = input$reason,
             confirmID = paste0(new_confID, runif(1, 0, 99) |> round(digits = 0) |> sprintf(fmt = "%02d")),
-            time_reviewed = format(Sys.time(), "%H:%M:%S")
+            time_reviewed = format(Sys.time()-25200, "%H:%M:%S")
           ),
         range = paste0("A", start_row+1),
         col_names = FALSE,
@@ -284,7 +284,7 @@ server <- function(input, output, session) {
             status = "Conditionally Approved",
             reason = input$reason,
             confirmID = paste0(new_confID, runif(1, 0, 99) |> round(digits = 0) |> sprintf(fmt = "%02d")),
-            time_reviewed = format(Sys.time(), "%H:%M:%S")
+            time_reviewed = format(Sys.time()-25200, "%H:%M:%S")
           ),
         range = paste0("A", start_row+1),
         col_names = FALSE,
@@ -361,7 +361,7 @@ server <- function(input, output, session) {
             status = "Rejected",
             reason = input$reason,
             confirmID = paste0(new_confID, runif(1, 0, 99) |> round(digits = 0) |> sprintf(fmt = "%02d")),
-            time_reviewed = format(Sys.time(), "%H:%M:%S")
+            time_reviewed = format(Sys.time()-25200, "%H:%M:%S")
           ),
         range = paste0("A", start_row+1),
         col_names = FALSE,

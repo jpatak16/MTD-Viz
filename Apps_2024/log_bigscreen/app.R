@@ -15,7 +15,7 @@ nba_teams <- hoopR_espn_nba_teams |>
   pull(display_name)
 
 # Define the deadline date and time
-deadline <- as.POSIXct("2024-11-08 16:00:00")
+deadline <- as.POSIXct("2024-11-09 1:00:00")
 
 ui = bootstrapPage(
   theme = bs_theme(version = 5, bootswatch = "journal"),
@@ -39,7 +39,7 @@ ui = bootstrapPage(
     ),
     # Countdown Clock
     div(
-      class = "col-9",
+      class = "col-7",
       style = "display: flex; align-items: center; justify-content: center;",
       h3(uiOutput("countdown_output"), style = "text-align: center; margin-right: 7em;"),
       h3(uiOutput("trades_output"), style = "text-align: center;")
@@ -128,7 +128,7 @@ server <- function(input, output, session) {
         players = paste(asset, collapse = ", ")
       ) |>
       select(
-        trans_ID, to_team, players, status, confirmID
+        trans_ID, to_team, players, status, time_reviewed
       ) |>
       unique()
     )
@@ -146,7 +146,7 @@ server <- function(input, output, session) {
         notes = paste(note, collapse = ",, ")
       ) |>
       select(
-        trans_ID, to_team, picks, notes, status, confirmID
+        trans_ID, to_team, picks, notes, status, time_reviewed
       ) |>
       unique()
     )
@@ -155,7 +155,7 @@ server <- function(input, output, session) {
     full_join(
       players(), 
       picks(), 
-      by = c('trans_ID', 'to_team', 'status', 'confirmID')
+      by = c('trans_ID', 'to_team', 'status', 'time_reviewed')
     ) |>
     mutate(
       players = ifelse(is.na(players), "", players),
@@ -163,11 +163,11 @@ server <- function(input, output, session) {
       notes = ifelse(is.na(notes), "", notes)
     ) |>
     select(
-      trans_ID, to_team, players, picks, notes, status, confirmID
+      trans_ID, to_team, players, picks, notes, status, time_reviewed
     ) |>
     ungroup() |>
     arrange(
-      confirmID, to_team
+      trans_ID, to_team
     ) |>
     mutate(
       first = ifelse(row_number() == 1, 1, 0),
@@ -178,7 +178,7 @@ server <- function(input, output, session) {
       by = c("to_team" = "display_name")
     ) |>
     select(
-      trans_ID, status, to_team, logo, players, picks, first, notes, confirmID)
+      trans_ID, status, to_team, logo, players, picks, first, notes, time_reviewed)
     )
   
   
@@ -190,7 +190,7 @@ server <- function(input, output, session) {
         notes = str_replace_all(notes, ",, ", "<br>"),
         notes = str_replace_all(notes, "NA", "")
       ) |> 
-      arrange(desc(confirmID)) |>
+      arrange(desc(time_reviewed)) |>
       group_by(trans_ID) |>
       mutate(
         status = ifelse(row_number() == 1, status, "")
@@ -200,7 +200,6 @@ server <- function(input, output, session) {
   
   ids_1 <- reactive(
       transaction_log_fixed() |> 
-      arrange(desc(trans_ID)) |>
       pull(trans_ID) |> 
       unique()
     )
@@ -236,7 +235,7 @@ server <- function(input, output, session) {
         locations = cells_column_labels()
       ) |>
       cols_hide(
-        columns = c(trans_ID, to_team, first, status, notes, confirmID)
+        columns = c(trans_ID, to_team, first, status, notes, time_reviewed)
       ) |>
       fmt_markdown(
         columns = c("players", "picks", "notes")
@@ -289,7 +288,7 @@ server <- function(input, output, session) {
         locations = cells_column_labels()
       ) |>
       cols_hide(
-        columns = c(trans_ID, to_team, first, status, notes, confirmID)
+        columns = c(trans_ID, to_team, first, status, notes, time_reviewed)
       ) |>
       fmt_markdown(
         columns = c("players", "picks", "notes")

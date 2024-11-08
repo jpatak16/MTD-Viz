@@ -8312,7 +8312,7 @@ server <- function(input, output, session) {
     showModal(
       modalDialog(
         easyClose = TRUE,
-        size = "l",
+        size = "xl",
         title = "Confirm this trade?",
         render_gt(
           width = "100%",
@@ -8385,7 +8385,7 @@ server <- function(input, output, session) {
           status = "Pending",
           reason = "",
           confirmID = "",
-          time_entered = format(Sys.time(), "%H:%M:%S"),
+          time_entered = format(Sys.time()-25200, "%H:%M:%S"),
           time_reviewed = ""
         ) |>
         select(trans_ID, asset, away_from_team, to_team, note, status,
@@ -8396,10 +8396,49 @@ server <- function(input, output, session) {
     showModal(
       modalDialog(
         easyClose = FALSE,
+        size = "xl",
         title = "Success!",
         h4("Your transaction ID for this trade is:"),
         h2(enteredTrade |> pull(trans_ID) |> unique()),
         h2(""),
+        render_gt(
+          width = "100%",
+          proposedTrade_incoming_by_team() |>
+            mutate(
+              players = str_replace_all(players, ", ", "<br>"),
+              picks = str_replace_all(picks, ", ", "<br>"),
+              notes = str_replace_all(notes, ", ", "<br>"),
+              notes = str_replace_all(notes, "NA", " ")
+            ) |>
+            gt() |>
+            gt_img_rows(columns = logo, height = 25) |>
+            gt_theme_guardian() |>
+            #vertical align in players and picks cells
+            tab_style(
+              style = "vertical-align:top",
+              locations = cells_body(columns = c("players", "picks", "notes"))
+            ) |>
+            tab_style(
+              style = list(cell_borders(sides = "top", color = "white")),
+              locations = cells_column_labels()
+            ) |>
+            cols_hide(columns = c(to_team)) |>
+            fmt_markdown(columns = c("players", "picks", "notes")) |>
+            cols_width(
+              players ~ pct(25),
+              logo ~ pct(8),
+              picks ~ pct(30),
+              notes ~ pct(37)
+            ) |>
+            cols_align(
+              align = "left",
+              columns = c("notes", "picks")
+            ) |>
+            cols_label(logo = "Team",
+                       players = "Players",
+                       picks = "Picks",
+                       notes = "Notes")
+        ),
         h6("This is the last time you will see this ID and you will not be able to recover it later."),
         footer = tagList(
           actionButton("finish", "Close this Popup")
