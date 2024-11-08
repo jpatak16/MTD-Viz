@@ -100,7 +100,7 @@ server <- function(input, output, session) {
   output$trades_output <- renderText({
     
     # Calculate the total completed trades
-      transaction_log() |>
+      tt <- reactive(transaction_log() |>
         filter(
           !str_detect(
             asset,
@@ -116,10 +116,11 @@ server <- function(input, output, session) {
         pull(trans_ID) |>
         unique() |>
         length()
+      )
       
 
     
-    HTML(paste0("Trades Completed:", "<br>", total_trades()))
+    HTML(paste0("Trades Completed:", "<br>", tt()))
     
   })
   
