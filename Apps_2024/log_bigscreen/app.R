@@ -200,7 +200,7 @@ server <- function(input, output, session) {
   
   ids_1 <- reactive(
       transaction_log_fixed() |> 
-      arrange(desc(trans_ID)) |>
+      arrange(desc(confirmID)) |>
       pull(trans_ID) |> 
       unique()
     )
@@ -214,6 +214,7 @@ server <- function(input, output, session) {
       filter(
         trans_ID %in% ids_1_filtered()
       ) |>
+        arrange(desc(confirmID)) |>
       gt() |>
       gt_img_rows(
         columns = logo, 
@@ -267,6 +268,7 @@ server <- function(input, output, session) {
       filter(
         trans_ID %in% ids_2_filtered()
       ) |>
+        arrange(desc(confirmID)) |>
       gt() |>
       gt_img_rows(
         columns = logo, 
