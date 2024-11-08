@@ -107,6 +107,12 @@ server <- function(input, output, session) {
             "Waived"
           )
         ) |>
+      filter(
+        !str_detect(
+          asset,
+          "Signed"
+        )
+      ) |>
         pull(trans_ID) |>
         unique() |>
         length()
