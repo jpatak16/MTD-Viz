@@ -8385,7 +8385,7 @@ server <- function(input, output, session) {
           status = "Pending",
           reason = "",
           confirmID = "",
-          time_entered = format(Sys.time(), "%H:%M:%S"),
+          time_entered = format(Sys.time()-25200, "%H:%M:%S"),
           time_reviewed = ""
         ) |>
         select(trans_ID, asset, away_from_team, to_team, note, status,
