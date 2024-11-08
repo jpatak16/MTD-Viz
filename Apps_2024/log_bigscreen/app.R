@@ -117,7 +117,9 @@ server <- function(input, output, session) {
     
   })
   
-  total_trades <- reactive(
+  total_trades <- reactive({
+    countdownTimer()
+    
     transaction_log() |>
       filter(
         !str_detect(
@@ -128,7 +130,7 @@ server <- function(input, output, session) {
       pull(trans_ID) |>
       unique() |>
       length()
-  )
+  })
   
   last_tc <- reactive({
     refresh_timer()
