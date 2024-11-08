@@ -39,7 +39,7 @@ ui = bootstrapPage(
     ),
     # Countdown Clock
     div(
-      class = "col-9",
+      class = "col-7",
       style = "display: flex; align-items: center; justify-content: center;",
       h3(uiOutput("countdown_output"), style = "text-align: center; margin-right: 7em;"),
       h3(uiOutput("trades_output"), style = "text-align: center;")
