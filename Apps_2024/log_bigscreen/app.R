@@ -6,6 +6,7 @@ library(gt)
 library(gtExtras)
 library(googlesheets4)
 library(bslib)
+library(shinyjs)
 
 gs4_auth(path = ".secrets/asu-mtd-c191882d31e3.json")
 
@@ -19,6 +20,13 @@ deadline <- as.POSIXct("2024-11-09 1:00:00")
 
 ui = bootstrapPage(
   theme = bs_theme(version = 5, bootswatch = "journal"),
+  useShinyjs(),
+  tags$audio(
+    id = "sound", 
+    src = "nba-draft-sound-2021.wav", 
+    type = "audio/wav", 
+    preload = "auto"
+  ),
   tags$head(
     tags$title("NTDC Big Screen")
   ),
@@ -92,19 +100,61 @@ server <- function(input, output, session) {
   output$trades_output <- renderText({
     
     # Calculate the total completed trades
-    total_trades <- transaction_log() |>
+    
+      
+
+    
+    HTML(paste0("Trades Completed:", "<br>", total_trades()))
+    
+  })
+  
+  total_trades <- reactive({
+    countdownTimer()
+    
+    transaction_log() |>
       filter(
         !str_detect(
           asset,
           "Waived"
         )
       ) |>
+      filter(
+        !str_detect(
+          asset,
+          "Signed"
+        )
+      ) |>
       pull(trans_ID) |>
       unique() |>
       length()
+  })
+  
+  last_tc <- reactive({
+    refresh_timer()
     
-    HTML(paste0("Trades Completed:", "<br>", total_trades))
-    
+    transaction_log() |>
+      filter(
+        !str_detect(
+          asset,
+          "Waived"
+        )
+      ) |>
+      filter(
+        !str_detect(
+          asset,
+          "Signed"
+        )
+      ) |>
+      pull(trans_ID) |>
+      unique() |>
+      length()
+  })
+  
+  observe({
+    if(total_trades() != last_tc()){
+      runjs("document.getElementById('sound').play();")
+      Sys.sleep(30)
+    }
   })
   
   transaction_log <- reactive({
