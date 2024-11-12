@@ -81,7 +81,8 @@ df = read.csv("Apps_2024/teamresults.csv") |>
   )
 notes_df = read.csv("Apps_2024/results.csv") |>
   rename(
-    notes = 9
+    notes = 9,
+    team = 3
   ) |>
   filter(
     !is.na(notes),
@@ -215,6 +216,53 @@ for(t in df$team){
     )
   
   gtsave(tab, paste0("Apps_2024/result_outputs/scores/", t, "_scores.png"))
+  
+  tab2 <- notes_df |>
+    filter(
+      team == t
+    ) |>
+    select(notes) |>
+    mutate(row_type = ifelse(row_number() %% 2 == 1, "odd", "even")) |>
+    gt() |>
+    gt_theme_espn() |>
+    gt_border_bars_bottom(
+      bar_height = 7,
+      colors = c("grey", "#f88b30", "black")
+    ) |>
+    gt_border_bars_top(
+      bar_height = 4,
+      colors = c("black", "#f88b30", "grey")
+    ) |>
+    tab_header(
+      title = md(paste0("<div style='display: flex; justify-content: center; flex-direction: row; align-items: center; text-align: center;'><img src='https://events.asucollegeoflaw.com/nba-trade-deadline/wp-content/uploads/sites/39/2023/05/ASU-NTDC-Logo-300x240.png' style='height:150px;'>", 
+                        "<img src=", logo, " style='height:130px;'></div>"))
+    ) |>
+    tab_style(
+      style = list(cell_text(weight = "bold")),
+      locations = cells_body(
+        columns = notes,
+      )
+    ) |>
+    cols_label(
+      notes ~ "Notes From Our Judges"
+    ) |>
+    cols_width(
+      notes ~ px(650)
+    ) |>
+    cols_align(
+      align = c("center"),
+      columns = c(notes)
+    ) |>
+    tab_style(
+      style = list(cell_fill(color = "#f5f5f5")),
+      locations = cells_body(
+        columns = c(notes),
+        rows = row_type == "even"
+      )
+    ) |>
+    cols_hide(row_type)
+  
+  gtsave(tab2, paste0("Apps_2024/result_outputs/judge_notes/", t, "_notes.png"))
     
     
 }
