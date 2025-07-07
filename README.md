@@ -5,5 +5,3 @@ In November of both 2023 and 2024, the Arizona State University Law School hoste
 ![mtd-app-5](https://github.com/user-attachments/assets/8fc46d1b-cc31-4f59-9cc8-ad62da5c20a2)
 
 ![mtd-app-7](https://github.com/user-attachments/assets/fbfab811-072c-4b8b-82f7-5405db5a1bf2)
-
-See the <a href="https://jeremypatak.com/#portfolioModalmtd-website-dev">full project write-up</a> here!
